@@ -5,12 +5,13 @@ interface Props {
   title: string;
   image: ImageMetadata;
   alt?: string;
+  ariaHidden?: boolean;
 }
 
-const { title, image, alt = '' } = Astro.props;
+const { title, image, alt = '', ariaHidden = false } = Astro.props;
 ---
 
-<article class="card-reel" data-component="card-reel">
+<article class="card-reel" data-component="card-reel" aria-hidden={ariaHidden || undefined}>
   <div class="card-reel__media">
     <img
       src={image.src}

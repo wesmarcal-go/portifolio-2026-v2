@@ -1,0 +1,57 @@
+---
+import { fade } from 'astro:transitions';
+import CardReel from './CardReel.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import Identity from './Identity.astro';
+import '../styles/shared.css';
+import '../styles/layout.css';
+
+import slideIfood from '../assets/slide-ifood.png';
+import slideZeDelivery from '../assets/slide-ze-delivery.png';
+import slideGrupoGlobo from '../assets/slide-grupo-globo.png';
+import slideContaSimples from '../assets/slide-conta-simples.png';
+import slideAccenture from '../assets/slide-accenture.png';
+
+import { t, type Locale } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+
+const reels = [
+  { title: 'iFood', image: slideIfood },
+  { title: 'Zé Delivery', image: slideZeDelivery },
+  { title: 'Grupo Globo', image: slideGrupoGlobo },
+  { title: 'Conta Simples', image: slideContaSimples },
+  { title: 'Accenture', image: slideAccenture },
+];
+---
+
+<div class="page-home" transition:animate={fade({ duration: 280 })}>
+  <div class="page-frame">
+    <SiteHeader locale={locale} activePage="home" />
+
+    <section class="page-home__hero" aria-label={s.hero}>
+      <Identity locale={locale} />
+      <div class="page-home__intro">
+        <p class="page-home__eyebrow">{s.eyebrow}</p>
+        <h1 class="page-home__headline">{s.headline}</h1>
+      </div>
+    </section>
+  </div>
+
+  <section class="page-home__reels" aria-label={s.cases} data-component="reels-marquee">
+    <div class="page-home__reels-track">
+      {reels.map((reel) => <CardReel title={reel.title} image={reel.image} />)}
+      {reels.map((reel) => <CardReel title={reel.title} image={reel.image} ariaHidden />)}
+    </div>
+  </section>
+
+  <div class="page-frame">
+    <SiteFooter locale={locale} />
+  </div>
+</div>

@@ -27,7 +27,7 @@
   --spacing-lg: 50px;
   --spacing-xl: 76px;
   --spacing-reel: 30px;
-  --spacing-hero-height: 181px;
+  --spacing-hero-height: 221px;
   --spacing-reels-height: 570px;
   --spacing-footer-height: 115px;
   --line-height-reel-label: 54px;
@@ -36,4 +36,15 @@
   --radius-md: 11px;
   --radius-full: 9999px;
   --border-width: 1px;
+
+  /* Movimento */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-press: 140ms;
+  --duration-fast: 200ms;
+  --duration-base: 280ms;
+  --duration-menu-enter: 320ms;
+  --duration-menu-exit: 220ms;
+  --duration-marquee: 48s;
 }

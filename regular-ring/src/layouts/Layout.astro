@@ -1,20 +1,28 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/tokens.css';
 
 interface Props {
   title?: string;
+  description?: string;
+  lang?: string;
 }
 
-const { title = 'Wes Marçal' } = Astro.props;
+const {
+  title = 'Wes Marçal',
+  description = 'Portfólio de Wes Marçal — Designer especialista · Designer engineer',
+  lang = 'pt-BR',
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Portfólio de Wes Marçal — Designer especialista · Designer engineer" />
+    <meta name="description" content={description} />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
     <slot />
@@ -47,7 +55,8 @@ const { title = 'Wes Marçal' } = Astro.props;
     text-decoration: none;
   }
 
-  a:focus-visible {
+  a:focus-visible,
+  button:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
   }
@@ -55,5 +64,15 @@ const { title = 'Wes Marçal' } = Astro.props;
   img {
     display: block;
     max-width: 100%;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 </style>

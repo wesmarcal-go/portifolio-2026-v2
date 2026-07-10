@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HomeContent from '../../components/HomeContent.astro';
+import { t } from '../../i18n/strings';
+
+const s = t('en');
+---
+
+<Layout title={s.pageTitle} description={s.metaDescription} lang="en">
+  <HomeContent locale="en" />
+</Layout>

@@ -38,10 +38,10 @@
 | `--spacing-xs` | `4px` | gap ícone–label |
 | `--spacing-sm` | `8px` | gaps internos pequenos |
 | `--spacing-md` | `12px` | avatar → wordmark |
-| `--spacing-lg` | `50px` | padding horizontal da page |
-| `--spacing-xl` | `76px` | gap coluna identidade ↔ conteúdo |
+| `--spacing-lg` | `50px` (`24px` ≤480px) | padding horizontal da page — sobrescrito em telas muito pequenas |
+| `--spacing-xl` | `76px` (`40px` ≤480px) | gap coluna identidade ↔ conteúdo, paddings do menu mobile, margin-top do footer (`site-footer`) |
 | `--spacing-reel` | `30px` | gap entre cards do reel |
-| `--spacing-hero-height` | `181px` | altura do bloco hero |
+| `--spacing-hero-height` | `221px` | altura do bloco hero (inclui os 40px de padding-top que alinham home ao gap header→conteúdo já usado na carreira) |
 | `--spacing-reels-height` | `570px` | altura do bloco reels |
 | `--spacing-footer-height` | `115px` | altura do bloco footer |
 | `--line-height-reel-label` | `54px` | altura/line-height do nome no card-reel |
@@ -53,3 +53,19 @@
 | `--radius-md` | `11px` | thumbs do card-reel |
 | `--radius-full` | `9999px` | avatar |
 | `--border-width` | `1px` | espessura padrão |
+
+## Movimento
+
+| Token CSS | Valor | Uso |
+|---|---|---|
+| `--ease-out` | `cubic-bezier(0.23, 1, 0.32, 1)` | curva padrão de entrada/interação (hero, press states, menu mobile) |
+| `--ease-in-out` | `cubic-bezier(0.77, 0, 0.175, 1)` | reservada para movimento on-screen (A→B) |
+| `--ease-drawer` | `cubic-bezier(0.32, 0.72, 0, 1)` | reservada para drawers/sheets estilo iOS |
+| `--duration-press` | `140ms` | feedback de toque (`:active`, scale) |
+| `--duration-fast` | `200ms` | transições de cor/hover, ícone do hambúrguer |
+| `--duration-base` | `280ms` | entrada do hero (fade + translateY, staggered) |
+| `--duration-menu-enter` | `320ms` | abertura do menu mobile full-page |
+| `--duration-menu-exit` | `220ms` | fechamento do menu mobile (mais rápido que a abertura) |
+| `--duration-marquee` | `48s` | volta completa do carrossel de reels (linear, direita → esquerda) |
+
+Todas as animações respeitam `prefers-reduced-motion` por componente (ver `src/styles/layout.css` e `MobileMenu.astro`): o hero cai para fade puro, o carrossel desliga a animação (volta a ser scroll manual) e o menu mobile remove a translação/escala mantendo só o crossfade de opacidade. Fora isso, o carrossel de reels roda continuamente — sem pausa por hover, toque ou controle manual.

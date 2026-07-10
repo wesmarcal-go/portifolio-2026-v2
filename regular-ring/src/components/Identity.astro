@@ -1,0 +1,97 @@
+---
+import { t, type Locale } from '../i18n/strings';
+import avatar from '../assets/avatar-wesmarcal.png';
+import wordmark from '../assets/wordmark.svg';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+---
+
+<div class="identity">
+  <div class="identity__avatar">
+    <img src={avatar.src} width={avatar.width} height={avatar.height} alt={s.avatarAlt} />
+  </div>
+  <img
+    class="identity__wordmark"
+    src={wordmark.src}
+    width={wordmark.width}
+    height={wordmark.height}
+    alt={s.wordmarkAlt}
+  />
+</div>
+
+<style>
+  .identity {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 222px;
+    flex-shrink: 0;
+    padding-top: 20px;
+  }
+
+  .identity__avatar {
+    width: 71px;
+    height: 71px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  .identity__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .identity__wordmark {
+    width: 115px;
+    height: auto;
+  }
+
+  .identity__avatar,
+  .identity__wordmark {
+    animation: identity-enter var(--duration-base) var(--ease-out) both;
+  }
+
+  .identity__wordmark {
+    animation-delay: 60ms;
+  }
+
+  @keyframes identity-enter {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .identity__avatar,
+    .identity__wordmark {
+      animation-name: identity-enter-fade;
+    }
+
+    @keyframes identity-enter-fade {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media (max-width: 900px) {
+    .identity {
+      padding-top: 0;
+    }
+  }
+</style>

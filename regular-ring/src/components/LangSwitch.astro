@@ -1,0 +1,79 @@
+---
+import { localePaths, type Locale } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+  label: string;
+  large?: boolean;
+}
+
+const { locale, label, large = false } = Astro.props;
+---
+
+<p
+  class:list={['lang-switch', { 'lang-switch--large': large }]}
+  data-component="lang-switch"
+  aria-label={label}
+>
+  <a
+    class:list={['lang-switch__option', { 'lang-switch__option--active': locale === 'pt' }]}
+    href={localePaths.pt}
+    aria-current={locale === 'pt' ? 'page' : undefined}
+  >
+    pt
+  </a>
+  <span class="lang-switch__sep" aria-hidden="true">|</span>
+  <a
+    class:list={['lang-switch__option', { 'lang-switch__option--active': locale === 'en' }]}
+    href={localePaths.en}
+    aria-current={locale === 'en' ? 'page' : undefined}
+  >
+    en
+  </a>
+</p>
+
+<style>
+  .lang-switch {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-lg);
+    line-height: 20px;
+    color: var(--color-text);
+  }
+
+  .lang-switch--large {
+    font-size: var(--font-size-xl);
+    line-height: 1.2;
+  }
+
+  .lang-switch__sep {
+    font-weight: var(--font-weight-light);
+    color: var(--color-text-muted);
+  }
+
+  .lang-switch__option {
+    padding-block: 12px;
+    margin-block: -12px;
+    font-weight: 200;
+    color: var(--color-text-muted);
+    transition: color var(--duration-fast) var(--ease-out), transform var(--duration-press) var(--ease-out);
+  }
+
+  .lang-switch__option--active {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .lang-switch__option:active {
+    transform: scale(0.94);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .lang-switch__option:hover {
+      color: var(--color-accent);
+    }
+  }
+</style>

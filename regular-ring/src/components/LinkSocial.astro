@@ -7,13 +7,14 @@ interface Props {
   icon: ImageMetadata;
   /** Gap ícone–texto em px. Figma: LinkedIn 7, Substack 8. */
   gap?: 7 | 8;
+  large?: boolean;
 }
 
-const { label, href, icon, gap = 7 } = Astro.props;
+const { label, href, icon, gap = 7, large = false } = Astro.props;
 ---
 
 <a
-  class="link-social"
+  class:list={['link-social', { 'link-social--large': large }]}
   href={href}
   data-component="link-social"
   style={`--link-social-gap: ${gap}px`}
@@ -40,6 +41,27 @@ const { label, href, icon, gap = 7 } = Astro.props;
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-light);
     line-height: 28px;
+    padding-block: 8px;
+    margin-block: -8px;
+    transition: color var(--duration-fast) var(--ease-out), transform var(--duration-press) var(--ease-out);
+  }
+
+  .link-social:active {
+    transform: scale(0.97);
+  }
+
+  .link-social--large {
+    font-size: var(--font-size-lg);
+  }
+
+  .link-social--large .link-social__icon {
+    width: 16px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .link-social:hover {
+      color: var(--color-accent);
+    }
   }
 
   .link-social__icon {

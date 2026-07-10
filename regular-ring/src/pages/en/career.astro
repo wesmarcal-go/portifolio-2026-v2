@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CareerContent from '../../components/CareerContent.astro';
+import { t } from '../../i18n/strings';
+
+const s = t('en');
+---
+
+<Layout title={s.careerPageTitle} description={s.careerMetaDescription} lang="en">
+  <CareerContent locale="en" />
+</Layout>

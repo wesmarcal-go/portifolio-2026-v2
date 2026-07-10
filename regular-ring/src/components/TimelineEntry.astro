@@ -1,0 +1,128 @@
+---
+import type { CareerEntry } from '../i18n/career';
+
+interface Props extends CareerEntry {
+  index: number;
+}
+
+const { company, role, period, description, highlights, index } = Astro.props;
+---
+
+<article class="timeline-entry" data-reveal style={`--reveal-delay: ${Math.min(index, 6) * 40}ms`}>
+  <p class="timeline-entry__period">{period}</p>
+  <div class="timeline-entry__content">
+    <h2 class="timeline-entry__company">{company}</h2>
+    <p class="timeline-entry__role">{role}</p>
+    <p class="timeline-entry__description">{description}</p>
+    {highlights && highlights.length > 0 && (
+      <ul class="timeline-entry__highlights">
+        {highlights.map((highlight) => <li>{highlight}</li>)}
+      </ul>
+    )}
+  </div>
+</article>
+
+<style>
+  .timeline-entry {
+    display: grid;
+    grid-template-columns: 222px 1fr;
+    column-gap: var(--spacing-xl);
+    padding-block: var(--spacing-lg);
+    border-top: var(--border-width) solid color-mix(in srgb, var(--color-text-muted) 30%, transparent);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity var(--duration-base) var(--ease-out), transform var(--duration-base) var(--ease-out);
+    transition-delay: var(--reveal-delay);
+  }
+
+  .timeline-entry.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .timeline-entry:last-child {
+    border-bottom: var(--border-width) solid color-mix(in srgb, var(--color-text-muted) 30%, transparent);
+  }
+
+  .timeline-entry__period {
+    margin: 0;
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-light);
+    color: var(--color-text-muted);
+  }
+
+  .timeline-entry__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-width: 60ch;
+  }
+
+  .timeline-entry__company {
+    margin: 0;
+    font-family: var(--font-family-serif);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.3;
+    color: var(--color-text);
+  }
+
+  .timeline-entry__role {
+    margin: 0 0 var(--spacing-xs);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent);
+  }
+
+  .timeline-entry__description {
+    margin: 0;
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-light);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .timeline-entry__highlights {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    margin: var(--spacing-sm) 0 0;
+    padding: 0;
+  }
+
+  .timeline-entry__highlights li {
+    position: relative;
+    padding-left: var(--spacing-md);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-light);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .timeline-entry__highlights li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 900px) {
+    .timeline-entry {
+      grid-template-columns: 1fr;
+      row-gap: var(--spacing-xs);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-entry {
+      transform: none;
+      transition: opacity var(--duration-base) var(--ease-out);
+      transition-delay: 0ms;
+    }
+  }
+</style>

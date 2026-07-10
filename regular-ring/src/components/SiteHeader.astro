@@ -1,0 +1,83 @@
+---
+import NavItem from './NavItem.astro';
+import LangSwitch from './LangSwitch.astro';
+import MobileMenu from './MobileMenu.astro';
+import { t, localePaths, type Locale } from '../i18n/strings';
+import iconLinkedin from '../assets/icon-linkedin.svg';
+import iconSubstack from '../assets/icon-substack.svg';
+
+interface Props {
+  locale: Locale;
+  activePage: 'home' | 'career';
+}
+
+const { locale, activePage } = Astro.props;
+const s = t(locale);
+
+const linkedinHref = 'https://linkedin.com/in/wesmarcal';
+const substackHref = 'https://substack.com/@wesmarcal';
+---
+
+<header class="page-header">
+  <div class="page-header__nav-area">
+    <nav class="page-header__nav" aria-label={s.navPrimary}>
+      <NavItem label={s.navHome} href={localePaths[locale]} active={activePage === 'home'} />
+      <NavItem label={s.navCareer} href={s.navCareerHref} active={activePage === 'career'} />
+    </nav>
+    <MobileMenu
+      locale={locale}
+      activePage={activePage}
+      langLabel={s.langLabel}
+      navPrimary={s.navPrimary}
+      navHomeLabel={s.navHome}
+      navHomeHref={localePaths[locale]}
+      navCareerLabel={s.navCareer}
+      navCareerHref={s.navCareerHref}
+      menuLabel={s.menuLabel}
+      menuOpenLabel={s.menuOpen}
+      menuCloseLabel={s.menuClose}
+      linkedinLabel="linkedin.com/in/wesmarcal"
+      linkedinHref={linkedinHref}
+      substackLabel="@wesmarcal"
+      substackHref={substackHref}
+      iconLinkedin={iconLinkedin}
+      iconSubstack={iconSubstack}
+    />
+  </div>
+  <LangSwitch locale={locale} label={s.langLabel} />
+</header>
+
+<style>
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 88px;
+    padding: 0 var(--spacing-lg);
+  }
+
+  .page-header__nav-area {
+    display: flex;
+    align-items: center;
+  }
+
+  .page-header__nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  @media (max-width: 900px) {
+    .page-header__nav {
+      display: none;
+    }
+
+    .page-header {
+      justify-content: flex-end;
+    }
+
+    .page-header > :global(.lang-switch) {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,98 @@
+---
+import LinkSocial from './LinkSocial.astro';
+import { t, type Locale } from '../i18n/strings';
+import iconLinkedin from '../assets/icon-linkedin.svg';
+import iconSubstack from '../assets/icon-substack.svg';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+
+const linkedinHref = 'https://linkedin.com/in/wesmarcal';
+const substackHref = 'https://substack.com/@wesmarcal';
+---
+
+<footer class="page-footer">
+  <div class="page-footer__socials">
+    <LinkSocial label="linkedin.com/in/wesmarcal" href={linkedinHref} icon={iconLinkedin} />
+    <LinkSocial label="@wesmarcal" href={substackHref} icon={iconSubstack} gap={8} />
+  </div>
+  <div class="page-footer__cta">
+    <p class="page-footer__cta-text">{s.ctaText}</p>
+    <p class="page-footer__cta-email">
+      <a href="mailto:wes.marcal@gmail.com">wes.marcal@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .page-footer {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-xl);
+    height: var(--spacing-footer-height);
+    padding: 0 var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+  }
+
+  .page-footer__socials {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 222px;
+    flex-shrink: 0;
+  }
+
+  .page-footer__cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    max-width: 593px;
+  }
+
+  .page-footer__cta-text {
+    margin: 0;
+    font-family: var(--font-family-serif);
+    font-size: var(--font-size-cta);
+    font-weight: var(--font-weight-light);
+    line-height: 26px;
+    color: var(--color-text);
+  }
+
+  .page-footer__cta-email {
+    margin: 0;
+    font-family: var(--font-family-serif);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-light);
+    line-height: 16px;
+    color: var(--color-accent);
+  }
+
+  .page-footer__cta-email a {
+    color: inherit;
+  }
+
+  @media (max-width: 900px) {
+    .page-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      height: auto;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .page-footer__socials {
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-footer__cta-text {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>
