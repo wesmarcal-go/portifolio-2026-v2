@@ -4,17 +4,12 @@ import { localePaths, type Locale } from '../i18n/strings';
 interface Props {
   locale: Locale;
   label: string;
-  large?: boolean;
 }
 
-const { locale, label, large = false } = Astro.props;
+const { locale, label } = Astro.props;
 ---
 
-<p
-  class:list={['lang-switch', { 'lang-switch--large': large }]}
-  data-component="lang-switch"
-  aria-label={label}
->
+<p class="lang-switch" data-component="lang-switch" aria-label={label}>
   <a
     class:list={['lang-switch__option', { 'lang-switch__option--active': locale === 'pt' }]}
     href={localePaths.pt}
@@ -42,11 +37,6 @@ const { locale, label, large = false } = Astro.props;
     font-size: var(--font-size-lg);
     line-height: 20px;
     color: var(--color-text);
-  }
-
-  .lang-switch--large {
-    font-size: var(--font-size-xl);
-    line-height: 1.2;
   }
 
   .lang-switch__sep {

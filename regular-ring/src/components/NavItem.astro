@@ -69,7 +69,7 @@ const { label, href, active = false } = Astro.props;
     transition: transform var(--duration-fast) var(--ease-out);
   }
 
-  .nav-item__icon svg {
+  .nav-item__icon :global(svg) {
     width: 100%;
     height: 100%;
   }
