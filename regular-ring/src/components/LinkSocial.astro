@@ -1,0 +1,54 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  label: string;
+  href: string;
+  icon: ImageMetadata;
+  /** Gap ícone–texto em px. Figma: LinkedIn 7, Substack 8. */
+  gap?: 7 | 8;
+}
+
+const { label, href, icon, gap = 7 } = Astro.props;
+---
+
+<a
+  class="link-social"
+  href={href}
+  data-component="link-social"
+  style={`--link-social-gap: ${gap}px`}
+>
+  <img
+    class="link-social__icon"
+    src={icon.src}
+    width={icon.width}
+    height={icon.height}
+    alt=""
+    aria-hidden="true"
+  />
+  <span class="link-social__label">{label}</span>
+</a>
+
+<style>
+  .link-social {
+    display: flex;
+    align-items: center;
+    gap: var(--link-social-gap, 7px);
+    width: 100%;
+    color: var(--color-text);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-light);
+    line-height: 28px;
+  }
+
+  .link-social__icon {
+    width: 13px;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .link-social__label {
+    word-break: break-word;
+  }
+</style>

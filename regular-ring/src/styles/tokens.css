@@ -1,0 +1,39 @@
+:root {
+  /* Cores */
+  --color-background: #08100c;
+  --color-text: #d8bfa0;
+  --color-accent: #e98154;
+  --color-accent-muted: #944929;
+  --color-text-muted: #9b7f58;
+  --color-surface: #ffffff;
+
+  /* Tipografia */
+  --font-family-serif: Merriweather, Georgia, serif;
+  --font-family-sans: Heebo, system-ui, sans-serif;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 20px;
+  --font-size-nav: var(--font-size-lg);
+  --font-size-cta: var(--font-size-lg);
+  --font-size-xl: 34px;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  /* Espaçamentos */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 50px;
+  --spacing-xl: 76px;
+  --spacing-reel: 30px;
+  --spacing-hero-height: 181px;
+  --spacing-reels-height: 570px;
+  --spacing-footer-height: 115px;
+  --line-height-reel-label: 54px;
+
+  /* Raios e bordas */
+  --radius-md: 11px;
+  --radius-full: 9999px;
+  --border-width: 1px;
+}

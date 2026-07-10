@@ -1,0 +1,58 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  image: ImageMetadata;
+  alt?: string;
+}
+
+const { title, image, alt = '' } = Astro.props;
+---
+
+<article class="card-reel" data-component="card-reel">
+  <div class="card-reel__media">
+    <img
+      src={image.src}
+      width={image.width}
+      height={image.height}
+      alt={alt || title}
+      loading="lazy"
+    />
+  </div>
+  <p class="card-reel__title">{title}</p>
+</article>
+
+<style>
+  .card-reel {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 318px;
+    flex-shrink: 0;
+  }
+
+  .card-reel__media {
+    aspect-ratio: 1134 / 1383;
+    width: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .card-reel__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-reel__title {
+    margin: 0;
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    height: var(--line-height-reel-label);
+    line-height: var(--line-height-reel-label);
+    color: var(--color-text-muted);
+  }
+</style>
