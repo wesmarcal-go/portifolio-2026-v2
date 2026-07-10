@@ -285,11 +285,27 @@ const {
 </style>
 
 <script>
-  const trigger = document.getElementById('menu-trigger') as HTMLButtonElement | null;
-  const menu = document.getElementById('mobile-menu') as HTMLElement | null;
-  const closeBtn = document.getElementById('menu-close') as HTMLButtonElement | null;
+  // Astro's ClientRouter swaps the DOM on client-side navigation without
+  // re-running this script, so setup must happen on every 'astro:page-load'
+  // (fired after the initial load and after every subsequent transition),
+  // not just once at module scope.
+  let activeKeydownHandler: ((event: KeyboardEvent) => void) | null = null;
 
-  if (trigger && menu && closeBtn) {
+  const setupMobileMenu = () => {
+    const trigger = document.getElementById('menu-trigger') as HTMLButtonElement | null;
+    const menu = document.getElementById('mobile-menu') as HTMLElement | null;
+    const closeBtn = document.getElementById('menu-close') as HTMLButtonElement | null;
+
+    if (!trigger || !menu || !closeBtn) return;
+
+    // Guard against a stale document-level listener from a previous page
+    // (e.g. the user navigated away via a link inside the menu without it
+    // ever closing).
+    if (activeKeydownHandler) {
+      document.removeEventListener('keydown', activeKeydownHandler);
+      activeKeydownHandler = null;
+    }
+
     let lastFocused: HTMLElement | null = null;
 
     const getFocusable = () =>
@@ -322,6 +338,7 @@ const {
       trigger.setAttribute('aria-expanded', 'true');
       document.body.classList.add('menu-open');
       closeBtn.focus();
+      activeKeydownHandler = onKeydown;
       document.addEventListener('keydown', onKeydown);
     };
 
@@ -330,6 +347,7 @@ const {
       trigger.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('menu-open');
       document.removeEventListener('keydown', onKeydown);
+      activeKeydownHandler = null;
       lastFocused?.focus();
 
       const onEnd = (event: TransitionEvent) => {
@@ -352,5 +370,7 @@ const {
     menu.querySelectorAll('.mobile-menu__link').forEach((link) => {
       link.addEventListener('click', closeMenu);
     });
-  }
+  };
+
+  document.addEventListener('astro:page-load', setupMobileMenu);
 </script>
