@@ -3,6 +3,7 @@ import NavItem from './NavItem.astro';
 import LangSwitch from './LangSwitch.astro';
 import MobileMenu from './MobileMenu.astro';
 import { t, localePaths, type Locale } from '../i18n/strings';
+import { SOCIAL_LINKS } from '../lib/site';
 import iconLinkedin from '../assets/icon-linkedin.svg';
 import iconSubstack from '../assets/icon-substack.svg';
 
@@ -14,8 +15,8 @@ interface Props {
 const { locale, activePage } = Astro.props;
 const s = t(locale);
 
-const linkedinHref = 'https://linkedin.com/in/wesmarcal';
-const substackHref = 'https://substack.com/@wesmarcal';
+const linkedinHref = SOCIAL_LINKS.linkedin;
+const substackHref = SOCIAL_LINKS.substack;
 ---
 
 <header class="page-header">

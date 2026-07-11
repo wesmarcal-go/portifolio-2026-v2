@@ -1,18 +1,38 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import { t, localePaths, strings, type Locale } from '../i18n/strings';
+import { SITE_URL, SOCIAL_LINKS } from '../lib/site';
+import avatar from '../assets/avatar-wesmarcal.png';
 import '../styles/tokens.css';
 
 interface Props {
-  title?: string;
-  description?: string;
-  lang?: string;
+  title: string;
+  description: string;
+  locale: Locale;
+  page: 'home' | 'career';
 }
 
-const {
-  title = 'Wes Marçal',
-  description = 'Portfólio de Wes Marçal — Designer especialista · Designer engineer',
-  lang = 'pt-BR',
-} = Astro.props;
+const { title, description, locale, page } = Astro.props;
+const s = t(locale);
+const lang = locale === 'pt' ? 'pt-BR' : 'en';
+const ogLocale = locale === 'pt' ? 'pt_BR' : 'en_US';
+const ogLocaleAlternate = locale === 'pt' ? 'en_US' : 'pt_BR';
+
+const pathFor = (loc: Locale) => (page === 'home' ? localePaths[loc] : strings[loc].navCareerHref);
+
+const canonicalURL = new URL(pathFor(locale), SITE_URL).toString();
+const alternatePt = new URL(pathFor('pt'), SITE_URL).toString();
+const alternateEn = new URL(pathFor('en'), SITE_URL).toString();
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Wes Marçal',
+  url: SITE_URL,
+  image: new URL(avatar.src, SITE_URL).toString(),
+  jobTitle: s.eyebrow,
+  sameAs: [SOCIAL_LINKS.linkedin, SOCIAL_LINKS.substack],
+};
 ---
 
 <!doctype html>
@@ -21,7 +41,31 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
     <title>{title}</title>
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="pt-BR" href={alternatePt} />
+    <link rel="alternate" hreflang="en" href={alternateEn} />
+    <link rel="alternate" hreflang="x-default" href={alternatePt} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Wes Marçal" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+
     <ClientRouter />
   </head>
   <body>
