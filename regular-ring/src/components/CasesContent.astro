@@ -1,0 +1,117 @@
+---
+import { Image } from 'astro:assets';
+import { fade } from 'astro:transitions';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import Identity from './Identity.astro';
+import LinkSocial from './LinkSocial.astro';
+import '../styles/shared.css';
+import '../styles/cases.css';
+
+import slideIfood from '../assets/slide-ifood.png';
+import slideZeDelivery from '../assets/slide-ze-delivery.png';
+import slideGrupoGlobo from '../assets/slide-grupo-globo.png';
+import slideContaSimples from '../assets/slide-conta-simples.png';
+import slideAccenture from '../assets/slide-accenture.png';
+import iconEmail from '../assets/icon-email.svg';
+import iconLinkedin from '../assets/icon-linkedin.svg';
+
+import { t, type Locale } from '../i18n/strings';
+import { SOCIAL_LINKS } from '../lib/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+
+const slides = [slideIfood, slideZeDelivery, slideGrupoGlobo, slideContaSimples, slideAccenture];
+const gridItems = Array.from({ length: 6 }, (_, i) => slides[i % slides.length]);
+---
+
+<div class="page-cases" transition:animate={fade({ duration: 280 })}>
+  <div class="page-frame">
+    <SiteHeader locale={locale} activePage="cases" />
+
+    <section class="page-cases__hero" aria-label={s.hero}>
+      <Identity locale={locale} />
+      <div class="page-cases__intro">
+        <p class="page-cases__eyebrow">{s.casesEyebrow}</p>
+        <h1 class="page-cases__headline">{s.casesHeadline}</h1>
+      </div>
+    </section>
+  </div>
+
+  <section
+    class="page-cases__stage"
+    aria-label={s.casesGridLabel}
+    data-component="cases-private-grid"
+  >
+    <div class="page-cases__backdrop" aria-hidden="true">
+      <div class="page-cases__grid">
+        {
+          gridItems.map((image, index) => (
+            <div class="page-cases__cell" style={`--cell-index: ${index}`}>
+              <Image class="page-cases__image" src={image} alt="" />
+            </div>
+          ))
+        }
+      </div>
+      <div class="page-cases__scrim"></div>
+    </div>
+
+    <div class="page-cases__gate page-frame">
+      <section class="page-cases__card" data-component="cases-access-card" aria-labelledby="cases-gate-title">
+        <h2 class="page-cases__card-title" id="cases-gate-title">{s.casesCardTitle}</h2>
+        <p class="page-cases__card-body">{s.casesCardBody}</p>
+
+        <form class="page-cases__form" data-cases-form>
+          <span class="page-cases__field-label" id="cases-password-label">{s.casesPasswordLabel}</span>
+          <div class="page-cases__form-row">
+            <input
+              class="page-cases__input"
+              type="password"
+              name="password"
+              autocomplete="off"
+              placeholder={s.casesPasswordPlaceholder}
+              aria-labelledby="cases-password-label"
+            />
+            <button class="page-cases__submit" type="submit">{s.casesSubmitLabel}</button>
+          </div>
+        </form>
+
+        <div class="page-cases__contact">
+          <div class="page-cases__contact-links">
+            <LinkSocial
+              label={s.casesContactEmail}
+              href={`mailto:${s.casesContactEmail}`}
+              icon={iconEmail}
+            />
+            <LinkSocial
+              label="linkedin.com/in/wesmarcal"
+              href={SOCIAL_LINKS.linkedin}
+              icon={iconLinkedin}
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <div class="page-frame">
+    <SiteFooter locale={locale} />
+  </div>
+</div>
+
+<script>
+  const setupCasesForm = () => {
+    const form = document.querySelector<HTMLFormElement>('[data-cases-form]');
+    if (!form) return;
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+    });
+  };
+
+  document.addEventListener('astro:page-load', setupCasesForm);
+</script>

@@ -9,7 +9,7 @@ interface Props {
   title: string;
   description: string;
   locale: Locale;
-  page: 'home' | 'career';
+  page: 'home' | 'career' | 'cases';
 }
 
 const { title, description, locale, page } = Astro.props;
@@ -18,7 +18,11 @@ const lang = locale === 'pt' ? 'pt-BR' : 'en';
 const ogLocale = locale === 'pt' ? 'pt_BR' : 'en_US';
 const ogLocaleAlternate = locale === 'pt' ? 'en_US' : 'pt_BR';
 
-const pathFor = (loc: Locale) => (page === 'home' ? localePaths[loc] : strings[loc].navCareerHref);
+const pathFor = (loc: Locale) => {
+  if (page === 'home') return localePaths[loc];
+  if (page === 'cases') return strings[loc].navCasesHref;
+  return strings[loc].navCareerHref;
+};
 
 const canonicalURL = new URL(pathFor(locale), SITE_URL).toString();
 const alternatePt = new URL(pathFor('pt'), SITE_URL).toString();
@@ -61,7 +65,6 @@ const personJsonLd = {
     <link rel="alternate" hreflang="x-default" href={alternatePt} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Wes Marçal" />

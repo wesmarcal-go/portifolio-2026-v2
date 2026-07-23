@@ -7,13 +7,15 @@ import type { Locale } from '../i18n/strings';
 
 interface Props {
   locale: Locale;
-  activePage: 'home' | 'career';
+  activePage: 'home' | 'career' | 'cases';
   langLabel: string;
   navPrimary: string;
   navHomeLabel: string;
   navHomeHref: string;
   navCareerLabel: string;
   navCareerHref: string;
+  navCasesLabel: string;
+  navCasesHref: string;
   menuLabel: string;
   menuOpenLabel: string;
   menuCloseLabel: string;
@@ -34,6 +36,8 @@ const {
   navHomeHref,
   navCareerLabel,
   navCareerHref,
+  navCasesLabel,
+  navCasesHref,
   menuLabel,
   menuOpenLabel,
   menuCloseLabel,
@@ -90,6 +94,16 @@ const {
         <ArrowIcon />
       </span>
       <span class="mobile-menu__link-label">{navCareerLabel}</span>
+    </a>
+    <a
+      class:list={['mobile-menu__link', { 'mobile-menu__link--active': activePage === 'cases' }]}
+      href={navCasesHref}
+      aria-current={activePage === 'cases' ? 'page' : undefined}
+    >
+      <span class="mobile-menu__link-icon" aria-hidden="true">
+        <ArrowIcon />
+      </span>
+      <span class="mobile-menu__link-label">{navCasesLabel}</span>
     </a>
   </nav>
 

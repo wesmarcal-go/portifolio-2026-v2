@@ -14,6 +14,8 @@ export const strings = {
     navHome: 'home',
     navCareer: 'carreira',
     navCareerHref: '/carreira',
+    navCases: 'cases',
+    navCasesHref: '/cases',
     langLabel: 'Idioma',
     hero: 'Apresentação',
     avatarAlt: 'Retrato de Wes Marçal',
@@ -34,6 +36,19 @@ export const strings = {
     careerHeadlineBefore: '10+ anos conectando design, estratégia e execução em produtos de escala',
     careerHeadlineAfter: 'de UX Designer a Staff Designer.',
     careerTimelineLabel: 'Trajetória profissional',
+    casesPageTitle: 'Wes Marçal — Cases',
+    casesMetaDescription:
+      'Cases selecionados de Wes Marçal — acesso sob confidencialidade',
+    casesEyebrow: 'melhores trabalhos',
+    casesHeadline:
+      'Transformo ideias ambiciosas em produtos que as pessoas gostam de usar e negócios lucram.',
+    casesCardTitle: 'Por ora, os cases estão omitidos por questão de confidencialidade.',
+    casesCardBody: 'Para ter acesso, entre em contato.',
+    casesPasswordLabel: 'Senha de acesso',
+    casesPasswordPlaceholder: 'Digite a senha',
+    casesSubmitLabel: 'Visualizar cases',
+    casesContactEmail: 'wes.marcal@gmail.com',
+    casesGridLabel: 'Prévia dos cases (conteúdo privado)',
   },
   en: {
     pageTitle: 'Wes Marçal — Home',
@@ -42,6 +57,8 @@ export const strings = {
     navHome: 'home',
     navCareer: 'career',
     navCareerHref: '/en/career',
+    navCases: 'cases',
+    navCasesHref: '/en/cases',
     langLabel: 'Language',
     hero: 'Introduction',
     avatarAlt: 'Portrait of Wes Marçal',
@@ -59,6 +76,19 @@ export const strings = {
     careerHeadlineBefore: '10+ years connecting design, strategy and execution in products at scale',
     careerHeadlineAfter: 'from UX Designer to Staff Designer.',
     careerTimelineLabel: 'Professional journey',
+    casesPageTitle: 'Wes Marçal — Cases',
+    casesMetaDescription:
+      "Wes Marçal's selected case studies — access under confidentiality",
+    casesEyebrow: 'best work',
+    casesHeadline:
+      'I turn ambitious ideas into products people love to use — and businesses that profit.',
+    casesCardTitle: 'For now, the cases are omitted for confidentiality.',
+    casesCardBody: 'To get access, get in touch.',
+    casesPasswordLabel: 'Access password',
+    casesPasswordPlaceholder: 'Enter password',
+    casesSubmitLabel: 'View cases',
+    casesContactEmail: 'wes.marcal@gmail.com',
+    casesGridLabel: 'Case previews (private content)',
   },
 } satisfies Record<Locale, Record<string, string>>;
 

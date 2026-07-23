@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CasesContent from '../../components/CasesContent.astro';
+import { t } from '../../i18n/strings';
+
+const s = t('en');
+---
+
+<Layout title={s.casesPageTitle} description={s.casesMetaDescription} locale="en" page="cases">
+  <CasesContent locale="en" />
+</Layout>

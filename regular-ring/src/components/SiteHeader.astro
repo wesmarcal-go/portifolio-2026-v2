@@ -9,7 +9,7 @@ import iconSubstack from '../assets/icon-substack.svg';
 
 interface Props {
   locale: Locale;
-  activePage: 'home' | 'career';
+  activePage: 'home' | 'career' | 'cases';
 }
 
 const { locale, activePage } = Astro.props;
@@ -24,6 +24,7 @@ const substackHref = SOCIAL_LINKS.substack;
     <nav class="page-header__nav" aria-label={s.navPrimary}>
       <NavItem label={s.navHome} href={localePaths[locale]} active={activePage === 'home'} />
       <NavItem label={s.navCareer} href={s.navCareerHref} active={activePage === 'career'} />
+      <NavItem label={s.navCases} href={s.navCasesHref} active={activePage === 'cases'} />
     </nav>
     <MobileMenu
       locale={locale}
@@ -34,6 +35,8 @@ const substackHref = SOCIAL_LINKS.substack;
       navHomeHref={localePaths[locale]}
       navCareerLabel={s.navCareer}
       navCareerHref={s.navCareerHref}
+      navCasesLabel={s.navCases}
+      navCasesHref={s.navCasesHref}
       menuLabel={s.menuLabel}
       menuOpenLabel={s.menuOpen}
       menuCloseLabel={s.menuClose}

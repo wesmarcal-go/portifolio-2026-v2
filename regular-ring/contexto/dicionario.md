@@ -9,14 +9,14 @@
 - **Arquivo**: `src/components/ArrowIcon.astro`
 - **Estrutura**: seta SVG 16×16 (`currentColor`, sem props) — mesmo glifo usado em todo o site
 - **Variações**: nenhuma; tamanho/cor controlados pelo elemento pai (`width`/`height`/`color` via CSS, `svg { width:100%; height:100% }`)
-- **Onde aparece**: `nav-item`, `mobile-menu` (nav home/carreira), headline da tela carreira (`career-content`, substitui o "—" por uma seta inline no meio da frase)
+- **Onde aparece**: `nav-item`, `mobile-menu` (nav home/carreira/cases), headline da tela carreira (`career-content`, substitui o "—" por uma seta inline no meio da frase)
 
 ## nav-item
 
 - **Arquivo**: `src/components/NavItem.astro`
 - **Estrutura**: link de navegação com ícone de seta (`arrow-icon`) + label de rota
 - **Variações**: ativo | inativo — prop(s): `active: boolean`
-- **Onde aparece**: header (home, carreira)
+- **Onde aparece**: header (home, carreira, cases)
 
 ## card-reel
 
@@ -42,8 +42,8 @@
 ## mobile-menu
 
 - **Arquivo**: `src/components/MobileMenu.astro`
-- **Estrutura**: botão hambúrguer (trigger) + overlay full-page (dialog) contendo `lang-switch` (topo, alinhado ao X), nav (home/carreira, estilo igual ao desktop, item ativo em accent) e os links sociais do footer (`link-social`, variante `large`)
-- **Variações**: aberto | fechado — controlado por JS (classe `is-open`, `aria-expanded`, `hidden`); foco preso no diálogo, fecha com Escape ou clique no link. Nav ativo/inativo — prop `activePage: 'home' | 'career'` (mesmo contrato do `nav-item` desktop)
+- **Estrutura**: botão hambúrguer (trigger) + overlay full-page (dialog) contendo `lang-switch` (topo, alinhado ao X), nav (home/carreira/cases, estilo igual ao desktop, item ativo em accent) e os links sociais do footer (`link-social`, variante `large`)
+- **Variações**: aberto | fechado — controlado por JS (classe `is-open`, `aria-expanded`, `hidden`); foco preso no diálogo, fecha com Escape ou clique no link. Nav ativo/inativo — prop `activePage: 'home' | 'career' | 'cases'` (mesmo contrato do `nav-item` desktop)
 - **Onde aparece**: dentro de `site-header`, visível apenas em telas ≤900px (troca de lugar com `nav-item` inline)
 - **Contrato de idioma**: recebe todos os textos como props, computados por `site-header` via `t(locale)`
 
@@ -52,21 +52,21 @@
 - **Arquivo**: `src/components/Identity.astro`
 - **Estrutura**: avatar circular + wordmark ("wes marçal") — a marca pessoal do Wes
 - **Variações**: `locale: 'pt' | 'en'` — só troca os `alt` (`avatarAlt`/`wordmarkAlt`); entra com fade + translateY staggered (avatar, depois wordmark +60ms), único padding-top próprio (20px desktop, 0 em ≤900px) para alinhar com o texto ao lado
-- **Onde aparece**: hero de `home-content` e `career-content` — mesma marca em ambas as telas
+- **Onde aparece**: hero de `home-content`, `career-content` e `cases-content` — mesma marca nas três telas
 
 ## site-header
 
 - **Arquivo**: `src/components/SiteHeader.astro`
-- **Estrutura**: nav desktop (`nav-item` × 2) + `mobile-menu` + `lang-switch` — compõe o header inteiro a partir de `locale` e `activePage`
-- **Variações**: `activePage: 'home' | 'career'` — decide qual `nav-item` fica ativo
-- **Onde aparece**: topo de `home-content` e `career-content` (fonte única de verdade do header, garante consistência entre as duas telas)
+- **Estrutura**: nav desktop (`nav-item` × 3) + `mobile-menu` + `lang-switch` — compõe o header inteiro a partir de `locale` e `activePage`
+- **Variações**: `activePage: 'home' | 'career' | 'cases'` — decide qual `nav-item` fica ativo
+- **Onde aparece**: topo de `home-content`, `career-content` e `cases-content` (fonte única de verdade do header)
 
 ## site-footer
 
 - **Arquivo**: `src/components/SiteFooter.astro`
 - **Estrutura**: `link-social` × 2 (LinkedIn, Substack) + bloco de CTA (texto de disponibilidade + e-mail)
 - **Variações**: `locale: 'pt' | 'en'` — troca todos os textos via `src/i18n/strings.ts`
-- **Onde aparece**: rodapé de `home-content` e `career-content` (fonte única de verdade do footer)
+- **Onde aparece**: rodapé de `home-content`, `career-content` e `cases-content` (fonte única de verdade do footer)
 
 ## timeline-entry
 
@@ -88,3 +88,24 @@
 - **Estrutura**: corpo completo da tela carreira (`site-header`, hero curto de trajetória com `arrow-icon` inline na headline, lista de `timeline-entry`, `site-footer`), parametrizado por `locale`
 - **Variações**: `locale: 'pt' | 'en'` — troca textos via `src/i18n/strings.ts` e a lista via `src/i18n/career.ts`
 - **Onde aparece**: `src/pages/carreira.astro` (pt) e `src/pages/en/career.astro` (en)
+
+## cases-content
+
+- **Arquivo**: `src/components/CasesContent.astro`
+- **Estrutura**: corpo completo da tela cases (`site-header`, hero com `identity` + eyebrow/headline, stage com grade 3×2 privada em blur+scrim como background e card de acesso centrado por cima, `site-footer`), parametrizado por `locale`
+- **Variações**: `locale: 'pt' | 'en'` — troca textos via `src/i18n/strings.ts`
+- **Onde aparece**: `src/pages/cases.astro` (pt) e `src/pages/en/cases.astro` (en)
+
+## cases-access-card
+
+- **Arquivo**: markup inline em `CasesContent.astro` (`data-component="cases-access-card"`)
+- **Estrutura**: título + subtítulo curto + formulário de senha (input + botão na mesma linha, ilustrativo) + `link-social` × 2 (e-mail com `icon-email.svg`, LinkedIn com `icon-linkedin.svg`)
+- **Variações**: nenhuma estrutural — textos via `casesCard*` / `casesPassword*` / `casesContactEmail` em `strings.ts`
+- **Onde aparece**: centrado sobre a grade privada em `cases-content`
+
+## cases-private-grid
+
+- **Arquivo**: markup inline em `CasesContent.astro` (`data-component="cases-private-grid"`)
+- **Estrutura**: stage com backdrop absoluto — grade 3×2 das imagens dos reels da home (5 slides ciclados até 6), cada célula com blur forte + scrim; o card de acesso fica em `z-index` acima
+- **Variações**: responsivo — 3 colunas no desktop, 2 colunas em ≤700px
+- **Onde aparece**: bloco principal de `cases-content`, atrás do card de acesso
