@@ -73,21 +73,6 @@ const gridItems = Array.from({ length: 6 }, (_, i) => slides[i % slides.length])
         <h2 class="page-cases__card-title" id="cases-gate-title">{s.casesCardTitle}</h2>
         <p class="page-cases__card-body">{s.casesCardBody}</p>
 
-        <form class="page-cases__form" data-cases-form>
-          <span class="page-cases__field-label" id="cases-password-label">{s.casesPasswordLabel}</span>
-          <div class="page-cases__form-row">
-            <input
-              class="page-cases__input"
-              type="password"
-              name="password"
-              autocomplete="off"
-              placeholder={s.casesPasswordPlaceholder}
-              aria-labelledby="cases-password-label"
-            />
-            <button class="page-cases__submit" type="submit">{s.casesSubmitLabel}</button>
-          </div>
-        </form>
-
         <div class="page-cases__contact">
           <div class="page-cases__contact-links">
             <LinkSocial
@@ -96,7 +81,7 @@ const gridItems = Array.from({ length: 6 }, (_, i) => slides[i % slides.length])
               icon={iconEmail}
             />
             <LinkSocial
-              label="linkedin.com/in/wesmarcal"
+              label={s.casesLinkedInLabel}
               href={SOCIAL_LINKS.linkedin}
               icon={iconLinkedin}
             />
@@ -110,15 +95,3 @@ const gridItems = Array.from({ length: 6 }, (_, i) => slides[i % slides.length])
     <SiteFooter locale={locale} />
   </div>
 </div>
-
-<script>
-  const setupCasesForm = () => {
-    const form = document.querySelector<HTMLFormElement>('[data-cases-form]');
-    if (!form) return;
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-    });
-  };
-
-  document.addEventListener('astro:page-load', setupCasesForm);
-</script>

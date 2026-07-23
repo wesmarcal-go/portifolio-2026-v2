@@ -1,11 +1,19 @@
 :root {
-  /* Cores */
-  --color-background: #08100c;
-  --color-text: #d8bfa0;
-  --color-accent: #e98154;
-  --color-accent-muted: #944929;
-  --color-text-muted: #9b7f58;
-  --color-surface: #ffffff;
+  /* Palette — Copper Briefing Room (print / DESIGN.md) */
+  --color-ink: #08100C;
+  --color-pine: #304d53;
+  --color-linen: #d8bfa0;
+  --color-taupe: #9b7f58;
+  --color-cognac: #944929;
+  --color-peach: #e98154;
+
+  /* Semantic aliases (uso no CSS existente) */
+  --color-background: var(--color-ink);
+  --color-text: var(--color-linen);
+  --color-accent: var(--color-peach);
+  --color-accent-muted: var(--color-cognac);
+  --color-text-muted: var(--color-taupe);
+  --color-surface: var(--color-linen);
 
   /* Tipografia */
   --font-family-serif: Merriweather, Georgia, serif;

@@ -99,8 +99,8 @@
 ## cases-access-card
 
 - **Arquivo**: markup inline em `CasesContent.astro` (`data-component="cases-access-card"`)
-- **Estrutura**: título + subtítulo curto + formulário de senha (input + botão na mesma linha, ilustrativo) + `link-social` × 2 (e-mail com `icon-email.svg`, LinkedIn com `icon-linkedin.svg`)
-- **Variações**: nenhuma estrutural — textos via `casesCard*` / `casesPassword*` / `casesContactEmail` em `strings.ts`
+- **Estrutura**: título + body + `link-social` × 2 (e-mail com `icon-email.svg`, LinkedIn com `icon-linkedin.svg`)
+- **Variações**: nenhuma estrutural — textos via `casesCard*` / `casesContactEmail` / `casesLinkedInLabel` em `strings.ts`
 - **Onde aparece**: centrado sobre a grade privada em `cases-content`
 
 ## cases-private-grid

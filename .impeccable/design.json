@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-23T18:59:48Z",
+  "title": "Design System: Wes Marçal Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "peach": {
+        "role": "primary",
+        "displayName": "Peach",
+        "canonical": "#E98154",
+        "tonalRamp": [
+          "#371e14",
+          "#663824",
+          "#955235",
+          "#E98154",
+          "#eb8d65",
+          "#f0ae91",
+          "#f7d1c1",
+          "#fcefea"
+        ]
+      },
+      "cognac": {
+        "role": "primary",
+        "displayName": "Cognac",
+        "canonical": "#944929",
+        "tonalRamp": [
+          "#231109",
+          "#412012",
+          "#5e2e1a",
+          "#944929",
+          "#9e5b3e",
+          "#ba8a76",
+          "#d8bdb1",
+          "#f2e9e5"
+        ]
+      },
+      "pine": {
+        "role": "secondary",
+        "displayName": "Pine",
+        "canonical": "#304D53",
+        "tonalRamp": [
+          "#0b1213",
+          "#152124",
+          "#1e3135",
+          "#304D53",
+          "#445e64",
+          "#7a8d90",
+          "#b4bec1",
+          "#e6e9ea"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#161110",
+        "tonalRamp": [
+          "#050403",
+          "#090707",
+          "#0e0a0a",
+          "#161110",
+          "#2d2827",
+          "#696666",
+          "#aba9a8",
+          "#e3e2e2"
+        ]
+      },
+      "linen": {
+        "role": "neutral",
+        "displayName": "Linen",
+        "canonical": "#D8BFA0",
+        "tonalRamp": [
+          "#332d26",
+          "#5f5446",
+          "#8a7a66",
+          "#D8BFA0",
+          "#dbc5a9",
+          "#e6d6c2",
+          "#f0e7dc",
+          "#faf7f3"
+        ]
+      },
+      "taupe": {
+        "role": "neutral",
+        "displayName": "Taupe",
+        "canonical": "#9B7F58",
+        "tonalRamp": [
+          "#251e15",
+          "#443726",
+          "#635138",
+          "#9B7F58",
+          "#a58b68",
+          "#bfad94",
+          "#dbd0c2",
+          "#f3efea"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headlines on home, career, and cases."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Cases gate card title."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Eyebrows and CTA availability (serif)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Gate body and denser reading."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Social links and small meta."
+      },
+      "nav": {
+        "displayName": "Nav",
+        "purpose": "Primary route labels in the header."
+      }
+    },
+    "shadows": [
+      {
+        "name": "gate-lift",
+        "value": "0 18px 48px rgba(0, 0, 0, 0.45)",
+        "purpose": "Structural lift under the cases access card only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Default enter and interaction easing."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "On-screen A→B movement."
+      },
+      {
+        "name": "ease-drawer",
+        "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "Mobile menu / sheet motion."
+      },
+      {
+        "name": "duration-press",
+        "value": "140ms",
+        "purpose": "Press/scale feedback."
+      },
+      {
+        "name": "duration-fast",
+        "value": "200ms",
+        "purpose": "Color and hover transitions."
+      },
+      {
+        "name": "duration-base",
+        "value": "280ms",
+        "purpose": "Hero and card entrances."
+      },
+      {
+        "name": "duration-menu-enter",
+        "value": "320ms",
+        "purpose": "Mobile menu open."
+      },
+      {
+        "name": "duration-menu-exit",
+        "value": "220ms",
+        "purpose": "Mobile menu close."
+      },
+      {
+        "name": "duration-marquee",
+        "value": "48s",
+        "purpose": "Full home reels loop."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-stack",
+        "value": "900px"
+      },
+      {
+        "name": "tight-padding",
+        "value": "480px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary control — peach fill, ink text, tactile press.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Label</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 18px; border: none; border-radius: 8px; background: #E98154; color: #161110; font-family: Heebo, system-ui, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; cursor: pointer; transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-primary:hover { filter: brightness(1.05); } .ds-btn-primary:active { transform: scale(0.97); } .ds-btn-primary:focus-visible { outline: 2px solid #E98154; outline-offset: 3px; }"
+    },
+    {
+      "name": "Nav Item",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Header route with arrow nudge; cognac rest, peach active.",
+      "html": "<a class=\"ds-nav-item\" href=\"#\"><span class=\"ds-nav-item__icon\" aria-hidden=\"true\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 8h10M9 4l4 4-4 4\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><span>home</span></a>",
+      "css": ".ds-nav-item { display: inline-flex; align-items: center; gap: 1px; color: #944929; font-family: Heebo, system-ui, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -1px; line-height: 28px; text-decoration: none; transition: color 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-nav-item__icon { display: flex; width: 16px; height: 16px; transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-nav-item:hover { color: #E98154; } .ds-nav-item:hover .ds-nav-item__icon { transform: translateX(2px); } .ds-nav-item:active { transform: scale(0.96); } .ds-nav-item:focus-visible { outline: 2px solid #E98154; outline-offset: 3px; } .ds-nav-item.is-active { color: #E98154; }"
+    },
+    {
+      "name": "Link Social",
+      "kind": "nav",
+      "refersTo": "link-social",
+      "description": "Footer/social row — light Heebo, linen to peach.",
+      "html": "<a class=\"ds-link-social\" href=\"#\"><svg class=\"ds-link-social__icon\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zM8.5 8.5h3.8v2h.05c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.8 2.67 4.8 6.15V23h-4v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.54 1.72-2.54 3.5V23h-4V8.5z\"/></svg><span>linkedin.com/in/wesmarcal</span></a>",
+      "css": ".ds-link-social { display: inline-flex; align-items: center; gap: 7px; color: #D8BFA0; font-family: Heebo, system-ui, sans-serif; font-size: 14px; font-weight: 300; line-height: 28px; text-decoration: none; transition: color 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-link-social__icon { flex-shrink: 0; } .ds-link-social:hover { color: #E98154; } .ds-link-social:active { transform: scale(0.97); } .ds-link-social:focus-visible { outline: 2px solid #E98154; outline-offset: 3px; }"
+    },
+    {
+      "name": "Reel Card",
+      "kind": "card",
+      "refersTo": "card-reel",
+      "description": "Home proof slide — soft rect media, taupe label.",
+      "html": "<article class=\"ds-card-reel\"><div class=\"ds-card-reel__media\"></div><p class=\"ds-card-reel__title\">iFood</p></article>",
+      "css": ".ds-card-reel { display: flex; flex-direction: column; gap: 7px; width: 318px; } .ds-card-reel__media { aspect-ratio: 1134 / 1383; width: 100%; border-radius: 11px; overflow: hidden; background: #D8BFA0; } .ds-card-reel__title { margin: 0; font-family: Heebo, system-ui, sans-serif; font-size: 16px; font-weight: 400; height: 54px; line-height: 54px; color: #9B7F58; }"
+    },
+    {
+      "name": "Cases Gate Card",
+      "kind": "card",
+      "refersTo": "cases-gate-card",
+      "description": "Glass confidentiality card: contact links over blurred proof.",
+      "html": "<section class=\"ds-gate-card\"><h2 class=\"ds-gate-card__title\">Cases omitidos por confidencialidade.</h2><p class=\"ds-gate-card__body\">Para ver o material completo, peça acesso. Respondo por e-mail ou LinkedIn.</p></section>",
+      "css": ".ds-gate-card { width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 12px; padding: 28px 28px 24px; border-radius: 11px; background: color-mix(in srgb, #161110 58%, transparent); border: 1px solid rgba(216, 191, 160, 0.2); backdrop-filter: blur(28px) saturate(160%); -webkit-backdrop-filter: blur(28px) saturate(160%); box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45); color: #D8BFA0; } .ds-gate-card__title { margin: 0; font-family: Merriweather, Georgia, serif; font-size: 1.5rem; font-weight: 400; letter-spacing: -0.02em; line-height: 1.25; } .ds-gate-card__body { margin: 0; font-family: Heebo, system-ui, sans-serif; font-size: 16px; line-height: 1.5; }"
+    },
+    {
+      "name": "Identity",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Avatar + wordmark brand column — hero-level signal on every surface.",
+      "html": "<div class=\"ds-identity\"><div class=\"ds-identity__avatar\" aria-hidden=\"true\"></div><div class=\"ds-identity__wordmark\">wes marçal</div></div>",
+      "css": ".ds-identity { display: flex; flex-direction: column; gap: 12px; width: 222px; color: #D8BFA0; } .ds-identity__avatar { width: 71px; height: 71px; border-radius: 9999px; background: #304D53; } .ds-identity__wordmark { font-family: Merriweather, Georgia, serif; font-size: 20px; font-weight: 400; letter-spacing: -0.02em; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Copper Briefing Room",
+    "overview": "A night briefing room for senior product work: warm copper signal on deep ink, linen type, and cool pine as the quiet counterweight. The atmosphere is professional without formality — confident, direct, and human. Spacing and typography are treated as primary design assets: rhythm, measure, and type pairing carry as much meaning as color.\n\nDepth comes from tonal layering (ink field, scrims, muted labels) rather than a shadow vocabulary. Interaction is tactile and confident — press scales, accent hovers, staggered entrances — always respecting reduced-motion and reduced-transparency preferences.",
+    "keyCharacteristics": [
+      "Warm copper accent on near-black ink; cool pine as secondary structural calm",
+      "Merriweather (voice) + Heebo (interface) pairing",
+      "Generous, intentional spacing scale; type size and tracking as hierarchy",
+      "Flat/tonal by default; glass + rare shadow only on the cases gate",
+      "Continuous marquee proof on home; locked confidentiality stage on cases"
+    ],
+    "rules": [
+      {
+        "name": "The Copper Signal Rule",
+        "body": "Peach occupies a small fraction of any screen (active state, eyebrow, CTA, focus). If everything glows copper, nothing does.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink Field Rule",
+        "body": "Screens live on ink. Do not introduce large light panels, purple gradients, or cool-gray \"AI default\" backgrounds.",
+        "section": "colors"
+      },
+      {
+        "name": "The Type-as-Asset Rule",
+        "body": "Do not flatten hierarchy into one size/weight. Spacing between identity column and intro (~76px) and the 7px eyebrow→headline gap are part of the brand, not leftovers.",
+        "section": "typography"
+      },
+      {
+        "name": "The Measure Rule",
+        "body": "Intro copy stays within ~645px. Do not stretch headlines full-bleed edge-to-edge.",
+        "section": "layout"
+      },
+      {
+        "name": "The Scrim-Not-Shadow Rule",
+        "body": "Prefer ink scrims and blur to separate private proof from the UI. Do not invent card stacks with multi-layer drop shadows on home or career.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Soft Rect Rule",
+        "body": "Default interactive and media surfaces use ~11px radius. Do not go fully squared or pill-shaped on cards/buttons (avatar excepted).",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do keep Peach rare and purposeful (active, eyebrow, CTA, focus).",
+      "Do treat Merriweather + Heebo roles as fixed: serif for voice, sans for chrome.",
+      "Do honor prefers-reduced-motion (fade-only enters; marquee → scroll) and prefers-reduced-transparency (solid gate, no blur).",
+      "Do lead each surface with Identity + eyebrow + headline before secondary proof.",
+      "Do keep cases locked visually: blur + scrim + gate; contact is the unlock path."
+    ],
+    "donts": [
+      "Don't migrate the whole system to utility-class sprawl or invent a second palette.",
+      "Don't add purple/cyan AI-slop gradients, glow stacks, or light dashboard cards on ink.",
+      "Don't unlock or fabricate case content in UI.",
+      "Don't center everything into a marketing card grid; the briefing room is asymmetric (identity column + measure-limited intro).",
+      "Don't pause the home marquee for decorative controls unless product requirements change."
+    ]
+  }
+}

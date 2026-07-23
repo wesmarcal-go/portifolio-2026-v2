@@ -38,16 +38,15 @@ export const strings = {
     careerTimelineLabel: 'Trajetória profissional',
     casesPageTitle: 'Wes Marçal — Cases',
     casesMetaDescription:
-      'Cases selecionados de Wes Marçal — acesso sob confidencialidade',
+      'Cases selecionados de Wes Marçal — sob confidencialidade; peça acesso por e-mail',
     casesEyebrow: 'melhores trabalhos',
     casesHeadline:
       'Transformo ideias ambiciosas em produtos que as pessoas gostam de usar e negócios lucram.',
-    casesCardTitle: 'Por ora, os cases estão omitidos por questão de confidencialidade.',
-    casesCardBody: 'Para ter acesso, entre em contato.',
-    casesPasswordLabel: 'Senha de acesso',
-    casesPasswordPlaceholder: 'Digite a senha',
-    casesSubmitLabel: 'Visualizar cases',
+    casesCardTitle: 'Cases omitidos por confidencialidade.',
+    casesCardBody:
+      'Para ver o material completo, peça acesso. Respondo por e-mail ou LinkedIn.',
     casesContactEmail: 'wes.marcal@gmail.com',
+    casesLinkedInLabel: 'linkedin.com/in/wesmarcal',
     casesGridLabel: 'Prévia dos cases (conteúdo privado)',
   },
   en: {
@@ -78,16 +77,15 @@ export const strings = {
     careerTimelineLabel: 'Professional journey',
     casesPageTitle: 'Wes Marçal — Cases',
     casesMetaDescription:
-      "Wes Marçal's selected case studies — access under confidentiality",
+      "Wes Marçal's selected case studies — confidential; request access by email",
     casesEyebrow: 'best work',
     casesHeadline:
-      'I turn ambitious ideas into products people love to use — and businesses that profit.',
-    casesCardTitle: 'For now, the cases are omitted for confidentiality.',
-    casesCardBody: 'To get access, get in touch.',
-    casesPasswordLabel: 'Access password',
-    casesPasswordPlaceholder: 'Enter password',
-    casesSubmitLabel: 'View cases',
+      'The most relevant cases stay confidential — request access and I’ll share.',
+    casesCardTitle: 'Cases omitted for confidentiality.',
+    casesCardBody:
+      'To see the full material, request access. I’ll reply by email or LinkedIn.',
     casesContactEmail: 'wes.marcal@gmail.com',
+    casesLinkedInLabel: 'linkedin.com/in/wesmarcal',
     casesGridLabel: 'Case previews (private content)',
   },
 } satisfies Record<Locale, Record<string, string>>;

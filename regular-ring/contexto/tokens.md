@@ -6,14 +6,22 @@
 
 ## Cores
 
+Paleta normativa (print / `DESIGN.md` — Copper Briefing Room). Tokens nomeados + aliases semânticos usados no CSS.
+
 | Token CSS | Valor | Uso |
 |---|---|---|
-| `--color-background` | `#08100c` | fundo da página |
-| `--color-text` | `#d8bfa0` | texto principal / headline |
-| `--color-accent` | `#e98154` | nav ativo, eyebrow, e-mail CTA |
-| `--color-accent-muted` | `#944929` | nav inativo |
-| `--color-text-muted` | `#9b7f58` | labels dos reels |
-| `--color-surface` | `#ffffff` | superfície das thumbs |
+| `--color-ink` | `#08100C` | fundo / campo escuro |
+| `--color-pine` | `#304d53` | secundário frio (contrapeso estrutural) |
+| `--color-linen` | `#d8bfa0` | texto principal / headline |
+| `--color-taupe` | `#9b7f58` | labels muted |
+| `--color-cognac` | `#944929` | accent em repouso (nav inativo) |
+| `--color-peach` | `#e98154` | accent ativo (nav, eyebrow, CTA, focus) |
+| `--color-background` | `var(--color-ink)` | alias — fundo da página |
+| `--color-text` | `var(--color-linen)` | alias — texto principal |
+| `--color-accent` | `var(--color-peach)` | alias — accent ativo |
+| `--color-accent-muted` | `var(--color-cognac)` | alias — nav inativo |
+| `--color-text-muted` | `var(--color-taupe)` | alias — labels dos reels |
+| `--color-surface` | `var(--color-linen)` | alias — superfície das thumbs |
 
 ## Tipografia
 
