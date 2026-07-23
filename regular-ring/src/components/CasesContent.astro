@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import { fade } from 'astro:transitions';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
@@ -53,7 +52,15 @@ const gridItems = Array.from({ length: 6 }, (_, i) => slides[i % slides.length])
         {
           gridItems.map((image, index) => (
             <div class="page-cases__cell" style={`--cell-index: ${index}`}>
-              <Image class="page-cases__image" src={image} alt="" />
+              <img
+                class="page-cases__image"
+                src={image.src}
+                width={image.width}
+                height={image.height}
+                alt=""
+                loading="eager"
+                decoding="async"
+              />
             </div>
           ))
         }
