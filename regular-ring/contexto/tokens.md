@@ -14,7 +14,7 @@ Paleta normativa (print / `DESIGN.md` — Copper Briefing Room). Tokens nomeados
 | `--color-pine` | `#304d53` | secundário frio (contrapeso estrutural) |
 | `--color-linen` | `#d8bfa0` | texto principal / headline |
 | `--color-taupe` | `#9b7f58` | labels muted |
-| `--color-cognac` | `#944929` | accent em repouso (nav inativo) |
+| `--color-cognac` | `#be653e` | accent em repouso (nav inativo) |
 | `--color-peach` | `#e98154` | accent ativo (nav, eyebrow, CTA, focus) |
 | `--color-background` | `var(--color-ink)` | alias — fundo da página |
 | `--color-text` | `var(--color-linen)` | alias — texto principal |
