@@ -80,7 +80,7 @@ export const strings = {
       "Wes Marçal's selected case studies — confidential; request access by email",
     casesEyebrow: 'best work',
     casesHeadline:
-      'The most relevant cases stay confidential — request access and I’ll share.',
+      'I turn ambitious ideas into products people love to use — and businesses that profit.',
     casesCardTitle: 'Cases omitted for confidentiality.',
     casesCardBody:
       'To see the full material, request access. I’ll reply by email or LinkedIn.',
