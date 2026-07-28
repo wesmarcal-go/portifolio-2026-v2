@@ -31,20 +31,41 @@
 }
 
 /* Workflow diagram: full-bleed within the parchment band, larger, page-centered */
+#workflow.case-measurement {
+  padding-bottom: var(--spacing-xl);
+}
+
 #workflow .case-measurement__bleed {
   display: flex;
   justify-content: center;
-  margin-top: var(--spacing-xl);
-  padding-inline: var(--spacing-lg);
+  margin-top: var(--spacing-sm);
+  margin-bottom: 0;
+  padding-inline: 0;
 }
 
-#workflow .case-media-slot {
-  width: min(92%, 1100px);
+.page-case__workflow-media {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
 }
 
-#workflow .case-media-slot__caption {
-  margin-top: var(--spacing-block);
-  text-align: center;
+.page-case__workflow-stage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  aspect-ratio: 1600 / 524;
+}
+
+.page-case__workflow-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  background: transparent;
 }
 
 .page-case__field .link-social__icon {
@@ -135,7 +156,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-md) var(--spacing-lg);
-  margin: var(--spacing-lg) 0;
+  margin: var(--spacing-lg) 0 0;
   padding-top: var(--spacing-md);
   border-top: var(--border-width) solid var(--color-rule);
   animation: case-hero-enter var(--duration-base) var(--ease-out) both;
@@ -182,6 +203,46 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Hero video banner — full page width with 16px side margins */
+
+.page-case__video-banner {
+  width: 100%;
+  margin: var(--spacing-block) 0;
+  padding-inline: 16px;
+  box-sizing: border-box;
+}
+
+.page-case__video-frame {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-rule);
+  background: color-mix(in srgb, var(--color-text) 6%, var(--color-background));
+}
+
+.page-case__video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.page-case__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
 }
 
 /* Measurement content */
@@ -232,14 +293,17 @@
 
 .page-case__card {
   max-width: var(--measure);
-  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: var(--spacing-lg);
   border: var(--border-width) solid var(--color-rule);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--color-ink) 32%, transparent);
 }
 
 .page-case__card--flat {
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md);
 }
 
 .page-case__card h3 {

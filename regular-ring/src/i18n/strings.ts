@@ -48,9 +48,11 @@ export const strings = {
     casesLockedLabel: 'Case privado',
     caseIfoodPageTitle: 'Wes Marçal — Case iFood',
     caseIfoodMetaDescription:
-      'Diagnóstico e visão de design para a operação de parceiros integrados via API no iFood — de reativa para proativa.',
-    caseIfoodHeadline: 'Redesenhando a operação de parceiros integrados de reativa para proativa — no iFood',
+      'Diagnóstico e visão de design para parceiros via API no iFood: de operação reativa para proativa.',
+    caseIfoodHeadline: 'De reativa para proativa: a operação de parceiros via API no iFood',
     caseBackLabel: 'Voltar para cases',
+    caseVideoBannerLabel: 'Vídeo do case',
+    caseVideoPlaceholder: 'Vídeo em breve',
   },
   en: {
     pageTitle: 'Wes Marçal — Home',
@@ -90,9 +92,11 @@ export const strings = {
     casesLockedLabel: 'Private case',
     caseIfoodPageTitle: 'Wes Marçal — iFood Case',
     caseIfoodMetaDescription:
-      "Diagnosis and design vision for iFood's API-integrated partner operation — from reactive to proactive.",
-    caseIfoodHeadline: "Redesigning iFood's integrated-partner operation — from reactive to proactive",
+      "Diagnosis and design vision for iFood's API partners: from reactive to proactive operations.",
+    caseIfoodHeadline: "From reactive to proactive: iFood's API partner operations",
     caseBackLabel: 'Back to cases',
+    caseVideoBannerLabel: 'Case video',
+    caseVideoPlaceholder: 'Video coming soon',
   },
 } satisfies Record<Locale, Record<string, string>>;
 

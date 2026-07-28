@@ -13,7 +13,7 @@
 // how Wes frames problems.
 // FIRST VIEWPORT: identity column left; back link → H1 → six-tag
 // readout rail right on ink. Below the hero, a continuous linen field
-// (ink + cognac type) carries the six measurements and footer.
+// (ink + cognac type) carries the seven measurements and footer.
 // FORM: diagnostic-bench structure, seed 975b8bb9 (--scope surface --mode
 // read), assigned index 5. Staging: sectioned measurements, own design.
 import { fade } from 'astro:transitions';
@@ -23,7 +23,6 @@ import Identity from './Identity.astro';
 import ArrowIcon from './ArrowIcon.astro';
 import CaseMeasurement from './CaseMeasurement.astro';
 import CaseMediaSlot from './CaseMediaSlot.astro';
-import aiWorkflow from '../assets/ai-workflow.png';
 import '../styles/shared.css';
 import '../styles/case-ifood.css';
 
@@ -71,12 +70,21 @@ const langHrefs = { pt: strings.pt.casesUnlockedHref, en: strings.en.casesUnlock
     </section>
   </div>
 
+  <figure
+    class="page-case__video-banner"
+    data-component="case-video-banner"
+    aria-label={s.caseVideoBannerLabel}
+  >
+    <div class="page-case__video-frame">
+      <span class="page-case__video-placeholder">{s.caseVideoPlaceholder}</span>
+    </div>
+  </figure>
+
   <div class="page-case__field">
   <CaseMeasurement id="resumo" index={1} label={c.summary.label}>
     <div class="page-case__prose">
       {c.summary.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
     </div>
-    <CaseMediaSlot ratio="16 / 9" caption={c.summary.mediaCaption} />
   </CaseMeasurement>
 
   <CaseMeasurement id="problema" index={2} label={c.problem.label}>
@@ -98,13 +106,24 @@ const langHrefs = { pt: strings.pt.casesUnlockedHref, en: strings.en.casesUnlock
     <div class="page-case__prose">
       {c.workflow.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
     </div>
-    <CaseMediaSlot
+    <figure
       slot="bleed"
-      ratio="16 / 9"
-      caption={c.workflow.mediaCaption}
-      src={aiWorkflow}
-      alt={c.workflow.mediaAlt}
-    />
+      class="page-case__workflow-media"
+      data-component="workflow-video"
+    >
+      <div class="page-case__workflow-stage">
+        <video
+          class="page-case__workflow-video"
+          data-play-on-visible
+          muted
+          playsinline
+          preload="auto"
+          aria-label={c.workflow.mediaAlt}
+        >
+          <source src="/videos/workflow-ai.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </figure>
   </CaseMeasurement>
 
   <CaseMeasurement id="principios" index={4} label={c.principles.label}>
@@ -137,7 +156,20 @@ const langHrefs = { pt: strings.pt.casesUnlockedHref, en: strings.en.casesUnlock
     <CaseMediaSlot ratio="16 / 10" caption={c.tangible.mediaCaption} />
   </CaseMeasurement>
 
-  <CaseMeasurement id="retrospectiva" index={6} label={c.retrospective.label}>
+  <CaseMeasurement id="impacto" index={6} label={c.impact.label}>
+    <p class="page-case__thesis">{c.impact.title}</p>
+    <div class="page-case__card-row page-case__card-row--triple">
+      {
+        c.impact.cards.map((card) => (
+          <article class="page-case__card page-case__card--flat">
+            <p>{card}</p>
+          </article>
+        ))
+      }
+    </div>
+  </CaseMeasurement>
+
+  <CaseMeasurement id="retrospectiva" index={7} label={c.retrospective.label}>
     <p class="page-case__thesis page-case__thesis--quiet">{c.retrospective.heading}</p>
     <article class="page-case__card">
       <h3>{c.retrospective.cardTitle}</h3>
@@ -156,4 +188,5 @@ const langHrefs = { pt: strings.pt.casesUnlockedHref, en: strings.en.casesUnlock
 
 <script>
   import '../scripts/reveal';
+  import '../scripts/play-on-visible';
 </script>

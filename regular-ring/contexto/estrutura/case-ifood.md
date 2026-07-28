@@ -9,7 +9,8 @@
 
 - **header**: idêntico ao das outras telas, componente `site-header` — `activePage="cases"` mantém "cases" ativo; `langHrefs` aponta o troca-idioma para o case equivalente no outro locale, não para a home
 - **hero**: coluna identidade (`identity`) + intro com link "voltar para cases" + headline (H1, título do roteiro) + régua de metadados (`dl`, 6 tags: ano, duração, ferramentas, contexto, indústria, meu papel) — a régua fecha o hero como um "bezel" de instrumento
-- **seis medições** (`<main>`, uma `case-measurement` cada, `<h2>` cada uma): Resumo · O problema · Workflow · Princípios de design · Tangibilização · Retrospectiva — índice `01`–`06` + label uppercase na trilha esquerda, conteúdo à direita
+- **video banner** (`figure.page-case__video-banner`): full-bleed com margem lateral 16px, altura 300px, `border-radius: 8px`; placeholder até o vídeo (ffmpeg) estar pronto
+- **sete medições** (`<main>`, uma `case-measurement` cada, `<h2>` cada uma): Resumo · O problema · Workflow · Princípios de design · Tangibilização · Impacto · Retrospectiva — índice `01`–`07` + label uppercase na trilha esquerda, conteúdo à direita
 - **footer**: idêntico às outras telas, componente `site-footer`
 
 ## Componentes que se repetem nesta tela
@@ -22,12 +23,13 @@
 
 ## Elementos únicos nesta tela
 
-- **case-measurement** (`src/components/CaseMeasurement.astro`): wrapper de seção — trilha esquerda sticky (índice + label) + conteúdo; borda hairline no topo; as seis medições + footer vivem num campo contínuo `.page-case__field` (`--color-parchment` / `#f5ebe0`, texto ink + cognac); header e hero permanecem no campo ink
-- **case-media-slot** (`src/components/CaseMediaSlot.astro`): moldura graticule (grade + cantos + crosshair) com `figcaption` — placeholders para o GIF do resumo e o vídeo/imagens da tangibilização; Workflow já preenchido com `ai-workflow.png` via prop `src` (largura fluida, altura natural — sem forçar aspect-ratio)
+- **case-measurement** (`src/components/CaseMeasurement.astro`): wrapper de seção — trilha esquerda sticky (índice + label) + conteúdo; borda hairline no topo; as sete medições + footer vivem num campo contínuo `.page-case__field` (`--color-parchment` / `#f5ebe0`, texto ink + cognac); header e hero permanecem no campo ink
+- **case-media-slot** (`src/components/CaseMediaSlot.astro`): moldura graticule (grade + cantos + crosshair) com `figcaption` — Tangibilização ainda placeholder; Workflow usa vídeo dedicado (`page-case__workflow-media` + `/videos/workflow-ai.mp4`)
 - régua de metadados do hero (`dl.page-case__readout`): 6 pares label/valor do roteiro, 3 colunas → 2 → 1
 - cards de "O problema": Problema (prosa) + Evidências (lista de 4 itens, marcador `–` em cognac)
 - pilares de "Princípios de design": 3 itens numerados (Visibilidade, Autonomia, Padronização), numeral fantasma serif
 - cards planos de "Tangibilização": 3 frases curtas em grade
+- cards planos de "Impacto": título + 3 frases curtas em grade (placeholder)
 
 ## Decisões de design
 
@@ -35,7 +37,7 @@
 - Cognac carrega o registro reativo (problema/evidências); pine carrega o proativo (princípios/solução) — os dois já existiam como tokens, cognac já em uso, pine estreado aqui.
 - Conteúdo textual em `--measure` (645px); mídia e grades de card podem correr até a largura do `.page-frame`.
 - Nenhum conteúdo é inventado — todo texto vem de `regular-ring/public/roteiro-apresentacao-case.md` (mesma fonte movida depois para `src/i18n/case-ifood.ts`) ou é sua tradução fiel para EN.
-- Mídia: Workflow preenchido (`ai-workflow.png`); Resumo (GIF) e Tangibilização (vídeo/imagens) ainda placeholders — trocar por asset real é 1 prop (`src`) a mais no `case-media-slot`, sem refatorar a seção.
+- Mídia: Workflow com `/videos/workflow-ai.mp4` (play on visible, sem loop, via `play-on-visible.ts`); Tangibilização ainda placeholder. Resumo é só prosa (sem slot de mídia).
 - Motion: stagger no hero (back → headline → régua); cada `case-measurement` revela via `IntersectionObserver` (fade + translateY 8px, 280ms) — mesmo script (`src/scripts/reveal.ts`) usado pela timeline da carreira.
 
 ## Transição de página
@@ -51,7 +53,7 @@
 
 ## Estados de tela a cobrir
 
-- **cheio**: header + hero + 6 medições + footer — pt e en
+- **cheio**: header + hero + 7 medições + footer — pt e en
 - **menu mobile aberto**: mesmo `mobile-menu`, com "cases" ativo
 - **`prefers-reduced-motion`**: hero e medições caem para fade puro, sem translateY
 - **`prefers-reduced-transparency`**: moldura do `case-media-slot` perde a leve transparência do fundo

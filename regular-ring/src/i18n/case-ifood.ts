@@ -15,7 +15,6 @@ export interface CaseIfood {
   summary: {
     label: string;
     paragraphs: string[];
-    mediaCaption: string;
   };
   problem: {
     label: string;
@@ -26,7 +25,6 @@ export interface CaseIfood {
   };
   workflow: {
     label: string;
-    mediaCaption: string;
     mediaAlt: string;
     paragraphs: string[];
   };
@@ -39,6 +37,11 @@ export interface CaseIfood {
     thesis: string;
     cards: string[];
     mediaCaption: string;
+  };
+  impact: {
+    label: string;
+    title: string;
+    cards: string[];
   };
   retrospective: {
     label: string;
@@ -54,153 +57,165 @@ export const caseIfood: Record<Locale, CaseIfood> = {
       { label: 'Ano', value: '2025' },
       { label: 'Duração', value: '3 semanas' },
       { label: 'Ferramentas', value: 'Figma, entrevistas e AI' },
-      { label: 'Contexto', value: 'Parceiros integrados via API · catálogo e pedido' },
+      { label: 'Contexto', value: 'Parceiros via API · catálogo e pedido' },
       { label: 'Indústria', value: 'Marketplace · Varejo' },
-      { label: 'Meu papel', value: 'Condução do diagnóstico e da visão' },
+      { label: 'Meu papel', value: 'Diagnóstico e visão de solução' },
     ],
     summary: {
       label: 'Resumo',
       paragraphs: [
-        'Para mercados, atacadões e farmácias conseguirem atuar na maior marketplace com delivery do Brasil, é necessário algum tipo de comunicação operacional. Estamos falando sobre operações de catálogo e pedido que são o core na interface com esses parceiros. Esse case é sobre o diagnóstico e visão de design para parceiros que operam via API, como eles operam com o iFood e sobre KPIs de qualidade nessa relação.',
-        'Fui o responsável por conduzir o diagnóstico e liderar o desenho da visão de solução: pesquisa com stakeholders internos, parceiros e integradoras, audit da operação vigente, e tangibilizar as melhores hipóteses de solução em protótipos — pra que mais tarde entrasse na priorização das squads.',
-        'A integração em geral contribui para que as informações trocadas pelo iFood e o parceiro estejam corretamente relacionadas, desde a vinculação do catálogo, order do pedido até a conciliação financeira.',
+        'Mercados, atacados e farmácias chegam ao iFood por integração via API. O núcleo dessa relação é a operação de catálogo e pedido — e a qualidade dela define se o pedido chega completo, sem substituições e no prazo.',
+        'Em três semanas, conduzi o diagnóstico e a visão de solução: pesquisa com stakeholders, parceiros e integradoras; auditoria da operação vigente; e protótipos das hipóteses mais fortes para entrar na priorização das squads.',
       ],
-      mediaCaption: 'Loop animado — visão geral da operação de catálogo e pedido',
     },
     problem: {
       label: 'O problema',
-      problemTitle: 'Problema',
+      problemTitle: 'Sintoma',
       problemBody:
-        'O segmento de varejo no mercado e farmácia cresceu rápido dentro do marketplace, e junto com as dores do crescimento vieram mais complexidade na operação do parceiro. O resultado foi cada vez mais parceiros tendo problemas operacionais que estavam afetando os KPIs de qualidade (pedido completo, sem substituições e no tempo certo).',
+        'O varejo de mercado e farmácia cresceu rápido no marketplace. Com o crescimento, a operação do parceiro ficou mais complexa — e problemas de integração passaram a comprometer os KPIs de qualidade: pedido completo, sem substituições, no tempo certo.',
       evidenceTitle: 'Evidências',
       evidence: [
-        'Problemas operacionais de redes de mercados cortando protocolos e chegando na alta liderança como um pedido de socorro — sem rastreabilidade.',
-        'Taxa de parceiros indisponíveis por sanções temporárias de qualidade aumentando.',
-        'Parceiros com baixa instrumentação de monitoramento proativo e limitada transparência sobre as integrações.',
-        'Parceiros integrados representavam cerca de 1/3 do GMV da vertical — ou seja, impacto nos KPIs financeiros.',
+        'Problemas de redes grandes pulavam o suporte e chegavam à liderança como pedido de socorro — sem rastreabilidade.',
+        'Mais parceiros ficavam indisponíveis por sanções temporárias de qualidade.',
+        'Pouca instrumentação para monitorar a integração de forma proativa; transparência limitada.',
+        'Parceiros integrados respondiam por cerca de 1/3 do GMV da vertical — impacto direto no resultado financeiro.',
       ],
     },
     workflow: {
-      label: 'Workflow',
-      mediaCaption: 'Diagrama — fluxo de trabalho com AI e human-in-the-loop',
+      label: 'Método',
       mediaAlt:
-        'Diagrama do workflow: Problem Space (pesquisas com usuários e product discovery) e Solution Space (visão de design e implementação), com AI nas três junções do fluxo',
+        'Diagrama do método: espaço do problema (pesquisa e discovery) e espaço da solução (visão de design e implementação), com AI nas três junções do fluxo',
       paragraphs: [
-        'Com a AI em jogo, um princípio que não abro mão é o "human in the loop". Por isso, consegui acesso a insights de forma mais rápida. Etapas de rigor técnico se tornaram automações, e cruzar informações se tornou o toque humano mais valioso no meu processo.',
-        'O verdadeiro desafio em trabalhar com AI é a cadeia decisória que é preciso orquestrar. Decisões vêm com tradeoffs — quais os critérios que usamos para tomar decisões.',
+        'Usei AI para acelerar etapas de rigor técnico — e mantive "human in the loop" no que importa: cruzar informações e decidir. Automação ganhou velocidade; julgamento humano ficou no centro.',
+        'O desafio real não é gerar output. É orquestrar a cadeia decisória: quais critérios usamos, e quais tradeoffs aceitamos.',
       ],
     },
     principles: {
-      label: 'Princípios de design',
+      label: 'Princípios',
       pillars: [
         {
           title: 'Visibilidade',
-          body: 'Parceiro não conseguia agir sobre os problemas de integração principalmente porque só ficava sabendo deles tarde demais. O alicerce pra entregar autonomia é dar visibilidade pra quem estava no momento mais quente da operação.',
+          body: 'Parceiros só agiam quando o problema já estava tarde. Sem visibilidade no momento crítico da operação, autonomia é impossível.',
         },
         {
           title: 'Autonomia',
-          body: 'Entregar autonomia é mais do que tudo entregar inteligência para tomar decisões melhores. Com parceiros conseguindo ser certeiros na resolução de problemas, a experiência do parceiro e do consumidor eram afetadas.',
+          body: 'Autonomia é inteligência para decidir melhor. Parceiros certeiros na resolução melhoram a experiência deles e a do consumidor.',
         },
         {
           title: 'Padronização',
-          body: 'Ações personalizadas para diferentes níveis de maturidade de parceiros pouparia recursos internos e qualidade nas implementações e manutenção das integrações.',
+          body: 'Ações calibradas por maturidade do parceiro economizam recurso interno e elevam a qualidade da integração ao longo do tempo.',
         },
       ],
     },
     tangible: {
-      label: 'Tangibilização',
+      label: 'A visão',
       thesis:
-        'Oferecer aos parceiros e integradoras as informações e ferramentas necessárias para identificar e resolver problemas de integração de forma autônoma.',
+        'Dar a parceiros e integradoras as informações e ferramentas para identificar e resolver problemas de integração sozinhos.',
       cards: [
         'Painéis claros e ações direcionadas sobre a saúde da integração.',
-        'Adaptar tanto para o parceiro quanto para a empresa integradora.',
-        'Modular para os momentos que mais importam nas ferramentas de uso.',
+        'Experiência adaptada ao parceiro e à empresa integradora.',
+        'Módulos focados nos momentos que mais importam no dia a dia.',
       ],
-      mediaCaption: 'Imagens ou vídeo em loop das interfaces do protótipo',
+      mediaCaption: 'Interfaces do protótipo (placeholder)',
+    },
+    impact: {
+      label: 'Impacto',
+      title: 'Priorização e desdobramento',
+      cards: [
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        'Sed do eiusmod tempor incididunt ut labore et dolore magna.',
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+      ],
     },
     retrospective: {
       label: 'Retrospectiva',
-      heading: 'O que eu aprendi nesse projeto',
-      cardTitle: 'A amostra qualitativa foi o ponto fraco',
+      heading: 'O que eu aprendi',
+      cardTitle: 'Amostra qualitativa foi o ponto fraco',
       cardBody:
-        'Enfrentei um desafio de amostra qualitativa pra conseguir validar as hipóteses com as empresas parceiras. É complicado porque a agenda das pessoas envolvidas na integração dá prioridade aos problemas do dia a dia delas. Apesar disso, consegui falar de forma quali com 4 empresas, que trouxeram insights que não tinham aparecido nas outras etapas da pesquisa, como o comportamento de autodidatismo pra contornar problemas nas ferramentas de integração.',
+        'Validar hipóteses com parceiros é difícil: quem opera a integração prioriza o problema do dia. Ainda assim, conversei com 4 empresas — e elas trouxeram o que a pesquisa anterior não tinha visto: autodidatismo para contornar falhas nas ferramentas de integração.',
     },
   },
   en: {
     metaTags: [
       { label: 'Year', value: '2025' },
       { label: 'Duration', value: '3 weeks' },
-      { label: 'Tools', value: 'Figma, interviews and AI' },
-      { label: 'Context', value: 'API-integrated partners · catalog and order' },
+      { label: 'Tools', value: 'Figma, interviews, and AI' },
+      { label: 'Context', value: 'API partners · catalog and order' },
       { label: 'Industry', value: 'Marketplace · Retail' },
-      { label: 'My role', value: 'Led the diagnosis and the vision' },
+      { label: 'My role', value: 'Diagnosis and solution vision' },
     ],
     summary: {
       label: 'Summary',
       paragraphs: [
-        "For grocery chains, wholesalers, and pharmacies to operate on Brazil's largest delivery marketplace, some form of operational communication is required. We're talking about catalog and order operations — the core interface with these partners. This case is about the diagnosis and design vision for partners who operate via API: how they work with iFood, and the quality KPIs that govern that relationship.",
-        'I was responsible for leading the diagnosis and the solution vision: research with internal stakeholders, partners and system integrators, an audit of the existing operation, and turning the strongest hypotheses into prototypes — so they could later enter squad prioritization.',
-        'Integration, broadly, ensures that the information exchanged between iFood and the partner stays correctly linked — from catalog binding, to order flow, to financial reconciliation.',
+        "Grocery chains, wholesalers, and pharmacies reach iFood through API integration. Catalog and order operations sit at the core of that relationship — and their quality decides whether orders arrive complete, without substitutions, and on time.",
+        'Over three weeks, I led the diagnosis and solution vision: research with stakeholders, partners, and integrators; an audit of the live operation; and prototypes of the strongest hypotheses for squad prioritization.',
       ],
-      mediaCaption: 'Animated loop — overview of the catalog and order operation',
     },
     problem: {
       label: 'The problem',
-      problemTitle: 'Problem',
+      problemTitle: 'Symptom',
       problemBody:
-        "The grocery and pharmacy retail segment grew fast inside the marketplace, and growing pains brought more complexity to partner operations. The result: a growing number of partners hitting operational problems that hurt quality KPIs (complete orders, no substitutions, on time).",
+        'Grocery and pharmacy retail grew fast inside the marketplace. With growth came more complex partner operations — and integration issues started hitting quality KPIs: complete orders, no substitutions, on time.',
       evidenceTitle: 'Evidence',
       evidence: [
-        'Operational problems at grocery chains cutting through support protocols and reaching senior leadership as an SOS — with no traceability.',
-        'A rising rate of partners suspended by temporary quality sanctions.',
-        "Partners with little proactive monitoring instrumentation and limited visibility into their own integrations.",
-        "Integrated partners represented roughly a third of the vertical's GMV — a direct hit to financial KPIs.",
+        'Problems at large chains skipped support and reached leadership as an SOS — with no traceability.',
+        'More partners went offline under temporary quality sanctions.',
+        'Little instrumentation for proactive monitoring; limited visibility into their own integrations.',
+        "Integrated partners accounted for roughly a third of the vertical's GMV — a direct financial hit.",
       ],
     },
     workflow: {
-      label: 'Workflow',
-      mediaCaption: 'Diagram — AI + human-in-the-loop workflow',
+      label: 'Method',
       mediaAlt:
-        'Workflow diagram: Problem Space (user research and product discovery) and Solution Space (design vision and implementation), with AI at the three junctions of the flow',
+        'Method diagram: problem space (research and discovery) and solution space (design vision and implementation), with AI at the three junctions of the flow',
       paragraphs: [
-        'With AI in the mix, one principle I never give up is "human in the loop." It let me reach insight faster: steps that used to demand technical rigor became automations, and cross-referencing information became the most valuable human touch in my process.',
-        'The real challenge in working with AI is the decision chain you have to orchestrate. Decisions come with tradeoffs — what criteria do we use to make them?',
+        'I used AI to speed up steps that used to demand technical rigor — and kept "human in the loop" where it matters: cross-checking information and deciding. Automation bought speed; human judgment stayed central.',
+        "The real challenge isn't generating output. It's orchestrating the decision chain: which criteria we use, and which tradeoffs we accept.",
       ],
     },
     principles: {
-      label: 'Design principles',
+      label: 'Principles',
       pillars: [
         {
           title: 'Visibility',
-          body: "Partners couldn't act on integration problems mainly because they only found out too late. The foundation for delivering autonomy is giving visibility to whoever is closest to the hottest moment of the operation.",
+          body: "Partners only acted once the problem was already late. Without visibility at the hottest moment of the operation, autonomy is impossible.",
         },
         {
           title: 'Autonomy',
-          body: 'Delivering autonomy is, above all, delivering the intelligence to make better decisions. As partners became more precise at resolving problems, the partner and consumer experience were directly affected.',
+          body: 'Autonomy is intelligence to decide better. Precise partner resolution improves both the partner and the consumer experience.',
         },
         {
           title: 'Standardization',
-          body: "Tailoring actions to each partner's maturity level would save internal resources and raise the quality of how integrations are implemented and maintained.",
+          body: "Actions tuned to each partner's maturity save internal resources and raise integration quality over time.",
         },
       ],
     },
     tangible: {
-      label: 'Making it tangible',
+      label: 'The vision',
       thesis:
-        'Give partners and integrators the information and tools they need to identify and resolve integration problems on their own.',
+        'Give partners and integrators the information and tools to spot and fix integration problems on their own.',
       cards: [
         'Clear dashboards and directed actions on integration health.',
-        'Adapted for both the partner and the integrator company.',
-        'Modular for the moments that matter most in day-to-day tooling.',
+        'Experience adapted for both the partner and the integrator.',
+        'Modules focused on the moments that matter most day to day.',
       ],
-      mediaCaption: 'Looping images or video of the prototype interfaces',
+      mediaCaption: 'Prototype interfaces (placeholder)',
+    },
+    impact: {
+      label: 'Impact',
+      title: 'Prioritization and rollout',
+      cards: [
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        'Sed do eiusmod tempor incididunt ut labore et dolore magna.',
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+      ],
     },
     retrospective: {
       label: 'Retrospective',
-      heading: 'What I learned from this project',
+      heading: 'What I learned',
       cardTitle: 'The qualitative sample was the weak point',
       cardBody:
-        "I ran into a qualitative sample challenge trying to validate hypotheses with partner companies. It's tricky because the people involved in integration prioritize their own day-to-day problems over research requests. Even so, I managed to talk qualitatively with 4 companies, and they surfaced insights that hadn't come up in earlier research stages — like partners teaching themselves workarounds for problems in the integration tooling.",
+        "Validating hypotheses with partners is hard: people running integrations prioritize today's fire. Still, I spoke with 4 companies — and they surfaced what earlier research missed: partners teaching themselves workarounds for gaps in the integration tooling.",
     },
   },
 };
