@@ -78,7 +78,7 @@
 ## home-content
 
 - **Arquivo**: `src/components/HomeContent.astro`
-- **Estrutura**: corpo completo da home (`site-header`, hero, reels, `site-footer`), parametrizado por `locale` — usado pelas duas páginas de idioma para evitar duplicar markup
+- **Estrutura**: corpo completo da home (`site-header`, hero, reels, seção de cases com intro + `cases-preview-grid`, `site-footer`), parametrizado por `locale` — usado pelas duas páginas de idioma para evitar duplicar markup
 - **Variações**: `locale: 'pt' | 'en'` — troca todos os textos via `src/i18n/strings.ts`
 - **Onde aparece**: `src/pages/index.astro` (pt) e `src/pages/en/index.astro` (en)
 
@@ -92,16 +92,16 @@
 ## cases-content
 
 - **Arquivo**: `src/components/CasesContent.astro`
-- **Estrutura**: corpo completo da tela cases (`site-header`, hero com `identity` + eyebrow/headline, stage com grade 3×1 de prévia, `site-footer`), parametrizado por `locale`
+- **Estrutura**: corpo completo da tela cases (`site-header`, hero com `identity` + eyebrow/headline, stage com `cases-preview-grid`, `site-footer`), parametrizado por `locale`
 - **Variações**: `locale: 'pt' | 'en'` — troca textos via `src/i18n/strings.ts`
 - **Onde aparece**: `src/pages/cases.astro` (pt) e `src/pages/en/cases.astro` (en)
 
 ## cases-preview-grid
 
-- **Arquivo**: markup inline em `CasesContent.astro` (`data-component="cases-preview-grid"`)
-- **Estrutura**: grade 3×1 — tile 1 liberado (nítido, link para case futuro), tiles 2–3 bloqueados (blur + scrim + ícone de cadeado centrado via `icon-lock.svg`)
-- **Variações**: responsivo — 3 colunas no desktop, 1 coluna em ≤700px
-- **Onde aparece**: bloco principal de `cases-content`
+- **Arquivo**: `src/components/CasesPreviewGrid.astro` (`data-component="cases-preview-grid"`); CSS em `src/styles/cases-preview.css`
+- **Estrutura**: grade 3×1 — tile 1 liberado (nítido, link para `/cases/ifood`), tiles 2–3 bloqueados (blur + scrim + ícone de cadeado centrado via `icon-lock.svg`)
+- **Variações**: `locale: 'pt' | 'en'`; `reveal?: boolean` — quando true, cells usam scroll-reveal (`data-reveal`) em vez de enter no load; responsivo — 3 colunas no desktop, 1 coluna em ≤700px
+- **Onde aparece**: stage de `cases-content` e seção de cases de `home-content`
 
 ## case-ifood-content
 

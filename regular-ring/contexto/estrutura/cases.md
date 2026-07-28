@@ -21,7 +21,7 @@
 
 ## Elementos únicos nesta tela
 
-- grade de prévia (`data-component="cases-preview-grid"`): 3 imagens de `src/assets/slide-*.png` (iFood, Zé Delivery, Grupo Globo); CSS em `src/styles/cases.css`
+- grade de prévia (`cases-preview-grid` → `CasesPreviewGrid.astro`): 3 imagens de `src/assets/slide-*.png` (iFood, Zé Delivery, Grupo Globo); CSS em `src/styles/cases-preview.css`
 - tile liberado: link `casesUnlockedHref` (`/cases/ifood` · `/en/cases/ifood`) — ver `contexto/estrutura/case-ifood.md`
 - tiles bloqueados: blur + scrim + `icon-lock.svg` centrado (`casesLockedLabel` para a11y)
 

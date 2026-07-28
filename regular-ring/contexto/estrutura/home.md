@@ -9,6 +9,7 @@
 - **header**: Navegação principal (home / carreira) + seletor de idioma (sempre visível) + trigger do menu mobile (≤900px, substitui a navegação inline) — componente `site-header`, compartilhado com a tela carreira
 - **hero**: Identidade (avatar + wordmark, componente `identity` — mesma marca usada na tela carreira) + headline de posicionamento — entra com fade + translateY staggered no load
 - **reels**: Faixa full-bleed (100% da viewport) / carrossel automático (marquee) que se move devagar da direita para a esquerda, contínuo, sem controle de pausa
+- **cases**: Seção após o marquee — eyebrow + headline (mesmos textos da página cases) + `cases-preview-grid` (iFood liberado, 2 locked); entra via scroll-reveal
 - **footer**: Links sociais + CTA de disponibilidade e e-mail — componente `site-footer`, compartilhado com a tela carreira
 - **mobile-menu**: Overlay full-page (≤900px) com nav (home/carreira) + links sociais do footer (LinkedIn, Substack)
 
@@ -19,6 +20,7 @@
 - **identity** → `src/components/Identity.astro`: avatar + wordmark, a marca do Wes — compartilhado com a tela carreira
 - **nav-item** → `src/components/NavItem.astro`: ativo | inativo
 - **card-reel** → `src/components/CardReel.astro`: cada case renderizado 2x (set real + set duplicado `aria-hidden` para o loop do marquee)
+- **cases-preview-grid** → `src/components/CasesPreviewGrid.astro`: grade 3×1 compartilhada com a tela cases (`reveal` ativo na home)
 - **link-social** → `src/components/LinkSocial.astro`: ícone por rede — usado no `site-footer` e dentro do `mobile-menu`
 - **lang-switch** → `src/components/LangSwitch.astro`: link funcional pt/en, ativo conforme locale atual
 
@@ -27,6 +29,7 @@
 ## Elementos únicos nesta tela
 
 - eyebrow + headline do hero (markup em `HomeContent.astro`, texto vem de `src/i18n/strings.ts`)
+- intro da seção cases (eyebrow + `h2`, reusa `casesEyebrow` / `casesHeadline`)
 - overlay do menu mobile (`src/components/MobileMenu.astro`, inclui o trigger hambúrguer)
 
 ## Transição de página
@@ -41,9 +44,10 @@
 
 ## Estados de tela a cobrir
 
-- **cheio**: Header + hero + reels com cases + footer (happy path) — pt e en
+- **cheio**: Header + hero + reels + seção cases (intro + grade) + footer (happy path) — pt e en
 - **menu mobile aberto**: overlay full-page com foco preso, fecha com Escape/clique/link
 - **reels sob `prefers-reduced-motion`**: marquee desliga e volta a ser scroll manual (único caso em que a faixa não roda continuamente)
+- **cases sob scroll**: intro + tiles revelam via `IntersectionObserver` (`src/scripts/reveal.ts`)
 
 ## Estados de tela fora do escopo
 
