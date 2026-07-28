@@ -1,0 +1,159 @@
+---
+interface Props {
+  id: string;
+  index: number;
+  label: string;
+  register?: 'ink' | 'copper' | 'pine' | 'linen' | 'white';
+}
+
+const { id, index, label, register = 'ink' } = Astro.props;
+const paddedIndex = String(index).padStart(2, '0');
+---
+
+<section
+  class="case-measurement"
+  data-register={register}
+  id={id}
+  aria-labelledby={`${id}-label`}
+  data-reveal
+>
+  <div class="page-frame case-measurement__frame">
+    <div class="case-measurement__rail">
+      <span class="case-measurement__index" aria-hidden="true">{paddedIndex}</span>
+      <h2 class="case-measurement__label" id={`${id}-label`}>{label}</h2>
+    </div>
+    <div class="case-measurement__content">
+      <slot />
+    </div>
+  </div>
+  <div class="case-measurement__bleed">
+    <slot name="bleed" />
+  </div>
+</section>
+
+<style>
+  .case-measurement {
+    width: 100%;
+    padding-block: var(--spacing-xl);
+    border-top: var(--border-width) solid var(--color-rule);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity var(--duration-base) var(--ease-out), transform var(--duration-base) var(--ease-out);
+  }
+
+  .case-measurement.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .case-measurement[data-register='copper'] {
+    background: var(--color-field-copper);
+  }
+
+  .case-measurement[data-register='pine'] {
+    background: var(--color-field-pine);
+  }
+
+  /* Light field: remap semantic text/rule tokens so nested prose, captions,
+     and rail stay readable without per-child overrides. */
+  .case-measurement[data-register='linen'] {
+    background: var(--color-surface);
+    --color-text: var(--color-ink);
+    --color-text-muted: var(--color-cognac);
+    --color-accent-muted: var(--color-cognac);
+    --color-rule: color-mix(in srgb, var(--color-ink) 18%, transparent);
+  }
+
+  .case-measurement[data-register='white'] {
+    background: var(--color-parchment);
+  }
+
+  .case-measurement__frame {
+    display: grid;
+    grid-template-columns: 222px 1fr;
+    column-gap: var(--spacing-xl);
+    padding-inline: var(--spacing-lg);
+  }
+
+  .case-measurement__rail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    align-self: start;
+    position: sticky;
+    top: var(--spacing-lg);
+  }
+
+  .case-measurement__index {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-light);
+    color: var(--color-text-muted);
+  }
+
+  .case-measurement__label {
+    margin: 0;
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent-muted);
+  }
+
+  /* Cognac drops below WCAG AA on the copper/pine field tints; linen holds
+     contrast there while ink sections keep the cognac rail label. */
+  .case-measurement[data-register='copper'] .case-measurement__label,
+  .case-measurement[data-register='pine'] .case-measurement__label {
+    color: var(--color-text);
+  }
+
+  .case-measurement__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-block);
+    min-width: 0;
+    container-type: inline-size;
+    container-name: case-content;
+  }
+
+  .case-measurement__bleed:has(*) {
+    margin-top: var(--spacing-block);
+    padding-inline: var(--spacing-lg);
+  }
+
+  .case-measurement__bleed:not(:has(*)) {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    .case-measurement__frame {
+      grid-template-columns: 1fr;
+      row-gap: var(--spacing-md);
+    }
+
+    .case-measurement__rail {
+      position: static;
+      flex-direction: row;
+      align-items: baseline;
+      gap: var(--spacing-sm);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .case-measurement__frame {
+      padding-inline: 0;
+    }
+
+    .case-measurement__bleed:has(*) {
+      padding-inline: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .case-measurement {
+      transform: none;
+      transition: opacity var(--duration-base) var(--ease-out);
+    }
+  }
+</style>

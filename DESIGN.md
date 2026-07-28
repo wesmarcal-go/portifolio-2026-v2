@@ -8,6 +8,8 @@ colors:
   ink: "#161110"
   linen: "#D8BFA0"
   taupe: "#9B7F58"
+  white: "#FFFFFF"
+  parchment: "#F5EBE0"
 typography:
   display:
     fontFamily: "Merriweather, Georgia, serif"
@@ -117,7 +119,7 @@ Earthy, muted, and warm-led: copper and cognac against ink, cooled by pine.
 - **Cognac** (`#944929`): Inactive nav and resting accent states. Peach’s quieter sibling.
 
 ### Secondary
-- **Pine** (`#304D53`): Cool teal counterweight to the warm palette. Structural calm — secondary surfaces, quiet contrast, or supporting chrome when warmth would dominate.
+- **Pine** (`#304D53`): Cool teal counterweight to the warm palette. Structural calm — secondary surfaces, quiet contrast, or supporting chrome when warmth would dominate. First fielded on the case iFood page (`--color-field-pine`) as the background for the proactive register (design principles, solution shape) — the copper equivalent (`--color-field-copper`) carries the reactive register (problem, evidence) on the same surface.
 
 ### Neutral
 - **Ink** (`#161110`): Page background and dark field.
@@ -144,6 +146,8 @@ Earthy, muted, and warm-led: copper and cognac against ink, cooled by pine.
 - **Nav** (700, 20px, 28px, tracking −1px): Header routes — bold Heebo only.
 
 **The Type-as-Asset Rule.** Do not flatten hierarchy into one size/weight. Spacing between identity column and intro (~76px) and the 7px eyebrow→headline gap are part of the brand, not leftovers.
+
+Both faces are self-hosted (`@fontsource/merriweather` weights 300/400, `@fontsource-variable/heebo`) as of the case iFood build, preloaded in `Layout.astro`. Previously the tokens only declared the family as a fallback stack (Georgia / system-ui rendered in practice); the site now actually renders in Merriweather and Heebo everywhere.
 
 ## Layout
 
@@ -191,6 +195,12 @@ Avatar 71px circle + wordmark, column width 222px, gap 12px. Staggered enter (fa
 
 ### Link Social
 Light Heebo 14px (large variant 20px in mobile menu); linen → peach on hover; press scale 0.97.
+
+### Case Measurement (diagnostic bench)
+Long-form case surfaces (starting with case iFood) render as an instrument, not a marketing scroll: each section is a labeled "measurement" — sticky index + uppercase micro-label rail on the left (`--color-rule` hairline top border), content at `--measure` (645px) on the right, with media and card grids permitted to run to the full `.page-frame` width. The header + hero stay on the ink field; from the first measurement through the footer, a continuous `.page-case__field` uses `--color-parchment` (`#F5EBE0`) and remaps `--color-text` → ink, `--color-text-muted` / `--color-accent-muted` → cognac, `--color-rule` → ink-based hairline. Per-section `register` tints (`copper`, `pine`, `linen`, `white`) remain available on `CaseMeasurement` but are unused on this page. Sections reveal via the shared `IntersectionObserver` (fade + translateY 8px, 280ms, `astro:page-load`) — same script as the career timeline (`src/scripts/reveal.ts`).
+
+### Media Slot
+Case media frame: empty state is a graticule grid (40px, `--color-rule`) with cognac corner brackets and a center crosshair — instrument screen awaiting signal. Filled state (`src` prop) drops the graticule and forced aspect-ratio; the asset sizes fluidly (`width: 100%`, `height: auto`). Always closed by a visible `<figcaption>`. `prefers-reduced-transparency` drops the empty frame's translucent fill to solid ink.
 
 ### Reels Marquee (signature)
 Full-bleed continuous track, 48s linear loop, 30px gaps; under `prefers-reduced-motion`, animation off and manual horizontal scroll.

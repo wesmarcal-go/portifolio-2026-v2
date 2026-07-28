@@ -14,10 +14,16 @@
   --color-accent-muted: var(--color-cognac);
   --color-text-muted: var(--color-taupe);
   --color-surface: var(--color-linen);
+  --color-rule: color-mix(in srgb, var(--color-linen) 20%, transparent);
+  --color-field-copper: color-mix(in srgb, var(--color-cognac) 14%, var(--color-ink));
+  --color-field-pine: color-mix(in srgb, var(--color-pine) 28%, var(--color-ink));
+  --color-white: #ffffff;
+  --color-parchment: #f5ebe0;
 
   /* Tipografia */
-  --font-family-serif: Merriweather, Georgia, serif;
-  --font-family-sans: Heebo, system-ui, sans-serif;
+  --font-family-serif: 'Merriweather', Georgia, serif;
+  --font-family-sans: 'Heebo Variable', system-ui, sans-serif;
+  --font-size-xs: 11px;
   --font-size-sm: 14px;
   --font-size-base: 16px;
   --font-size-lg: 20px;
@@ -27,11 +33,14 @@
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
+  --line-height-body: 1.6;
+  --measure: 645px;
 
   /* Espaçamentos */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 12px;
+  --spacing-block: 32px;
   --spacing-lg: 50px;
   --spacing-xl: 76px;
   --spacing-reel: 30px;

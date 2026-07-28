@@ -22,15 +22,20 @@ Paleta normativa (print / `DESIGN.md` — Copper Briefing Room). Tokens nomeados
 | `--color-accent-muted` | `var(--color-cognac)` | alias — nav inativo |
 | `--color-text-muted` | `var(--color-taupe)` | alias — labels dos reels |
 | `--color-surface` | `var(--color-linen)` | alias — superfície das thumbs |
+| `--color-rule` | `color-mix(in srgb, var(--color-linen) 20%, transparent)` | hairline / graticule — bordas sutis (case-measurement, card, media-slot) |
+| `--color-field-copper` | `color-mix(in srgb, var(--color-cognac) 14%, var(--color-ink))` | campo de fundo — registro reativo (case-ifood: problema/evidências) |
+| `--color-field-pine` | `color-mix(in srgb, var(--color-pine) 28%, var(--color-ink))` | campo de fundo — registro proativo (case-ifood: princípios/tangibilização); primeiro uso do pine em campo desde que o token existe |
+| `--color-white` | `#ffffff` | branco puro |
+| `--color-parchment` | `#f5ebe0` | campo claro do case iFood (medições + footer; header/hero ficam em ink) |
 
 ## Tipografia
 
 | Token CSS | Valor | Uso |
 |---|---|---|
-| `--font-family-serif` | Merriweather, Georgia, serif | hero, CTA |
-| `--font-family-sans` | Heebo, system-ui, sans-serif | nav, labels, links |
+| `--font-family-serif` | `'Merriweather', Georgia, serif` — auto-hospedada (`@fontsource/merriweather`, pesos 300/400) | hero, CTA, prosa longa |
+| `--font-family-sans` | `'Heebo Variable', system-ui, sans-serif` — auto-hospedada (`@fontsource-variable/heebo`, var. 100–900) | nav, labels, links, corpo |
 | `--font-size-sm` | `14px` | links sociais, e-mail |
-| `--font-size-base` | `16px` | labels de reel |
+| `--font-size-base` | `16px` | labels de reel, corpo de leitura |
 | `--font-size-lg` | `20px` | nav, idioma, eyebrow, CTA |
 | `--font-size-nav` | `var(--font-size-lg)` | alias — itens de nav |
 | `--font-size-cta` | `var(--font-size-lg)` | alias — texto de disponibilidade |
@@ -38,6 +43,8 @@ Paleta normativa (print / `DESIGN.md` — Copper Briefing Room). Tokens nomeados
 | `--font-weight-light` | `300` | links sociais |
 | `--font-weight-normal` | `400` | labels / hero |
 | `--font-weight-bold` | `700` | nav, idioma ativo |
+| `--line-height-body` | `1.6` | leitura longa (case-ifood) — mais folgado que o 1.5 padrão de UI |
+| `--measure` | `645px` | largura máxima de prosa/headline (Measure Rule do DESIGN.md) |
 
 ## Espaçamentos
 
@@ -46,6 +53,7 @@ Paleta normativa (print / `DESIGN.md` — Copper Briefing Room). Tokens nomeados
 | `--spacing-xs` | `4px` | gap ícone–label |
 | `--spacing-sm` | `8px` | gaps internos pequenos |
 | `--spacing-md` | `12px` | avatar → wordmark |
+| `--spacing-block` | `32px` | ritmo vertical entre blocos de conteúdo dentro de uma seção (case-ifood) — degrau entre `md` e `lg` |
 | `--spacing-lg` | `50px` (`24px` ≤480px) | padding horizontal da page — sobrescrito em telas muito pequenas |
 | `--spacing-xl` | `76px` (`40px` ≤480px) | gap coluna identidade ↔ conteúdo, paddings do menu mobile, margin-top do footer (`site-footer`) |
 | `--spacing-reel` | `30px` | gap entre cards do reel |

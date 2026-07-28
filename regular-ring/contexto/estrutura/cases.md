@@ -7,11 +7,9 @@
 ## Blocos principais
 
 - **header**: idêntico ao das outras telas, componente `site-header` — `activePage="cases"` deixa "cases" ativo
-- **hero**: identidade (`identity`) + eyebrow "melhores trabalhos" + headline de posicionamento — mesmo padrão estrutural de home/carreira; confidencialidade fica no card de acesso
-- **stage**: área principal com a grade privada como *background* (absoluta) e o card de acesso centrado por cima
-- **gate / card de acesso**: flutuando sobre a grade — omitidos por confidencialidade; links de contato (e-mail + LinkedIn)
-- **grade privada (backdrop)**: grid 3×2 com as imagens dos reels da home (5 slides ciclados até 6 células), todas com blur + scrim — lê como fundo privado atrás do card
-- **footer**: idêntico às outras telas, componente `site-footer`
+- **hero**: identidade (`identity`) + eyebrow "melhores trabalhos" + headline de posicionamento — mesmo padrão estrutural de home/carreira
+- **stage / grade de prévia**: grade 3×1 — tile 1 liberado (nítido, link para case futuro), tiles 2–3 bloqueados (blur + scrim + ícone de cadeado centrado)
+- **footer**: idêntico às outras telas, componente `site-footer` (contato / pedido de acesso vive no footer)
 
 ## Componentes que se repetem nesta tela
 
@@ -23,16 +21,16 @@
 
 ## Elementos únicos nesta tela
 
-- card de acesso (`data-component="cases-access-card"`): título, body, `link-social` (e-mail + LinkedIn) — textos em `src/i18n/strings.ts`; ícones em `src/assets/icon-email.svg` e `icon-linkedin.svg`
-- grade privada (`data-component="cases-private-grid"`): imagens de `src/assets/slide-*.png`, CSS em `src/styles/cases.css`
+- grade de prévia (`data-component="cases-preview-grid"`): 3 imagens de `src/assets/slide-*.png` (iFood, Zé Delivery, Grupo Globo); CSS em `src/styles/cases.css`
+- tile liberado: link `casesUnlockedHref` (`/cases/ifood` · `/en/cases/ifood`) — ver `contexto/estrutura/case-ifood.md`
+- tiles bloqueados: blur + scrim + `icon-lock.svg` centrado (`casesLockedLabel` para a11y)
 
 ## Decisões de design
 
-- Grade como background absoluto do stage; card centrado por cima (hierarquia de modal: scrim + superfície flutuante).
-- Contato é o único caminho de acesso — sem formulário de senha; e-mail e LinkedIn como `link-social`.
-- Material do card: superfície translúcida (`backdrop-filter`) alinhada a apple-design; fallback sólido sob `prefers-reduced-transparency`.
-- Motion (emil-design-eng): entrada do card com `scale(0.95)` + opacity; stagger nos tiles; `prefers-reduced-motion` → só fade.
-- Mobile ≤700px: stage sem `min-height` forçado; gate alinha ao topo — contato no first fold.
+- Grade é o conteúdo do stage: 1 liberado + 2 bloqueados comunica hierarquia de acesso sem card/modal de gate.
+- Cadeado centrado nos tiles com blur sinaliza confidencialidade; pedido de acesso fica no footer (e-mail / LinkedIn).
+- Motion: stagger nos tiles; `prefers-reduced-motion` → só fade.
+- Mobile ≤700px: 1 coluna — liberado, depois bloqueados.
 
 ## Transição de página
 
@@ -46,10 +44,10 @@
 
 ## Estados de tela a cobrir
 
-- **cheio**: header + hero + card de acesso + grade 3×2 blur/scrim + footer — pt e en
+- **cheio**: header + hero + grade 3×1 (1 liberado + 2 bloqueados com cadeado) + footer — pt e en
 - **menu mobile aberto**: mesmo `mobile-menu`, com "cases" ativo
 - **`prefers-reduced-motion`**: entradas só com fade
-- **`prefers-reduced-transparency`**: card sem blur, fundo sólido
+- **`prefers-reduced-transparency`**: scrim mais opaco nos tiles bloqueados
 
 ## Estados de tela fora do escopo
 

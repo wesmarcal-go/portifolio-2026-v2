@@ -36,7 +36,7 @@
 
 - **Arquivo**: `src/components/LangSwitch.astro`
 - **Estrutura**: par de links `pt | en` — link funcional para a página traduzida correspondente
-- **Variações**: ativo | inativo por locale — prop(s): `locale: 'pt' | 'en'`, `label: string`
+- **Variações**: ativo | inativo por locale — prop(s): `locale: 'pt' | 'en'`, `label: string`, `ptHref?: string`, `enHref?: string` (default: `/` e `/en/`, a home; sobrescrito por telas com rota própria — carreira, cases, case-ifood — para apontar ao equivalente exato no outro idioma)
 - **Onde aparece**: header (sempre visível, desktop e mobile)
 
 ## mobile-menu
@@ -58,8 +58,8 @@
 
 - **Arquivo**: `src/components/SiteHeader.astro`
 - **Estrutura**: nav desktop (`nav-item` × 3) + `mobile-menu` + `lang-switch` — compõe o header inteiro a partir de `locale` e `activePage`
-- **Variações**: `activePage: 'home' | 'career' | 'cases'` — decide qual `nav-item` fica ativo
-- **Onde aparece**: topo de `home-content`, `career-content` e `cases-content` (fonte única de verdade do header)
+- **Variações**: `activePage: 'home' | 'career' | 'cases'` — decide qual `nav-item` fica ativo; `langHrefs?: { pt: string; en: string }` — repassado para `lang-switch` e `mobile-menu` quando a tela tem rota própria fora da home
+- **Onde aparece**: topo de `home-content`, `career-content`, `cases-content` e `case-ifood-content` (fonte única de verdade do header)
 
 ## site-footer
 
@@ -92,20 +92,34 @@
 ## cases-content
 
 - **Arquivo**: `src/components/CasesContent.astro`
-- **Estrutura**: corpo completo da tela cases (`site-header`, hero com `identity` + eyebrow/headline, stage com grade 3×2 privada em blur+scrim como background e card de acesso centrado por cima, `site-footer`), parametrizado por `locale`
+- **Estrutura**: corpo completo da tela cases (`site-header`, hero com `identity` + eyebrow/headline, stage com grade 3×1 de prévia, `site-footer`), parametrizado por `locale`
 - **Variações**: `locale: 'pt' | 'en'` — troca textos via `src/i18n/strings.ts`
 - **Onde aparece**: `src/pages/cases.astro` (pt) e `src/pages/en/cases.astro` (en)
 
-## cases-access-card
+## cases-preview-grid
 
-- **Arquivo**: markup inline em `CasesContent.astro` (`data-component="cases-access-card"`)
-- **Estrutura**: título + body + `link-social` × 2 (e-mail com `icon-email.svg`, LinkedIn com `icon-linkedin.svg`)
-- **Variações**: nenhuma estrutural — textos via `casesCard*` / `casesContactEmail` / `casesLinkedInLabel` em `strings.ts`
-- **Onde aparece**: centrado sobre a grade privada em `cases-content`
+- **Arquivo**: markup inline em `CasesContent.astro` (`data-component="cases-preview-grid"`)
+- **Estrutura**: grade 3×1 — tile 1 liberado (nítido, link para case futuro), tiles 2–3 bloqueados (blur + scrim + ícone de cadeado centrado via `icon-lock.svg`)
+- **Variações**: responsivo — 3 colunas no desktop, 1 coluna em ≤700px
+- **Onde aparece**: bloco principal de `cases-content`
 
-## cases-private-grid
+## case-ifood-content
 
-- **Arquivo**: markup inline em `CasesContent.astro` (`data-component="cases-private-grid"`)
-- **Estrutura**: stage com backdrop absoluto — grade 3×2 das imagens dos reels da home (5 slides ciclados até 6), cada célula com blur forte + scrim; o card de acesso fica em `z-index` acima
-- **Variações**: responsivo — 3 colunas no desktop, 2 colunas em ≤700px
-- **Onde aparece**: bloco principal de `cases-content`, atrás do card de acesso
+- **Arquivo**: `src/components/CaseIfoodContent.astro`
+- **Estrutura**: "bancada de diagnóstico" — corpo completo do case iFood: `site-header` (`activePage="cases"`), hero (identity + intro com link de volta, headline, régua de metadados `dl`), `<main>` com seis `case-measurement` em sequência (Resumo, O problema, Workflow, Princípios de design, Tangibilização, Retrospectiva), `site-footer`
+- **Variações**: `locale: 'pt' | 'en'` — troca textos via `src/i18n/strings.ts` (chaves `caseIfood*`) e conteúdo estruturado via `src/i18n/case-ifood.ts`
+- **Onde aparece**: `src/pages/cases/ifood.astro` (pt) e `src/pages/en/cases/ifood.astro` (en)
+
+## case-measurement
+
+- **Arquivo**: `src/components/CaseMeasurement.astro`
+- **Estrutura**: wrapper de seção — trilha esquerda fixa (índice `01`–`06` + label uppercase, `sticky` no desktop) + conteúdo à direita (`<slot/>`); borda hairline no topo (graticule); campo de fundo tonal opcional
+- **Variações**: `register?: 'ink' | 'copper' | 'pine' | 'linen'` (default `ink`) — copper para o registro reativo (problema/evidências), pine para o proativo (princípios/tangibilização), linen para campo claro (workflow + diagrama); entra via `data-reveal` + `IntersectionObserver` (fade + translateY, `astro:page-load`) — prop(s): `id: string`, `index: number`, `label: string`
+- **Onde aparece**: as seis seções de `case-ifood-content`
+
+## case-media-slot
+
+- **Arquivo**: `src/components/CaseMediaSlot.astro`
+- **Estrutura**: `<figure>` — moldura ruled em graticule (grade 40px, cantos em cognac, crosshair central) + `<figcaption>` visível; com `src` preenchido, a grade some e o asset ocupa a moldura (`object-fit: contain`, fundo `--color-linen`)
+- **Variações**: `ratio: string` (aspect-ratio CSS quando placeholder), `caption: string`, `src?: ImageMetadata`, `alt?: string` — com `src`, o ratio deriva de `width/height` do asset
+- **Onde aparece**: seções Resumo (placeholder), Workflow (`ai-workflow.png`) e Tangibilização (placeholder) de `case-ifood-content`

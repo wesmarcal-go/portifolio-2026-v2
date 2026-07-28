@@ -42,12 +42,15 @@ export const strings = {
     casesEyebrow: 'melhores trabalhos',
     casesHeadline:
       'Transformo ideias ambiciosas em produtos que as pessoas gostam de usar e negócios lucram.',
-    casesCardTitle: 'Cases omitidos por confidencialidade.',
-    casesCardBody:
-      'Para ver o material completo, peça acesso. Respondo por e-mail ou LinkedIn.',
-    casesContactEmail: 'wes.marcal@gmail.com',
-    casesLinkedInLabel: 'linkedin.com/in/wesmarcal',
-    casesGridLabel: 'Prévia dos cases (conteúdo privado)',
+    casesGridLabel: 'Prévia dos cases',
+    casesUnlockedHref: '/cases/ifood',
+    casesUnlockedLabel: 'Abrir case iFood',
+    casesLockedLabel: 'Case privado',
+    caseIfoodPageTitle: 'Wes Marçal — Case iFood',
+    caseIfoodMetaDescription:
+      'Diagnóstico e visão de design para a operação de parceiros integrados via API no iFood — de reativa para proativa.',
+    caseIfoodHeadline: 'Redesenhando a operação de parceiros integrados de reativa para proativa — no iFood',
+    caseBackLabel: 'Voltar para cases',
   },
   en: {
     pageTitle: 'Wes Marçal — Home',
@@ -81,12 +84,15 @@ export const strings = {
     casesEyebrow: 'best work',
     casesHeadline:
       'I turn ambitious ideas into products people love to use — and businesses that profit.',
-    casesCardTitle: 'Cases omitted for confidentiality.',
-    casesCardBody:
-      'To see the full material, request access. I’ll reply by email or LinkedIn.',
-    casesContactEmail: 'wes.marcal@gmail.com',
-    casesLinkedInLabel: 'linkedin.com/in/wesmarcal',
-    casesGridLabel: 'Case previews (private content)',
+    casesGridLabel: 'Case previews',
+    casesUnlockedHref: '/en/cases/ifood',
+    casesUnlockedLabel: 'Open iFood case',
+    casesLockedLabel: 'Private case',
+    caseIfoodPageTitle: 'Wes Marçal — iFood Case',
+    caseIfoodMetaDescription:
+      "Diagnosis and design vision for iFood's API-integrated partner operation — from reactive to proactive.",
+    caseIfoodHeadline: "Redesigning iFood's integrated-partner operation — from reactive to proactive",
+    caseBackLabel: 'Back to cases',
   },
 } satisfies Record<Locale, Record<string, string>>;
 

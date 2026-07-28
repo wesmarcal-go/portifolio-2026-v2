@@ -3,20 +3,15 @@ import { fade } from 'astro:transitions';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import Identity from './Identity.astro';
-import LinkSocial from './LinkSocial.astro';
 import '../styles/shared.css';
 import '../styles/cases.css';
 
 import slideIfood from '../assets/slide-ifood.png';
 import slideZeDelivery from '../assets/slide-ze-delivery.png';
 import slideGrupoGlobo from '../assets/slide-grupo-globo.png';
-import slideContaSimples from '../assets/slide-conta-simples.png';
-import slideAccenture from '../assets/slide-accenture.png';
-import iconEmail from '../assets/icon-email.svg';
-import iconLinkedin from '../assets/icon-linkedin.svg';
+import iconLock from '../assets/icon-lock.svg';
 
-import { t, type Locale } from '../i18n/strings';
-import { SOCIAL_LINKS } from '../lib/site';
+import { t, strings, type Locale } from '../i18n/strings';
 
 interface Props {
   locale: Locale;
@@ -25,13 +20,13 @@ interface Props {
 const { locale } = Astro.props;
 const s = t(locale);
 
-const slides = [slideIfood, slideZeDelivery, slideGrupoGlobo, slideContaSimples, slideAccenture];
-const gridItems = Array.from({ length: 6 }, (_, i) => slides[i % slides.length]);
+const gridItems = [slideIfood, slideZeDelivery, slideGrupoGlobo];
+const langHrefs = { pt: strings.pt.navCasesHref, en: strings.en.navCasesHref };
 ---
 
 <div class="page-cases" transition:animate={fade({ duration: 280 })}>
   <div class="page-frame">
-    <SiteHeader locale={locale} activePage="cases" />
+    <SiteHeader locale={locale} activePage="cases" langHrefs={langHrefs} />
 
     <section class="page-cases__hero" aria-label={s.hero}>
       <Identity locale={locale} />
@@ -43,51 +38,67 @@ const gridItems = Array.from({ length: 6 }, (_, i) => slides[i % slides.length])
   </div>
 
   <section
-    class="page-cases__stage"
+    class="page-cases__stage page-frame"
     aria-label={s.casesGridLabel}
-    data-component="cases-private-grid"
+    data-component="cases-preview-grid"
   >
-    <div class="page-cases__backdrop" aria-hidden="true">
-      <div class="page-cases__grid">
-        {
-          gridItems.map((image, index) => (
-            <div class="page-cases__cell" style={`--cell-index: ${index}`}>
-              <img
-                class="page-cases__image"
-                src={image.src}
-                width={image.width}
-                height={image.height}
-                alt=""
-                loading="eager"
-                decoding="async"
-              />
+    <div class="page-cases__grid">
+      {
+        gridItems.map((image, index) => {
+          const unlocked = index === 0;
+          return (
+            <div
+              class:list={[
+                'page-cases__cell',
+                unlocked ? 'page-cases__cell--unlocked' : 'page-cases__cell--locked',
+              ]}
+              style={`--cell-index: ${index}`}
+            >
+              {unlocked ? (
+                <a
+                  class="page-cases__tile-link"
+                  href={s.casesUnlockedHref}
+                  aria-label={s.casesUnlockedLabel}
+                >
+                  <img
+                    class="page-cases__image"
+                    src={image.src}
+                    width={image.width}
+                    height={image.height}
+                    alt=""
+                    loading="eager"
+                    decoding="async"
+                  />
+                </a>
+              ) : (
+                <>
+                  <img
+                    class="page-cases__image"
+                    src={image.src}
+                    width={image.width}
+                    height={image.height}
+                    alt=""
+                    loading="eager"
+                    decoding="async"
+                    aria-hidden="true"
+                  />
+                  <div class="page-cases__cell-scrim" aria-hidden="true"></div>
+                  <span class="page-cases__lock" aria-label={s.casesLockedLabel} role="img">
+                    <img
+                      class="page-cases__lock-icon"
+                      src={iconLock.src}
+                      width={32}
+                      height={32}
+                      alt=""
+                      aria-hidden="true"
+                    />
+                  </span>
+                </>
+              )}
             </div>
-          ))
-        }
-      </div>
-      <div class="page-cases__scrim"></div>
-    </div>
-
-    <div class="page-cases__gate page-frame">
-      <section class="page-cases__card" data-component="cases-access-card" aria-labelledby="cases-gate-title">
-        <h2 class="page-cases__card-title" id="cases-gate-title">{s.casesCardTitle}</h2>
-        <p class="page-cases__card-body">{s.casesCardBody}</p>
-
-        <div class="page-cases__contact">
-          <div class="page-cases__contact-links">
-            <LinkSocial
-              label={s.casesContactEmail}
-              href={`mailto:${s.casesContactEmail}`}
-              icon={iconEmail}
-            />
-            <LinkSocial
-              label={s.casesLinkedInLabel}
-              href={SOCIAL_LINKS.linkedin}
-              icon={iconLinkedin}
-            />
-          </div>
-        </div>
-      </section>
+          );
+        })
+      }
     </div>
   </section>
 

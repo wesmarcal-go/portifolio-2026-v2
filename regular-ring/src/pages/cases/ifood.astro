@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaseIfoodContent from '../../components/CaseIfoodContent.astro';
+import { t } from '../../i18n/strings';
+
+const s = t('pt');
+---
+
+<Layout title={s.caseIfoodPageTitle} description={s.caseIfoodMetaDescription} locale="pt" page="case-ifood" ogType="article">
+  <CaseIfoodContent locale="pt" />
+</Layout>

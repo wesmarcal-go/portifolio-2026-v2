@@ -4,15 +4,17 @@ import { localePaths, type Locale } from '../i18n/strings';
 interface Props {
   locale: Locale;
   label: string;
+  ptHref?: string;
+  enHref?: string;
 }
 
-const { locale, label } = Astro.props;
+const { locale, label, ptHref = localePaths.pt, enHref = localePaths.en } = Astro.props;
 ---
 
 <p class="lang-switch" data-component="lang-switch" aria-label={label}>
   <a
     class:list={['lang-switch__option', { 'lang-switch__option--active': locale === 'pt' }]}
-    href={localePaths.pt}
+    href={ptHref}
     aria-current={locale === 'pt' ? 'page' : undefined}
   >
     pt
@@ -20,7 +22,7 @@ const { locale, label } = Astro.props;
   <span class="lang-switch__sep" aria-hidden="true">|</span>
   <a
     class:list={['lang-switch__option', { 'lang-switch__option--active': locale === 'en' }]}
-    href={localePaths.en}
+    href={enHref}
     aria-current={locale === 'en' ? 'page' : undefined}
   >
     en

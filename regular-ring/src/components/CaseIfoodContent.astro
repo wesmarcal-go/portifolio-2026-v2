@@ -1,0 +1,159 @@
+---
+// THESIS: Visibility and instrumentation are the case's subject, so the page
+// becomes the instrument — a diagnostic bench, not a marketing scroll with a
+// chapter rail and pull-quotes.
+// OWN-WORLD: Copper Briefing Room unchanged — ink field, linen type,
+// Merriweather voice / Heebo instrumentation, peach kept rare. New here: a
+// hairline graticule ruling every measurement, uppercase Heebo micro-labels
+// as channel names, cognac carrying the reactive register (problem,
+// evidence), pine carrying the proactive register (principles, solution).
+// STORY: a hiring manager sees within one viewport that this is an
+// operations diagnosis at marketplace scale, reads symptom → evidence →
+// method → principles → solution shape → learning, and leaves understanding
+// how Wes frames problems.
+// FIRST VIEWPORT: identity column left; back link → H1 → six-tag
+// readout rail right on ink. Below the hero, a continuous linen field
+// (ink + cognac type) carries the six measurements and footer.
+// FORM: diagnostic-bench structure, seed 975b8bb9 (--scope surface --mode
+// read), assigned index 5. Staging: sectioned measurements, own design.
+import { fade } from 'astro:transitions';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import Identity from './Identity.astro';
+import ArrowIcon from './ArrowIcon.astro';
+import CaseMeasurement from './CaseMeasurement.astro';
+import CaseMediaSlot from './CaseMediaSlot.astro';
+import aiWorkflow from '../assets/ai-workflow.png';
+import '../styles/shared.css';
+import '../styles/case-ifood.css';
+
+import { t, strings, type Locale } from '../i18n/strings';
+import { caseIfood } from '../i18n/case-ifood';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+const c = caseIfood[locale];
+const langHrefs = { pt: strings.pt.casesUnlockedHref, en: strings.en.casesUnlockedHref };
+---
+
+<article class="page-case" transition:animate={fade({ duration: 280 })}>
+  <div class="page-frame">
+    <SiteHeader locale={locale} activePage="cases" langHrefs={langHrefs} />
+  </div>
+
+  <main>
+  <div class="page-frame">
+    <section class="page-case__hero" aria-label={s.hero}>
+      <div class="page-case__identity-col">
+        <Identity locale={locale} />
+      </div>
+      <div class="page-case__intro">
+        <a class="page-case__back" href={s.navCasesHref}>
+          <span class="page-case__back-icon" aria-hidden="true"><ArrowIcon /></span>
+          <span>{s.caseBackLabel}</span>
+        </a>
+        <h1 class="page-case__headline">{s.caseIfoodHeadline}</h1>
+        <dl class="page-case__readout">
+          {
+            c.metaTags.map((tag) => (
+              <div class="page-case__readout-cell">
+                <dt>{tag.label}</dt>
+                <dd>{tag.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-case__field">
+  <CaseMeasurement id="resumo" index={1} label={c.summary.label}>
+    <div class="page-case__prose">
+      {c.summary.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+    <CaseMediaSlot ratio="16 / 9" caption={c.summary.mediaCaption} />
+  </CaseMeasurement>
+
+  <CaseMeasurement id="problema" index={2} label={c.problem.label}>
+    <div class="page-case__card-row">
+      <article class="page-case__card">
+        <h3>{c.problem.problemTitle}</h3>
+        <p>{c.problem.problemBody}</p>
+      </article>
+      <article class="page-case__card">
+        <h3>{c.problem.evidenceTitle}</h3>
+        <ul class="page-case__evidence">
+          {c.problem.evidence.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
+    </div>
+  </CaseMeasurement>
+
+  <CaseMeasurement id="workflow" index={3} label={c.workflow.label}>
+    <div class="page-case__prose">
+      {c.workflow.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+    <CaseMediaSlot
+      slot="bleed"
+      ratio="16 / 9"
+      caption={c.workflow.mediaCaption}
+      src={aiWorkflow}
+      alt={c.workflow.mediaAlt}
+    />
+  </CaseMeasurement>
+
+  <CaseMeasurement id="principios" index={4} label={c.principles.label}>
+    <div class="page-case__pillars">
+      {
+        c.principles.pillars.map((pillar, index) => (
+          <article class="page-case__pillar">
+            <span class="page-case__pillar-index" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3>{pillar.title}</h3>
+            <p>{pillar.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </CaseMeasurement>
+
+  <CaseMeasurement id="tangibilizacao" index={5} label={c.tangible.label}>
+    <p class="page-case__thesis">{c.tangible.thesis}</p>
+    <div class="page-case__card-row page-case__card-row--triple">
+      {
+        c.tangible.cards.map((card) => (
+          <article class="page-case__card page-case__card--flat">
+            <p>{card}</p>
+          </article>
+        ))
+      }
+    </div>
+    <CaseMediaSlot ratio="16 / 10" caption={c.tangible.mediaCaption} />
+  </CaseMeasurement>
+
+  <CaseMeasurement id="retrospectiva" index={6} label={c.retrospective.label}>
+    <p class="page-case__thesis page-case__thesis--quiet">{c.retrospective.heading}</p>
+    <article class="page-case__card">
+      <h3>{c.retrospective.cardTitle}</h3>
+      <p>{c.retrospective.cardBody}</p>
+    </article>
+  </CaseMeasurement>
+  </div>
+  </main>
+
+  <div class="page-case__field">
+    <div class="page-frame">
+      <SiteFooter locale={locale} />
+    </div>
+  </div>
+</article>
+
+<script>
+  import '../scripts/reveal';
+</script>

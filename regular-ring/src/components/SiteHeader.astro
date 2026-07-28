@@ -10,9 +10,10 @@ import iconSubstack from '../assets/icon-substack.svg';
 interface Props {
   locale: Locale;
   activePage: 'home' | 'career' | 'cases';
+  langHrefs?: { pt: string; en: string };
 }
 
-const { locale, activePage } = Astro.props;
+const { locale, activePage, langHrefs } = Astro.props;
 const s = t(locale);
 
 const linkedinHref = SOCIAL_LINKS.linkedin;
@@ -46,9 +47,10 @@ const substackHref = SOCIAL_LINKS.substack;
       substackHref={substackHref}
       iconLinkedin={iconLinkedin}
       iconSubstack={iconSubstack}
+      langHrefs={langHrefs}
     />
   </div>
-  <LangSwitch locale={locale} label={s.langLabel} />
+  <LangSwitch locale={locale} label={s.langLabel} ptHref={langHrefs?.pt} enHref={langHrefs?.en} />
 </header>
 
 <style>
