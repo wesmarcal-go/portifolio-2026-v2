@@ -10,6 +10,7 @@
 - **hero**: Identidade (avatar + wordmark, componente `identity` — mesma marca usada na tela carreira) + headline de posicionamento — entra com fade + translateY staggered no load
 - **reels**: Faixa full-bleed (100% da viewport) / carrossel automático (marquee) que se move devagar da direita para a esquerda, contínuo, sem controle de pausa
 - **cases**: Seção após o marquee — eyebrow + headline (mesmos textos da página cases) + `cases-preview-grid` (iFood liberado, 2 locked); entra via scroll-reveal
+- **writing**: Seção após cases — bloco tipográfico mínimo da newsletter *first layer club* (`writing-section` + `dispatch-entry`); posts via RSS em build com fallback local; CTA único de assinar como link de texto; entra via scroll-reveal
 - **footer**: Links sociais + CTA de disponibilidade e e-mail — componente `site-footer`, compartilhado com a tela carreira
 - **mobile-menu**: Overlay full-page (≤900px) com nav (home/carreira) + links sociais do footer (LinkedIn, Substack)
 
@@ -20,7 +21,9 @@
 - **identity** → `src/components/Identity.astro`: avatar + wordmark, a marca do Wes — compartilhado com a tela carreira
 - **nav-item** → `src/components/NavItem.astro`: ativo | inativo
 - **card-reel** → `src/components/CardReel.astro`: cada case renderizado 2x (set real + set duplicado `aria-hidden` para o loop do marquee)
-- **cases-preview-grid** → `src/components/CasesPreviewGrid.astro`: grade 3×1 compartilhada com a tela cases (`reveal` ativo na home)
+- **cases-preview-grid** → `src/components/CasesPreviewGrid.astro`: grade 3×1 compartilhada com a tela cases (`reveal` ativo na home); tile iFood = vídeo loop muted
+- **writing-section** → `src/components/WritingSection.astro`: bloco editorial da newsletter + CTAs
+- **dispatch-entry** → `src/components/DispatchEntry.astro`: bloco mínimo de post (data micro-label + título serif)
 - **link-social** → `src/components/LinkSocial.astro`: ícone por rede — usado no `site-footer` e dentro do `mobile-menu`
 - **lang-switch** → `src/components/LangSwitch.astro`: link funcional pt/en, ativo conforme locale atual
 
@@ -30,6 +33,7 @@
 
 - eyebrow + headline do hero (markup em `HomeContent.astro`, texto vem de `src/i18n/strings.ts`)
 - intro da seção cases (eyebrow + `h2`, reusa `casesEyebrow` / `casesHeadline`)
+- intro da seção writing (`h2` com o nome da publicação + tese como parágrafo discreto + nota de idioma em EN)
 - overlay do menu mobile (`src/components/MobileMenu.astro`, inclui o trigger hambúrguer)
 
 ## Transição de página
@@ -44,10 +48,13 @@
 
 ## Estados de tela a cobrir
 
-- **cheio**: Header + hero + reels + seção cases (intro + grade) + footer (happy path) — pt e en
+- **cheio**: Header + hero + reels + seção cases (intro + grade) + writing (intro + despachos + link de assinar) + footer (happy path) — pt e en
 - **menu mobile aberto**: overlay full-page com foco preso, fecha com Escape/clique/link
 - **reels sob `prefers-reduced-motion`**: marquee desliga e volta a ser scroll manual (único caso em que a faixa não roda continuamente)
 - **cases sob scroll**: intro + tiles revelam via `IntersectionObserver` (`src/scripts/reveal.ts`)
+- **writing sob scroll**: intro + despachos + link de assinar revelam via o mesmo `reveal.ts`
+- **um despacho**: pauta completa com um único post (estado atual do feed) — escala até 3 sem redesenho
+- **feed indisponível**: `getDispatches()` usa `src/data/substack-fallback.json`; o build não quebra
 
 ## Estados de tela fora do escopo
 

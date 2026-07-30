@@ -78,9 +78,23 @@
 ## home-content
 
 - **Arquivo**: `src/components/HomeContent.astro`
-- **Estrutura**: corpo completo da home (`site-header`, hero, reels, seção de cases com intro + `cases-preview-grid`, `site-footer`), parametrizado por `locale` — usado pelas duas páginas de idioma para evitar duplicar markup
-- **Variações**: `locale: 'pt' | 'en'` — troca todos os textos via `src/i18n/strings.ts`
+- **Estrutura**: corpo completo da home (`site-header`, hero, reels, seção de cases com intro + `cases-preview-grid`, seção de escritos `writing-section`, `site-footer`), parametrizado por `locale` — usado pelas duas páginas de idioma para evitar duplicar markup
+- **Variações**: `locale: 'pt' | 'en'` — troca todos os textos via `src/i18n/strings.ts`; resolve `getDispatches()` do Substack em tempo de build
 - **Onde aparece**: `src/pages/index.astro` (pt) e `src/pages/en/index.astro` (en)
+
+## writing-section
+
+- **Arquivo**: `src/components/WritingSection.astro` (`data-component="writing-section"`); CSS em `src/styles/writing.css`
+- **Estrutura**: card glass (borda linen, blur, wash peach/pine) contendo título da publicação (serif peach, `h2`) + tese como parágrafo discreto (sans muted) + lista de `dispatch-entry` + link de texto único "assinar" com seta; nota de idioma só em EN
+- **Variações**: `locale: 'pt' | 'en'`; `dispatches: Dispatch[]` — posts vindos do RSS (build) ou fallback local
+- **Onde aparece**: seção após cases em `home-content`
+
+## dispatch-entry
+
+- **Arquivo**: `src/components/DispatchEntry.astro` (`data-component="dispatch-entry"`)
+- **Estrutura**: bloco tipográfico mínimo — micro-label de data (`<time>` visível, uppercase) + título serif grande, tudo no measure; sem rail, resumo ou thumbnail
+- **Variações**: `dispatch`, `index`, `locale` — `--entry-index` para stagger do scroll-reveal; hover peach no título
+- **Onde aparece**: dentro de `writing-section`
 
 ## career-content
 
@@ -99,8 +113,8 @@
 ## cases-preview-grid
 
 - **Arquivo**: `src/components/CasesPreviewGrid.astro` (`data-component="cases-preview-grid"`); CSS em `src/styles/cases-preview.css`
-- **Estrutura**: grade 3×1 — tile 1 liberado (nítido, link para `/cases/ifood`), tiles 2–3 bloqueados (blur + scrim + ícone de cadeado centrado via `icon-lock.svg`)
-- **Variações**: `locale: 'pt' | 'en'`; `reveal?: boolean` — quando true, cells usam scroll-reveal (`data-reveal`) em vez de enter no load; responsivo — 3 colunas no desktop, 1 coluna em ≤700px
+- **Estrutura**: grade 3×1 — tile 1 liberado (vídeo loop + poster, link para `/cases/ifood`, legenda inferior com título “iFood” + tags tipográficas: service design · product discovery · craft design), tiles 2–3 em breve (blur suave + scrim + rótulo “em breve” / “coming soon”)
+- **Variações**: `locale: 'pt' | 'en'`; `reveal?: boolean` — quando true, cells usam scroll-reveal (`data-reveal`) em vez de enter no load; responsivo — 3 colunas no desktop, 1 coluna em ≤700px; vídeo via `play-on-visible` (loop, pausa fora do viewport, respeita `prefers-reduced-motion`)
 - **Onde aparece**: stage de `cases-content` e seção de cases de `home-content`
 
 ## case-ifood-content

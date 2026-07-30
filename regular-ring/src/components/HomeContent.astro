@@ -5,9 +5,11 @@ import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import Identity from './Identity.astro';
 import CasesPreviewGrid from './CasesPreviewGrid.astro';
+import WritingSection from './WritingSection.astro';
 import '../styles/shared.css';
 import '../styles/layout.css';
 import '../styles/cases-preview.css';
+import '../styles/writing.css';
 
 import slideIfood from '../assets/slide-ifood.png';
 import slideZeDelivery from '../assets/slide-ze-delivery.png';
@@ -16,6 +18,7 @@ import slideContaSimples from '../assets/slide-conta-simples.png';
 import slideAccenture from '../assets/slide-accenture.png';
 
 import { t, type Locale } from '../i18n/strings';
+import { getDispatches } from '../lib/substack';
 
 interface Props {
   locale: Locale;
@@ -23,6 +26,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const s = t(locale);
+const dispatches = await getDispatches(3);
 
 const reels = [
   { title: 'iFood', image: slideIfood },
@@ -59,6 +63,13 @@ const reels = [
       <h2 class="page-home__cases-headline" id="home-cases-heading">{s.casesHeadline}</h2>
     </div>
     <CasesPreviewGrid locale={locale} reveal />
+  </section>
+
+  <section
+    class="page-home__writing page-frame"
+    aria-labelledby="home-writing-heading"
+  >
+    <WritingSection locale={locale} dispatches={dispatches} />
   </section>
 
   <div class="page-frame">

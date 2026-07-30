@@ -1,0 +1,52 @@
+---
+import ArrowIcon from './ArrowIcon.astro';
+import DispatchEntry from './DispatchEntry.astro';
+import type { Dispatch } from '../lib/substack';
+import { SUBSTACK_SUBSCRIBE } from '../lib/site';
+import { strings, t, type Locale } from '../i18n/strings';
+import logoFirstLayer from '../assets/logo-first-layer-club.png';
+
+interface Props {
+  locale: Locale;
+  dispatches: Dispatch[];
+}
+
+const { locale, dispatches } = Astro.props;
+const s = t(locale);
+const langNote = locale === 'en' ? strings.en.writingLangNote : null;
+---
+
+<div class="writing-section" data-component="writing-section">
+  <header class="writing-section__intro" data-reveal>
+    <h2 class="writing-section__title" id="home-writing-heading">{s.writingEyebrow}</h2>
+    <img
+      class="writing-section__logo"
+      src={logoFirstLayer.src}
+      width={logoFirstLayer.width}
+      height={logoFirstLayer.height}
+      alt=""
+      decoding="async"
+    />
+    <div class="writing-section__copy">
+      <p class="writing-section__thesis">{s.writingHeadline}</p>
+      {langNote ? <p class="writing-section__lang-note">{langNote}</p> : null}
+    </div>
+  </header>
+
+  <div class="writing-section__list" role="list" aria-label={s.writingSectionLabel}>
+    {
+      dispatches.map((dispatch, i) => (
+        <div role="listitem">
+          <DispatchEntry dispatch={dispatch} index={i + 1} locale={locale} />
+        </div>
+      ))
+    }
+  </div>
+
+  <a class="writing-section__subscribe" href={SUBSTACK_SUBSCRIBE} data-reveal>
+    {s.writingSubscribeLabel}
+    <span class="writing-section__subscribe-arrow" aria-hidden="true">
+      <ArrowIcon />
+    </span>
+  </a>
+</div>

@@ -1,0 +1,40 @@
+---
+import type { Dispatch } from '../lib/substack';
+import type { Locale } from '../i18n/strings';
+
+interface Props {
+  dispatch: Dispatch;
+  index: number;
+  locale: Locale;
+}
+
+const { dispatch, index, locale } = Astro.props;
+const date = new Date(dispatch.pubDate);
+const datetime = Number.isNaN(date.getTime())
+  ? dispatch.pubDate
+  : date.toISOString().slice(0, 10);
+
+const monthsPt = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+const monthsEn = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+const formattedDate = Number.isNaN(date.getTime())
+  ? dispatch.pubDate
+  : (() => {
+      const day = String(date.getUTCDate()).padStart(2, '0');
+      const month = (locale === 'pt' ? monthsPt : monthsEn)[date.getUTCMonth()];
+      return `${day} ${month} ${date.getUTCFullYear()}`;
+    })();
+---
+
+<article
+  class="dispatch-entry"
+  data-component="dispatch-entry"
+  data-reveal
+  style={`--entry-index: ${index - 1}`}
+>
+  <time class="dispatch-entry__time" datetime={datetime}>{formattedDate}</time>
+  <h3 class="dispatch-entry__title">
+    <a class="dispatch-entry__link" href={dispatch.link}>
+      {dispatch.title}
+    </a>
+  </h3>
+</article>

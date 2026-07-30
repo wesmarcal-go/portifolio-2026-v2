@@ -1,8 +1,7 @@
 ---
-import slideIfood from '../assets/slide-ifood.png';
 import slideZeDelivery from '../assets/slide-ze-delivery.png';
 import slideGrupoGlobo from '../assets/slide-grupo-globo.png';
-import iconLock from '../assets/icon-lock.svg';
+import caseIfoodPoster from '../assets/case-ifood-thumb-poster.jpg';
 import { t, type Locale } from '../i18n/strings';
 
 interface Props {
@@ -14,7 +13,7 @@ interface Props {
 const { locale, reveal = false } = Astro.props;
 const s = t(locale);
 
-const gridItems = [slideIfood, slideZeDelivery, slideGrupoGlobo];
+const lockedItems = [slideZeDelivery, slideGrupoGlobo];
 ---
 
 <section
@@ -22,61 +21,68 @@ const gridItems = [slideIfood, slideZeDelivery, slideGrupoGlobo];
   data-component="cases-preview-grid"
   aria-label={s.casesGridLabel}
 >
+  <div
+    class="cases-preview__cell cases-preview__cell--unlocked"
+    style="--cell-index: 0"
+    data-reveal={reveal ? true : undefined}
+  >
+    <a
+      class="cases-preview__tile-link"
+      href={s.casesUnlockedHref}
+      aria-label={s.casesUnlockedLabel}
+    >
+      <video
+        class="cases-preview__image cases-preview__video"
+        data-play-on-visible
+        data-playback-rate="0.55"
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        poster={caseIfoodPoster.src}
+        width={caseIfoodPoster.width}
+        height={caseIfoodPoster.height}
+        aria-hidden="true"
+      >
+        <source src="/videos/case-ifood-thumb.mp4" type="video/mp4" />
+      </video>
+      <div class="cases-preview__video-scrim" aria-hidden="true"></div>
+      <div class="cases-preview__caption">
+        <p class="cases-preview__caption-title">{s.casesUnlockedTitle}</p>
+        <ul class="cases-preview__tags">
+          {
+            s.casesUnlockedTags.map((tag) => (
+              <li class="cases-preview__tag">{tag}</li>
+            ))
+          }
+        </ul>
+      </div>
+    </a>
+  </div>
   {
-    gridItems.map((image, index) => {
-      const unlocked = index === 0;
-      return (
-        <div
-          class:list={[
-            'cases-preview__cell',
-            unlocked ? 'cases-preview__cell--unlocked' : 'cases-preview__cell--locked',
-          ]}
-          style={`--cell-index: ${index}`}
-          data-reveal={reveal ? true : undefined}
-        >
-          {unlocked ? (
-            <a
-              class="cases-preview__tile-link"
-              href={s.casesUnlockedHref}
-              aria-label={s.casesUnlockedLabel}
-            >
-              <img
-                class="cases-preview__image"
-                src={image.src}
-                width={image.width}
-                height={image.height}
-                alt=""
-                loading={reveal ? 'lazy' : 'eager'}
-                decoding="async"
-              />
-            </a>
-          ) : (
-            <>
-              <img
-                class="cases-preview__image"
-                src={image.src}
-                width={image.width}
-                height={image.height}
-                alt=""
-                loading={reveal ? 'lazy' : 'eager'}
-                decoding="async"
-                aria-hidden="true"
-              />
-              <div class="cases-preview__cell-scrim" aria-hidden="true"></div>
-              <span class="cases-preview__lock" aria-label={s.casesLockedLabel} role="img">
-                <img
-                  class="cases-preview__lock-icon"
-                  src={iconLock.src}
-                  width={32}
-                  height={32}
-                  alt=""
-                  aria-hidden="true"
-                />
-              </span>
-            </>
-          )}
-        </div>
-      );
-    })
+    lockedItems.map((image, index) => (
+      <div
+        class="cases-preview__cell cases-preview__cell--locked"
+        style={`--cell-index: ${index + 1}`}
+        data-reveal={reveal ? true : undefined}
+      >
+        <img
+          class="cases-preview__image"
+          src={image.src}
+          width={image.width}
+          height={image.height}
+          alt=""
+          loading={reveal ? 'lazy' : 'eager'}
+          decoding="async"
+          aria-hidden="true"
+        />
+        <div class="cases-preview__cell-scrim" aria-hidden="true"></div>
+        <span class="cases-preview__soon">{s.casesLockedLabel}</span>
+      </div>
+    ))
   }
 </section>
+
+<script>
+  import '../scripts/play-on-visible';
+</script>

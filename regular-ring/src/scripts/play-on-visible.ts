@@ -8,9 +8,15 @@ export function playOnVisible() {
 
   videos.forEach((video) => {
     video.dataset.playBound = '';
-    video.loop = false;
+    video.loop = video.hasAttribute('loop');
     video.muted = true;
     video.playsInline = true;
+
+    const rateAttr = video.dataset.playbackRate;
+    const playbackRate = rateAttr ? Number.parseFloat(rateAttr) : 1;
+    if (Number.isFinite(playbackRate) && playbackRate > 0) {
+      video.playbackRate = playbackRate;
+    }
 
     if (reducedMotion) {
       video.pause();
@@ -18,7 +24,12 @@ export function playOnVisible() {
     }
 
     const tryPlay = () => {
-      const play = () => video.play().catch(() => {});
+      const play = () => {
+        if (Number.isFinite(playbackRate) && playbackRate > 0) {
+          video.playbackRate = playbackRate;
+        }
+        video.play().catch(() => {});
+      };
       if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
         play();
       } else {
@@ -28,14 +39,19 @@ export function playOnVisible() {
     };
 
     const target =
-      video.closest<HTMLElement>('[data-component="workflow-video"]') ?? video;
+      video.closest<HTMLElement>('[data-component="workflow-video"]') ??
+      video.closest<HTMLElement>('.cases-preview__cell') ??
+      video;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
+          if (!entry.isIntersecting) {
+            if (video.loop) video.pause();
+            return;
+          }
           tryPlay();
-          observer.unobserve(entry.target);
+          if (!video.loop) observer.unobserve(entry.target);
         });
       },
       { threshold: 0.2, rootMargin: '0px 0px -40px 0px' },

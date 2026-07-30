@@ -45,7 +45,9 @@ export const strings = {
     casesGridLabel: 'Prévia dos cases',
     casesUnlockedHref: '/cases/ifood',
     casesUnlockedLabel: 'Abrir case iFood',
-    casesLockedLabel: 'Case privado',
+    casesUnlockedTitle: 'iFood',
+    casesUnlockedTags: ['service design', 'product discovery', 'craft design'],
+    casesLockedLabel: 'Em breve',
     caseIfoodPageTitle: 'Wes Marçal — Case iFood',
     caseIfoodMetaDescription:
       'Diagnóstico e visão de design para parceiros via API no iFood: de operação reativa para proativa.',
@@ -53,6 +55,11 @@ export const strings = {
     caseBackLabel: 'Voltar para cases',
     caseVideoBannerLabel: 'Vídeo do case',
     caseVideoPlaceholder: 'Vídeo em breve',
+    writingEyebrow: 'first layer club',
+    writingHeadline:
+      'Camadas de pensamento crítico que te desacelera de propósito, pra refletir sobre como podemos usar AI pra tomar melhores decisões e estruturar nossos pensamentos.',
+    writingSubscribeLabel: 'assinar a first layer club',
+    writingSectionLabel: 'Escritos',
   },
   en: {
     pageTitle: 'Wes Marçal — Home',
@@ -89,7 +96,9 @@ export const strings = {
     casesGridLabel: 'Case previews',
     casesUnlockedHref: '/en/cases/ifood',
     casesUnlockedLabel: 'Open iFood case',
-    casesLockedLabel: 'Private case',
+    casesUnlockedTitle: 'iFood',
+    casesUnlockedTags: ['service design', 'product discovery', 'craft design'],
+    casesLockedLabel: 'Coming soon',
     caseIfoodPageTitle: 'Wes Marçal — iFood Case',
     caseIfoodMetaDescription:
       "Diagnosis and design vision for iFood's API partners: from reactive to proactive operations.",
@@ -97,6 +106,12 @@ export const strings = {
     caseBackLabel: 'Back to cases',
     caseVideoBannerLabel: 'Case video',
     caseVideoPlaceholder: 'Video coming soon',
+    writingEyebrow: 'first layer club',
+    writingHeadline:
+      'Layers of critical thinking that deliberately slow you down — to reflect on how we can use AI to make better decisions and structure our thoughts.',
+    writingSubscribeLabel: 'subscribe to first layer club',
+    writingSectionLabel: 'Writing',
+    writingLangNote: 'Posts are written in Portuguese',
   },
 } satisfies Record<Locale, Record<string, string>>;
 

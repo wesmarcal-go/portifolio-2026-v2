@@ -8,7 +8,7 @@
 
 - **header**: idêntico ao das outras telas, componente `site-header` — `activePage="cases"` deixa "cases" ativo
 - **hero**: identidade (`identity`) + eyebrow "melhores trabalhos" + headline de posicionamento — mesmo padrão estrutural de home/carreira
-- **stage / grade de prévia**: grade 3×1 — tile 1 liberado (nítido, link para case futuro), tiles 2–3 bloqueados (blur + scrim + ícone de cadeado centrado)
+- **stage / grade de prévia**: grade 3×1 — tile 1 liberado (nítido, link para case futuro), tiles 2–3 em breve (blur suave + scrim + rótulo centrado)
 - **footer**: idêntico às outras telas, componente `site-footer` (contato / pedido de acesso vive no footer)
 
 ## Componentes que se repetem nesta tela
@@ -21,14 +21,14 @@
 
 ## Elementos únicos nesta tela
 
-- grade de prévia (`cases-preview-grid` → `CasesPreviewGrid.astro`): 3 imagens de `src/assets/slide-*.png` (iFood, Zé Delivery, Grupo Globo); CSS em `src/styles/cases-preview.css`
-- tile liberado: link `casesUnlockedHref` (`/cases/ifood` · `/en/cases/ifood`) — ver `contexto/estrutura/case-ifood.md`
-- tiles bloqueados: blur + scrim + `icon-lock.svg` centrado (`casesLockedLabel` para a11y)
+- grade de prévia (`cases-preview-grid` → `CasesPreviewGrid.astro`): tile iFood em vídeo (`/videos/case-ifood-thumb.mp4`) + 2 imagens locked (`slide-ze-delivery.png`, `slide-grupo-globo.png`); CSS em `src/styles/cases-preview.css`
+- tile liberado: link `casesUnlockedHref` (`/cases/ifood` · `/en/cases/ifood`) — ver `contexto/estrutura/case-ifood.md`; legenda inferior com título + tags (`casesUnlockedTitle`, `casesUnlockedTags`)
+- tiles em breve: blur suave + scrim + rótulo `casesLockedLabel` (“Em breve” / “Coming soon”)
 
 ## Decisões de design
 
 - Grade é o conteúdo do stage: 1 liberado + 2 bloqueados comunica hierarquia de acesso sem card/modal de gate.
-- Cadeado centrado nos tiles com blur sinaliza confidencialidade; pedido de acesso fica no footer (e-mail / LinkedIn).
+- Rótulo “em breve” nos tiles com blur suave sinaliza cases ainda não publicados; pedido de acesso fica no footer (e-mail / LinkedIn).
 - Motion: stagger nos tiles; `prefers-reduced-motion` → só fade.
 - Mobile ≤700px: 1 coluna — liberado, depois bloqueados.
 
