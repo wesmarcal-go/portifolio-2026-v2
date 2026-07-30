@@ -23,6 +23,7 @@ import Identity from './Identity.astro';
 import ArrowIcon from './ArrowIcon.astro';
 import CaseMeasurement from './CaseMeasurement.astro';
 import CaseMediaSlot from './CaseMediaSlot.astro';
+import caseBannerPoster from '../assets/portifolio-ifood-case-poster.jpg';
 import '../styles/shared.css';
 import '../styles/case-ifood.css';
 
@@ -76,7 +77,20 @@ const langHrefs = { pt: strings.pt.casesUnlockedHref, en: strings.en.casesUnlock
     aria-label={s.caseVideoBannerLabel}
   >
     <div class="page-case__video-frame">
-      <span class="page-case__video-placeholder">{s.caseVideoPlaceholder}</span>
+      <video
+        class="page-case__video"
+        data-play-on-visible
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        poster={caseBannerPoster.src}
+        width={caseBannerPoster.width}
+        height={caseBannerPoster.height}
+        aria-hidden="true"
+      >
+        <source src="/videos/portifolio-ifood-case.mp4" type="video/mp4" />
+      </video>
     </div>
   </figure>
 

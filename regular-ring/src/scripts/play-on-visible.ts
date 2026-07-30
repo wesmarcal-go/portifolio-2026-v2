@@ -39,6 +39,7 @@ export function playOnVisible() {
     };
 
     const target =
+      video.closest<HTMLElement>('[data-component="case-video-banner"]') ??
       video.closest<HTMLElement>('[data-component="workflow-video"]') ??
       video.closest<HTMLElement>('.cases-preview__cell') ??
       video;

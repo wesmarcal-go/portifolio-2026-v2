@@ -9,7 +9,7 @@
 
 - **header**: idêntico ao das outras telas, componente `site-header` — `activePage="cases"` mantém "cases" ativo; `langHrefs` aponta o troca-idioma para o case equivalente no outro locale, não para a home
 - **hero**: coluna identidade (`identity`) + intro com link "voltar para cases" + headline (H1, título do roteiro) + régua de metadados (`dl`, 6 tags: ano, duração, ferramentas, contexto, indústria, meu papel) — a régua fecha o hero como um "bezel" de instrumento
-- **video banner** (`figure.page-case__video-banner`): full-bleed com margem lateral 16px, altura 300px, `border-radius: 8px`; placeholder até o vídeo (ffmpeg) estar pronto
+- **video banner** (`figure.page-case__video-banner`): full-bleed com margem lateral 16px, altura 300px, `border-radius: 8px`; loop muted `/videos/portifolio-ifood-case.mp4` via `play-on-visible` + poster `portifolio-ifood-case-poster.jpg`
 - **sete medições** (`<main>`, uma `case-measurement` cada, `<h2>` cada uma): Resumo · O problema · Workflow · Princípios de design · Tangibilização · Impacto · Retrospectiva — índice `01`–`07` + label uppercase na trilha esquerda, conteúdo à direita
 - **footer**: idêntico às outras telas, componente `site-footer`
 
@@ -37,7 +37,7 @@
 - Cognac carrega o registro reativo (problema/evidências); pine carrega o proativo (princípios/solução) — os dois já existiam como tokens, cognac já em uso, pine estreado aqui.
 - Conteúdo textual em `--measure` (645px); mídia e grades de card podem correr até a largura do `.page-frame`.
 - Nenhum conteúdo é inventado — todo texto vem de `regular-ring/public/roteiro-apresentacao-case.md` (mesma fonte movida depois para `src/i18n/case-ifood.ts`) ou é sua tradução fiel para EN.
-- Mídia: Workflow com `/videos/workflow-ai.mp4` (play on visible, sem loop, via `play-on-visible.ts`); Tangibilização ainda placeholder. Resumo é só prosa (sem slot de mídia).
+- Mídia: banner hero com `/videos/portifolio-ifood-case.mp4` (loop muted, play on visible); Workflow com `/videos/workflow-ai.mp4` (sem loop); Tangibilização ainda placeholder. Resumo é só prosa (sem slot de mídia).
 - Motion: stagger no hero (back → headline → régua); cada `case-measurement` revela via `IntersectionObserver` (fade + translateY 8px, 280ms) — mesmo script (`src/scripts/reveal.ts`) usado pela timeline da carreira.
 
 ## Transição de página

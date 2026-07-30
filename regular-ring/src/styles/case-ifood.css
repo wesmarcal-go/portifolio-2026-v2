@@ -224,19 +224,6 @@
   background: color-mix(in srgb, var(--color-text) 6%, var(--color-background));
 }
 
-.page-case__video-placeholder {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-light);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
-
 .page-case__video {
   display: block;
   width: 100%;

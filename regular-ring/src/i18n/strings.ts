@@ -54,7 +54,6 @@ export const strings = {
     caseIfoodHeadline: 'De reativa para proativa: a operação de parceiros via API no iFood',
     caseBackLabel: 'Voltar para cases',
     caseVideoBannerLabel: 'Vídeo do case',
-    caseVideoPlaceholder: 'Vídeo em breve',
     writingEyebrow: 'first layer club',
     writingHeadline:
       'Camadas de pensamento crítico que te desacelera de propósito, pra refletir sobre como podemos usar AI pra tomar melhores decisões e estruturar nossos pensamentos.',
@@ -105,7 +104,6 @@ export const strings = {
     caseIfoodHeadline: "From reactive to proactive: iFood's API partner operations",
     caseBackLabel: 'Back to cases',
     caseVideoBannerLabel: 'Case video',
-    caseVideoPlaceholder: 'Video coming soon',
     writingEyebrow: 'first layer club',
     writingHeadline:
       'Layers of critical thinking that deliberately slow you down — to reflect on how we can use AI to make better decisions and structure our thoughts.',
