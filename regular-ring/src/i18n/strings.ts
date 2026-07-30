@@ -21,6 +21,7 @@ export const strings = {
     avatarAlt: 'Retrato de Wes Marçal',
     wordmarkAlt: 'wes marçal',
     eyebrow: 'Designer especialista • Designer engineer',
+    jobTitle: 'Staff Designer',
     headline:
       'Uso design e AI para transformar problemas complexos de produto em decisões claras e rápidas.',
     cases: 'Cases',
@@ -74,6 +75,7 @@ export const strings = {
     avatarAlt: 'Portrait of Wes Marçal',
     wordmarkAlt: 'wes marçal',
     eyebrow: 'Senior product designer • Design engineer',
+    jobTitle: 'Staff Designer',
     headline: 'I use design and AI to turn complex product problems into clear, fast decisions.',
     cases: 'Case studies',
     ctaText: "I'm available for new partnerships, mentoring and strategic consulting — let's talk!",
