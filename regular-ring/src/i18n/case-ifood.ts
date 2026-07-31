@@ -36,12 +36,6 @@ export interface CaseIfood {
     label: string;
     thesis: string;
     cards: string[];
-    mediaCaption: string;
-  };
-  impact: {
-    label: string;
-    title: string;
-    cards: string[];
   };
   retrospective: {
     label: string;
@@ -116,16 +110,6 @@ export const caseIfood: Record<Locale, CaseIfood> = {
         'Experiência adaptada ao parceiro e à empresa integradora.',
         'Módulos focados nos momentos que mais importam no dia a dia.',
       ],
-      mediaCaption: 'Interfaces do protótipo (placeholder)',
-    },
-    impact: {
-      label: 'Impacto',
-      title: 'Priorização e desdobramento',
-      cards: [
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        'Sed do eiusmod tempor incididunt ut labore et dolore magna.',
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
-      ],
     },
     retrospective: {
       label: 'Retrospectiva',
@@ -198,16 +182,6 @@ export const caseIfood: Record<Locale, CaseIfood> = {
         'Clear dashboards and directed actions on integration health.',
         'Experience adapted for both the partner and the integrator.',
         'Modules focused on the moments that matter most day to day.',
-      ],
-      mediaCaption: 'Prototype interfaces (placeholder)',
-    },
-    impact: {
-      label: 'Impact',
-      title: 'Prioritization and rollout',
-      cards: [
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        'Sed do eiusmod tempor incididunt ut labore et dolore magna.',
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
       ],
     },
     retrospective: {

@@ -120,16 +120,16 @@
 ## case-ifood-content
 
 - **Arquivo**: `src/components/CaseIfoodContent.astro`
-- **Estrutura**: "bancada de diagnóstico" — corpo completo do case iFood: `site-header` (`activePage="cases"`), hero (identity + intro com link de volta, headline, régua de metadados `dl`), `<main>` com sete `case-measurement` em sequência (Resumo, O problema, Workflow, Princípios de design, Tangibilização, Impacto, Retrospectiva), `site-footer`
+- **Estrutura**: "bancada de diagnóstico" — corpo completo do case iFood: `site-header` (`activePage="cases"`), hero (identity + intro com link de volta, headline, régua de metadados `dl`), `<main>` com seis `case-measurement` em sequência (Resumo, O problema, Método, Princípios, A visão, Retrospectiva), `site-footer`
 - **Variações**: `locale: 'pt' | 'en'` — troca textos via `src/i18n/strings.ts` (chaves `caseIfood*`) e conteúdo estruturado via `src/i18n/case-ifood.ts`
 - **Onde aparece**: `src/pages/cases/ifood.astro` (pt) e `src/pages/en/cases/ifood.astro` (en)
 
 ## case-measurement
 
 - **Arquivo**: `src/components/CaseMeasurement.astro`
-- **Estrutura**: wrapper de seção — trilha esquerda fixa (índice `01`–`07` + label uppercase, `sticky` no desktop) + conteúdo à direita (`<slot/>`); borda hairline no topo (graticule); campo de fundo tonal opcional
+- **Estrutura**: wrapper de seção — trilha esquerda fixa (índice `01`–`06` + label uppercase, `sticky` no desktop) + conteúdo à direita (`<slot/>`); borda hairline no topo (graticule); campo de fundo tonal opcional
 - **Variações**: `register?: 'ink' | 'copper' | 'pine' | 'linen'` (default `ink`) — copper para o registro reativo (problema/evidências), pine para o proativo (princípios/tangibilização), linen para campo claro (workflow + diagrama); entra via `data-reveal` + `IntersectionObserver` (fade + translateY, `astro:page-load`) — prop(s): `id: string`, `index: number`, `label: string`
-- **Onde aparece**: as sete seções de `case-ifood-content`
+- **Onde aparece**: as seis seções de `case-ifood-content`
 
 ## case-media-slot
 

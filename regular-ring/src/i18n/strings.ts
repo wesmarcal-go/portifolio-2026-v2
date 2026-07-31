@@ -57,7 +57,7 @@ export const strings = {
     caseVideoBannerLabel: 'Vídeo do case',
     writingEyebrow: 'first layer club',
     writingHeadline:
-      'Camadas de pensamento crítico que te desacelera de propósito, pra refletir sobre como podemos usar AI pra tomar melhores decisões e estruturar nossos pensamentos.',
+      'Escrevo na First Layer Club, a newsletter que tem a intenção de ser uma camada de pensamento crítico e te desacelerar de propósito. Para refletirmos sobre como podemos usar IA pra tomar melhores decisões e estruturar melhor nossas ideias e pensamentos. Se se interessar, inscreva-se :)',
     writingSubscribeLabel: 'assinar a first layer club',
     writingSectionLabel: 'Escritos',
   },
@@ -108,7 +108,7 @@ export const strings = {
     caseVideoBannerLabel: 'Case video',
     writingEyebrow: 'first layer club',
     writingHeadline:
-      'Layers of critical thinking that deliberately slow you down — to reflect on how we can use AI to make better decisions and structure our thoughts.',
+      'I write in First Layer Club, a newsletter meant to be a layer of critical thinking that deliberately slows you down. So we can reflect on how to use AI to make better decisions and structure our ideas and thoughts more clearly. If that resonates, subscribe :)',
     writingSubscribeLabel: 'subscribe to first layer club',
     writingSectionLabel: 'Writing',
     writingLangNote: 'Posts are written in Portuguese',

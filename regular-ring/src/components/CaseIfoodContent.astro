@@ -13,7 +13,7 @@
 // how Wes frames problems.
 // FIRST VIEWPORT: identity column left; back link → H1 → six-tag
 // readout rail right on ink. Below the hero, a continuous linen field
-// (ink + cognac type) carries the seven measurements and footer.
+// (ink + cognac type) carries the six measurements and footer.
 // FORM: diagnostic-bench structure, seed 975b8bb9 (--scope surface --mode
 // read), assigned index 5. Staging: sectioned measurements, own design.
 import { fade } from 'astro:transitions';
@@ -22,7 +22,6 @@ import SiteFooter from './SiteFooter.astro';
 import Identity from './Identity.astro';
 import ArrowIcon from './ArrowIcon.astro';
 import CaseMeasurement from './CaseMeasurement.astro';
-import CaseMediaSlot from './CaseMediaSlot.astro';
 import caseBannerPoster from '../assets/portifolio-ifood-case-poster.jpg';
 import '../styles/shared.css';
 import '../styles/case-ifood.css';
@@ -167,23 +166,9 @@ const langHrefs = { pt: strings.pt.casesUnlockedHref, en: strings.en.casesUnlock
         ))
       }
     </div>
-    <CaseMediaSlot ratio="16 / 10" caption={c.tangible.mediaCaption} />
   </CaseMeasurement>
 
-  <CaseMeasurement id="impacto" index={6} label={c.impact.label}>
-    <p class="page-case__thesis">{c.impact.title}</p>
-    <div class="page-case__card-row page-case__card-row--triple">
-      {
-        c.impact.cards.map((card) => (
-          <article class="page-case__card page-case__card--flat">
-            <p>{card}</p>
-          </article>
-        ))
-      }
-    </div>
-  </CaseMeasurement>
-
-  <CaseMeasurement id="retrospectiva" index={7} label={c.retrospective.label}>
+  <CaseMeasurement id="retrospectiva" index={6} label={c.retrospective.label}>
     <p class="page-case__thesis page-case__thesis--quiet">{c.retrospective.heading}</p>
     <article class="page-case__card">
       <h3>{c.retrospective.cardTitle}</h3>
