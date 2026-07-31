@@ -205,12 +205,12 @@
   }
 }
 
-/* Hero video banner — full page width with 16px side margins */
+/* Hero video banner — full page width with side gutters */
 
 .page-case__video-banner {
   width: 100%;
   margin: var(--spacing-block) 0;
-  padding-inline: 16px;
+  padding-inline: var(--spacing-lg);
   box-sizing: border-box;
 }
 
@@ -407,10 +407,6 @@
   .page-case {
     --spacing-lg: 24px;
     --spacing-xl: 40px;
-  }
-
-  .page-case__hero {
-    padding-inline: 0;
   }
 
   .page-case__readout {

@@ -208,11 +208,6 @@
     --spacing-lg: 24px;
     --spacing-xl: 40px;
   }
-
-  .page-home__cases,
-  .page-home__writing {
-    padding-inline: 0;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

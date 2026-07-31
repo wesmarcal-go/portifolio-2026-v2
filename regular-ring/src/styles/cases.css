@@ -80,12 +80,9 @@
 }
 
 @media (max-width: 480px) {
-  .page-cases__hero {
-    padding-inline: 0;
-  }
-
-  .page-cases__stage {
-    padding-inline: 0;
+  .page-cases {
+    --spacing-lg: 24px;
+    --spacing-xl: 40px;
   }
 }
 
