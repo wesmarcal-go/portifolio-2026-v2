@@ -1,5 +1,5 @@
 ---
-import { t, type Locale } from '../i18n/strings';
+import { t, localePaths, type Locale } from '../i18n/strings';
 import avatar from '../assets/avatar-wesmarcal.png';
 import wordmark from '../assets/wordmark.svg';
 
@@ -9,20 +9,21 @@ interface Props {
 
 const { locale } = Astro.props;
 const s = t(locale);
+const homeHref = localePaths[locale];
 ---
 
-<div class="identity">
+<a class="identity" href={homeHref} aria-label={s.wordmarkAlt}>
   <div class="identity__avatar">
-    <img src={avatar.src} width={avatar.width} height={avatar.height} alt={s.avatarAlt} />
+    <img src={avatar.src} width={avatar.width} height={avatar.height} alt="" />
   </div>
   <img
     class="identity__wordmark"
     src={wordmark.src}
     width={wordmark.width}
     height={wordmark.height}
-    alt={s.wordmarkAlt}
+    alt=""
   />
-</div>
+</a>
 
 <style>
   .identity {
@@ -32,6 +33,14 @@ const s = t(locale);
     width: 222px;
     flex-shrink: 0;
     padding-top: 20px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .identity:hover {
+      opacity: 0.85;
+    }
   }
 
   .identity__avatar {
