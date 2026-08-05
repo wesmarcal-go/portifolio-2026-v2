@@ -66,8 +66,9 @@ Paleta normativa (print / `DESIGN.md` — Copper Briefing Room). Tokens nomeados
 
 | Token CSS | Valor | Uso |
 |---|---|---|
+| `--radius-sm` | `8px` | campos de formulário (`reply-card`), já documentado em `DESIGN.md` mas nunca escrito no CSS antes da mentoria |
 | `--radius-md` | `11px` | thumbs do card-reel |
-| `--radius-full` | `9999px` | avatar |
+| `--radius-full` | `9999px` | avatar, chips de destinatário (`mentoria-chip`) |
 | `--border-width` | `1px` | espessura padrão |
 
 ## Movimento

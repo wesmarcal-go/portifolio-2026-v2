@@ -23,7 +23,7 @@
 
 ## Elementos únicos nesta tela
 
-- **case-measurement** (`src/components/CaseMeasurement.astro`): wrapper de seção — trilha esquerda sticky (índice + label) + conteúdo; borda hairline no topo; as seis medições + footer vivem num campo contínuo `.page-case__field` (`--color-parchment` / `#f5ebe0`, texto ink + cognac); header e hero permanecem no campo ink
+- **case-measurement** (`src/components/CaseMeasurement.astro`): wrapper de seção — trilha esquerda sticky (índice + label) + conteúdo; as seis medições + footer vivem num campo contínuo `.page-case__field` (`--color-parchment` / `#f5ebe0`, texto ink + cognac); header e hero permanecem no campo ink
 - régua de metadados do hero (`dl.page-case__readout`): 6 pares label/valor do roteiro, 3 colunas → 2 → 1
 - cards de "O problema": Sintoma (prosa) + Evidências (lista de 4 itens, marcador `–` em cognac)
 - pilares de "Princípios": 3 itens numerados (Visibilidade, Autonomia, Padronização), numeral fantasma serif
@@ -35,7 +35,7 @@
 - Cognac carrega o registro reativo (problema/evidências); pine carrega o proativo (princípios/solução) — os dois já existiam como tokens, cognac já em uso, pine estreado aqui.
 - Conteúdo textual em `--measure` (645px); mídia e grades de card podem correr até a largura do `.page-frame`.
 - Nenhum conteúdo é inventado — todo texto vem de `regular-ring/public/roteiro-apresentacao-case.md` (mesma fonte movida depois para `src/i18n/case-ifood.ts`) ou é sua tradução fiel para EN.
-- Mídia: banner hero com `/videos/portifolio-ifood-case.mp4` (loop muted, play on visible); Workflow com `/videos/workflow-ai.mp4` (sem loop). Resumo e A visão são só prosa (sem slot de mídia).
+- Mídia: banner hero com `/videos/portifolio-ifood-case.mp4` (loop muted, play on visible); Workflow com `/videos/workflow-ai.mp4` (sem loop); A visão com slide de 2 frames (`case-ifood-ui-design-01/02.png`, crossfade 2.5s, sem controles) no bleed.
 - Motion: stagger no hero (back → headline → régua); cada `case-measurement` revela via `IntersectionObserver` (fade + translateY 8px, 280ms) — mesmo script (`src/scripts/reveal.ts`) usado pela timeline da carreira.
 
 ## Transição de página

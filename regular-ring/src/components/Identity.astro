@@ -5,11 +5,12 @@ import wordmark from '../assets/wordmark.svg';
 
 interface Props {
   locale: Locale;
+  href?: string;
 }
 
-const { locale } = Astro.props;
+const { locale, href } = Astro.props;
 const s = t(locale);
-const homeHref = localePaths[locale];
+const homeHref = href ?? localePaths[locale];
 ---
 
 <a class="identity" href={homeHref} aria-label={s.wordmarkAlt}>

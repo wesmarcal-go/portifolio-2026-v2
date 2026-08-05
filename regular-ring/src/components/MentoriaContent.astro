@@ -1,0 +1,147 @@
+---
+// THESIS: Uma carta, não uma landing page. Recusa hero + cards "pra quem é"
+//   + 3 passos + depoimentos + FAQ porque o que está à venda é atenção
+//   pessoal — a forma precisa ser a mesma coisa que a oferta.
+// OWN-WORLD: Copper Briefing Room sem palavra nova. Campo ink contínuo,
+//   linen em Merriweather no measure de 645px, rail de 222px carregando
+//   marginália Heebo caixa-alta cognac, hairline entre movimentos, peach
+//   reservado ao remetente/destinatário escolhido/botão. Um único objeto
+//   translúcido na página: o glass mesh do P.S.
+// STORY: o leitor entende que quem escreve já esteve onde ele está;
+//   acredita que a conversa vai ser específica; responde preenchendo o P.S.
+// FIRST VIEWPORT: campo ink — rail com identity + "DE:"; coluna direita
+//   com "PARA:" e quatro chips de destinatário, a abertura da carta logo
+//   abaixo, link discreto pro P.S. Ação primária: escolher o destinatário.
+// FORM: A Carta — candidata 6/7 da lista ordenada por ressonância (surface
+//   concept seed b88b4497, mode persuade). Nenhum staging challenger
+//   adotado: orchard-of-moments não tem entidade colhível aqui;
+//   carved-epoch-descent inverteria a direção de progressão de carreira;
+//   product-teardown é o rail numerado + ledger que já é a bancada de
+//   diagnóstico do case iFood — reconstruí-lo aqui apagaria a diferença
+//   entre as duas superfícies.
+import Identity from './Identity.astro';
+import LetterMovement from './LetterMovement.astro';
+import ReplyCard from './ReplyCard.astro';
+import '../styles/shared.css';
+import '../styles/mentoria.css';
+import {
+  defaultRecipient,
+  letterhead,
+  movements,
+  recipients,
+  signature,
+  type Recipient,
+} from '../i18n/mentoria';
+import { SOCIAL_LINKS, SITE_URL, CONTACT_EMAIL } from '../lib/site';
+
+interface Props {
+  endpoint: string;
+}
+
+const { endpoint } = Astro.props;
+
+const isVariant = (m: (typeof movements)[number]): m is Extract<typeof m, { variants: unknown }> =>
+  'variants' in m;
+
+const recipientOrder = recipients.map((r) => r.id) as Recipient[];
+---
+
+<div class="mentoria-letter" data-component="mentoria-letter">
+  <header class="mentoria-letterhead page-frame">
+    <div class="mentoria-letterhead__rail">
+      <Identity locale="pt" href={SITE_URL} />
+      <div class="mentoria-letterhead__from">
+        <p class="mentoria-letterhead__from-label">{letterhead.fromLabel}</p>
+        <p class="mentoria-letterhead__from-name">{letterhead.fromName}</p>
+        <p class="mentoria-letterhead__from-role">{letterhead.fromRole}</p>
+        <p class="mentoria-letterhead__from-companies">{letterhead.fromCompanies.join(' · ')}</p>
+      </div>
+    </div>
+
+    <div class="mentoria-letterhead__content">
+      <fieldset class="mentoria-letterhead__chips">
+        <legend class="mentoria-letterhead__to-label">{letterhead.toLabel}</legend>
+        {recipients.map((recipient, index) => (
+          <span class="mentoria-chip">
+            <input
+              type="radio"
+              name="destinatario"
+              id={`dest-${recipient.id}`}
+              value={recipient.id}
+              checked={recipient.id === defaultRecipient}
+            />
+            <label for={`dest-${recipient.id}`}>{recipient.chipLabel}</label>
+          </span>
+        ))}
+      </fieldset>
+
+      {recipients.map((recipient) => (
+        <p class="mentoria-letterhead__greeting" data-variant={recipient.id}>
+          {recipient.greeting}
+        </p>
+      ))}
+
+      {recipients.map((recipient) => (
+        <p class="mentoria-letterhead__hook" data-variant={recipient.id}>
+          {recipient.hook}
+        </p>
+      ))}
+
+      <a class="mentoria-letterhead__jump" href="#responder">{letterhead.jumpToReply}</a>
+    </div>
+  </header>
+
+  <main>
+    {movements.map((movement) =>
+      isVariant(movement) ? (
+        <LetterMovement id={movement.id} label={movement.marginLabel}>
+          {recipientOrder.map((id) => (
+            <div data-variant={id}>
+              {movement.variants[id].map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </div>
+          ))}
+        </LetterMovement>
+      ) : (
+        <LetterMovement id={movement.id} label={movement.marginLabel}>
+          {movement.body.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </LetterMovement>
+      )
+    )}
+
+    <section class="mentoria-signature page-frame" data-reveal>
+      <div class="mentoria-signature__frame">
+        <div class="mentoria-signature__rail" aria-hidden="true"></div>
+        <div class="mentoria-signature__content">
+          <p class="mentoria-signature__closing">{signature.closing}</p>
+          <p class="mentoria-signature__name">{signature.name}</p>
+          <p class="mentoria-signature__role">{signature.role}</p>
+          <p class="mentoria-signature__links">
+            <a href={SOCIAL_LINKS.linkedin}>{signature.linkedinLabel}</a>
+            <span aria-hidden="true">·</span>
+            <a href={SITE_URL}>{signature.portfolioLabel}</a>
+            <span aria-hidden="true">·</span>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{signature.emailLabel}</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mentoria-reply page-frame">
+      <div class="mentoria-reply__frame">
+        <div class="mentoria-reply__rail" aria-hidden="true"></div>
+        <div class="mentoria-reply__content">
+          <ReplyCard endpoint={endpoint} />
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  import '../scripts/reveal';
+  import '../scripts/mentoria-form';
+</script>

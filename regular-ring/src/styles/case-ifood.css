@@ -232,6 +232,52 @@
   border: 0;
 }
 
+/* Vision media — same side gutters as the hero video banner (via bleed);
+   two-slide crossfade, no controls. Cycle: 3s hold + 1s fade each way. */
+
+.page-case__vision-media {
+  margin: 0;
+  width: 100%;
+}
+
+.page-case__vision-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2661 / 1086;
+  border-radius: 8px;
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-linen);
+  background: color-mix(in srgb, var(--color-text) 6%, var(--color-background));
+}
+
+.page-case__vision-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-case__vision-image--overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: vision-crossfade 8s ease-in-out infinite;
+}
+
+@keyframes vision-crossfade {
+  0%,
+  37.5% {
+    opacity: 0;
+  }
+  50%,
+  87.5% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /* Measurement content */
 
 .page-case__prose {
@@ -284,7 +330,7 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: var(--spacing-lg);
-  border: var(--border-width) solid var(--color-rule);
+  border: var(--border-width) solid var(--color-linen);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--color-ink) 32%, transparent);
 }
@@ -420,6 +466,11 @@
   .page-case__readout {
     animation: case-fade-enter 200ms ease both;
     animation-delay: 0ms;
+  }
+
+  .page-case__vision-image--overlay {
+    animation: none;
+    opacity: 0;
   }
 }
 

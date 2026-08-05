@@ -50,6 +50,7 @@
   --line-height-reel-label: 54px;
 
   /* Raios e bordas */
+  --radius-sm: 8px;
   --radius-md: 11px;
   --radius-full: 9999px;
   --border-width: 1px;

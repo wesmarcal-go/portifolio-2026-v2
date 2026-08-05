@@ -36,6 +36,7 @@ export interface CaseIfood {
     label: string;
     thesis: string;
     cards: string[];
+    mediaAlts: [string, string];
   };
   retrospective: {
     label: string;
@@ -110,6 +111,10 @@ export const caseIfood: Record<Locale, CaseIfood> = {
         'Experiência adaptada ao parceiro e à empresa integradora.',
         'Módulos focados nos momentos que mais importam no dia a dia.',
       ],
+      mediaAlts: [
+        'Protótipo do Portal do Parceiro com módulos de status da integração — catálogo, pedido e financeiro',
+        'Cards de acionáveis com AI — alertas contextualizados que impactam o SLA de resolução',
+      ],
     },
     retrospective: {
       label: 'Retrospectiva',
@@ -182,6 +187,10 @@ export const caseIfood: Record<Locale, CaseIfood> = {
         'Clear dashboards and directed actions on integration health.',
         'Experience adapted for both the partner and the integrator.',
         'Modules focused on the moments that matter most day to day.',
+      ],
+      mediaAlts: [
+        'Partner Portal prototype with integration status modules — catalog, orders, and finance',
+        'AI actionable cards — contextual alerts that impact problem-resolution SLA',
       ],
     },
     retrospective: {

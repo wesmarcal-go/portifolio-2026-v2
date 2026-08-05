@@ -23,6 +23,8 @@ import Identity from './Identity.astro';
 import ArrowIcon from './ArrowIcon.astro';
 import CaseMeasurement from './CaseMeasurement.astro';
 import caseBannerPoster from '../assets/portifolio-ifood-case-poster.jpg';
+import caseUiDesign01 from '../assets/case-ifood-ui-design-01.png';
+import caseUiDesign02 from '../assets/case-ifood-ui-design-02.png';
 import '../styles/shared.css';
 import '../styles/case-ifood.css';
 
@@ -166,6 +168,32 @@ const langHrefs = { pt: strings.pt.casesUnlockedHref, en: strings.en.casesUnlock
         ))
       }
     </div>
+    <figure
+      slot="bleed"
+      class="page-case__vision-media"
+      data-component="case-vision-media"
+    >
+      <div class="page-case__vision-frame" aria-live="off">
+        <img
+          class="page-case__vision-image"
+          src={caseUiDesign01.src}
+          width={caseUiDesign01.width}
+          height={caseUiDesign01.height}
+          alt={c.tangible.mediaAlts[0]}
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          class="page-case__vision-image page-case__vision-image--overlay"
+          src={caseUiDesign02.src}
+          width={caseUiDesign02.width}
+          height={caseUiDesign02.height}
+          alt={c.tangible.mediaAlts[1]}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </figure>
   </CaseMeasurement>
 
   <CaseMeasurement id="retrospectiva" index={6} label={c.retrospective.label}>

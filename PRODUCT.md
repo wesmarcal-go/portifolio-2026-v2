@@ -20,20 +20,21 @@ Senior product designer / design engineer who uses design and AI to turn complex
 
 ## Operating Context
 
-- Three public surfaces: home (identity + case reel), carreira/career (timeline), cases (gated previews).
-- Bilingual: Portuguese (default) and English (`/en/`).
+- Four public surfaces: home (identity + case reel), carreira/career (timeline), cases (gated previews), mentoria (lead-capture letter for product & service design mentoring, at `mentoria.wesmarcal.com`).
+- Bilingual: Portuguese (default) and English (`/en/`) — mentoria is PT-only by decision, since its audience is the BR design job market.
 - App lives in `regular-ring/` (Astro 7). Repo root also holds Agent Skills tooling.
-- Outbound channels: LinkedIn, Substack, email (`wes.marcal@gmail.com`). CTA emphasizes availability for partnerships, mentoring, and strategic consulting.
+- Outbound channels: LinkedIn, Substack, email (`wes.marcal@gmail.com`). CTA emphasizes availability for partnerships, mentoring, and strategic consulting; mentoring now also has a dedicated capture surface instead of only the footer CTA line.
 - Cases page communicates confidentiality with a locked stage (blur + gate card). Cases remain locked by design — no unlock/auth; the gate routes to contact (email primary, LinkedIn secondary) to request access.
+- `mentoria.wesmarcal.com` and `wesmarcal.com` share one Cloudflare Pages project and build; a Pages Function (`regular-ring/functions/_middleware.ts`) rewrites the served path by request host.
 
 ## Capabilities and Constraints
 
-- **Stack:** Astro 7 with CSS custom properties (`tokens.css`) and scoped/component CSS. Tailwind is permitted for new work if useful, but the incumbent system is not being migrated wholesale.
-- **Surfaces to preserve:** home, carreira/career, cases — shared header/footer/identity.
+- **Stack:** Astro 7 with CSS custom properties (`tokens.css`) and scoped/component CSS. Tailwind is permitted for new work if useful, but the incumbent system is not being migrated wholesale. Fully static build (no adapter, no server runtime) — client-side lead capture posts directly to an external endpoint (Google Apps Script Web App, or a Make/n8n webhook); see `regular-ring/integracoes/mentoria-leads/README.md`.
+- **Surfaces to preserve:** home, carreira/career, cases — shared header/footer/identity. Mentoria intentionally does not share this chrome (see DESIGN.md, Letter Surface).
 - **Cases access:** stay locked; do not build unlock, auth, password gates, or reveal private case content in-product. Contact is the only access path.
-- **i18n:** all visitor-facing copy via `src/i18n/` (`pt` / `en`); no hardcoded page strings in content components.
+- **i18n:** all visitor-facing copy via `src/i18n/` (`pt` / `en`); no hardcoded page strings in content components. Mentoria's copy lives in `src/i18n/mentoria.ts`, PT-only by decision, not an omission.
 - **Brand name:** «wes marçal» / Wes Marçal; site URL `https://wesmarcal.com`.
-- **Open:** any additional channels or surfaces beyond the three current ones.
+- **Open:** any additional channels or surfaces beyond the four current ones.
 
 ## Brand Commitments
 

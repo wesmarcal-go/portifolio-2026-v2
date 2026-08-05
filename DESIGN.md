@@ -91,6 +91,10 @@ components:
   link-social:
     textColor: "{colors.linen}"
     typography: "{typography.label}"
+  form-field:
+    backgroundColor: "color-mix(in srgb, {colors.ink} 32%, transparent)"
+    textColor: "{colors.linen}"
+    rounded: "{rounded.sm}"
 ---
 
 # Design System: Wes Marçal Portfolio
@@ -207,6 +211,12 @@ Case media frame: empty state is a graticule grid (40px, `--color-rule`) with co
 
 ### Reels Marquee (signature)
 Full-bleed continuous track, 48s linear loop, 30px gaps; under `prefers-reduced-motion`, animation off and manual horizontal scroll.
+
+### Letter Surface (mentoria)
+Persuade-mode surfaces render as a personal letter, not a marketing scroll — first fielded on `/mentoria`. No `SiteHeader`/`SiteFooter`: a letterhead (`Identity` + "DE:" sender block in the 222px rail, "PARA:" recipient chips + opening line in content) stands in for the header, and a signature block stands in for the footer. Body sections reuse the rail-label + `--measure` content grid (`CaseMeasurement`'s pattern, renamed `LetterMovement` — no sticky index, no field tints, just the hairline top rule). Audience branching (four chips: PD júnior/pleno, SD júnior/pleno) is pure CSS via `:has()` — every variant renders in the DOM as `[data-variant]`, one shown at a time; browsers without `:has()` support (or with JS disabled) fall back to one complete, coherent default variant rather than a broken page. Never reintroduce the sticky numbered-index rail from Case Measurement here — that grammar belongs to the diagnostic-bench case surfaces; reusing it on the letter would make the two surfaces indistinguishable.
+
+### Form Controls
+Fields (`form-field`): `--radius-sm` (8px), hairline linen-alpha border matching `--color-rule`, ink-mix fill (`color-mix(in srgb, var(--color-ink) 32%, transparent)`), linen text, peach `:focus-visible` outline (2px, 3px offset — nav's rule extends here). Invalid state is a peach border + peach helper text under the field (`role="alert"`), not a second color — errors and the accent CTA share the same peach signal at different weight (hairline vs. solid fill), so no new palette entry was needed. Chips (radio-as-pill) reuse `--radius-full`: unchecked is hairline-bordered taupe text, checked flips to solid peach fill with ink text — the same fill/border swap `nav-item-active` already uses, just pill-shaped. The lead-capture card (`ReplyCard`) is the second surface in the system permitted the glass treatment — same material as Dispatch Index (`--radius-md`, hairline edge, `backdrop-filter: blur(20px) saturate(150%)`, peach/pine radial mesh, inset top light-catch, `prefers-reduced-transparency` solid fallback) — because it is, like the newsletter card, the one object on its page asking for an action rather than reading. Do not extend the glass treatment to ordinary content sections; it stays reserved for the cases gate, Dispatch Index, and lead-capture cards.
 
 ## Do's and Don'ts
 

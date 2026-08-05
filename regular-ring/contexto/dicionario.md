@@ -127,7 +127,7 @@
 ## case-measurement
 
 - **Arquivo**: `src/components/CaseMeasurement.astro`
-- **Estrutura**: wrapper de seção — trilha esquerda fixa (índice `01`–`06` + label uppercase, `sticky` no desktop) + conteúdo à direita (`<slot/>`); borda hairline no topo (graticule); campo de fundo tonal opcional
+- **Estrutura**: wrapper de seção — trilha esquerda fixa (índice `01`–`06` + label uppercase, `sticky` no desktop) + conteúdo à direita (`<slot/>`); campo de fundo tonal opcional
 - **Variações**: `register?: 'ink' | 'copper' | 'pine' | 'linen'` (default `ink`) — copper para o registro reativo (problema/evidências), pine para o proativo (princípios/tangibilização), linen para campo claro (workflow + diagrama); entra via `data-reveal` + `IntersectionObserver` (fade + translateY, `astro:page-load`) — prop(s): `id: string`, `index: number`, `label: string`
 - **Onde aparece**: as seis seções de `case-ifood-content`
 
@@ -136,4 +136,33 @@
 - **Arquivo**: `src/components/CaseMediaSlot.astro`
 - **Estrutura**: `<figure>` — moldura ruled em graticule (grade 40px, cantos em cognac, crosshair central) + `<figcaption>` visível; com `src` preenchido, a grade some e o asset ocupa a moldura (`object-fit: contain`, fundo `--color-linen`)
 - **Variações**: `ratio: string` (aspect-ratio CSS quando placeholder), `caption: string`, `src?: ImageMetadata`, `alt?: string` — com `src`, o ratio deriva de `width/height` do asset
-- **Onde aparece**: seção Tangibilização (placeholder) de `case-ifood-content`; Workflow usa vídeo em `page-case__workflow-media`
+- **Onde aparece**: disponível; a seção Visão (`tangibilizacao`) usa `page-case__vision-media` (mesmas gutters laterais do vídeo banner via bleed)
+
+## mentoria-content
+
+- **Arquivo**: `src/components/MentoriaContent.astro`; CSS em `src/styles/mentoria.css`
+- **Estrutura**: "A Carta" — sem `site-header`/`site-footer`. Letterhead (rail: `identity` linkando pro portfólio + bloco "DE:"; conteúdo: fieldset "PARA:" com 4 `mentoria-chip`, saudação e abertura variando por destinatário, link "↓ ir direto pra resposta"), `<main>` com cinco `letter-movement`, seção de assinatura, seção com `reply-card`
+- **Variações**: nenhuma prop de locale — página é PT-only por decisão; prop `endpoint: string` (URL do Apps Script ou webhook, vinda de `PUBLIC_LEADS_ENDPOINT`), repassada ao `reply-card`
+- **Onde aparece**: `src/pages/mentoria/index.astro`, servida em `mentoria.wesmarcal.com/` via rewrite de host (`functions/_middleware.ts`)
+
+## letter-movement
+
+- **Arquivo**: `src/components/LetterMovement.astro`
+- **Estrutura**: irmão do `case-measurement`, mas sem índice numérico e sem `register`/field tint — trilha esquerda só com o rótulo da marginália (`sticky` no desktop), conteúdo no `--measure` à direita; borda hairline no topo
+- **Variações**: `id: string`, `label: string`; entra via `data-reveal` (mesmo `IntersectionObserver` compartilhado). Quando o movimento varia por destinatário, o slot recebe quatro `<div data-variant>` (um por trilha) — a troca é resolvida em CSS por `mentoria-letter:has(#dest-{id}:checked)`, não por prop
+- **Onde aparece**: os cinco movimentos de `mentoria-content` (O que eu vejo, O que eu fiz, Como a gente trabalha, O que você leva, O que isso não é)
+
+## mentoria-chip
+
+- **Arquivo**: inline em `MentoriaContent.astro`, estilo em `src/styles/mentoria.css`
+- **Estrutura**: radio nativo (`opacity:0`, preenche a área do chip) + `<label>` visual em pílula (`--radius-full`) — o padrão focus/checked de `nav-item-active` em formato de botão
+- **Variações**: checked | unchecked — checked vira preenchimento peach sólido + texto ink; `:focus-visible` no radio propaga outline pro chip. Quatro instâncias, `name="destinatario"`, radio group real (setas do teclado navegam entre eles de graça)
+- **Onde aparece**: fieldset "PARA:" do letterhead de `mentoria-content`
+
+## reply-card
+
+- **Arquivo**: `src/components/ReplyCard.astro` (`data-component="reply-card"`)
+- **Estrutura**: o P.S. da carta — mesmo material glass do `writing-section` (fill/edge/wash peach-pine/light-catch), formulário (nome, e-mail, trilha, onde você trava) + honeypot oculto + campos ocultos de contexto (`origem`, `campanha`, `carregadoEm`, `chave`); três estados de resultado (`idle` via o próprio form, `success`, `error` com `mailto:` pré-preenchido) trocados por `data-state` no card
+- **Variações**: `endpoint: string` — URL de destino do POST client-side (`Content-Type: text/plain` pra evitar preflight CORS); campo "trilha" (`<select>`) começa sincronizado com o chip do letterhead e permanece editável; erro de validação por campo em peach + `role="alert"`; `container-type: inline-size` colapsa o grid de 2 → 1 coluna pelo tamanho do próprio card
+- **Onde aparece**: seção final de `mentoria-content`, âncora `#responder`
+- **Contrato de dados**: comportamento client-side em `src/scripts/mentoria-form.ts` (honeypot + time-trap de 2,5s como filtro de bot silencioso, validação, fetch, fallback de e-mail); companion de backend em `regular-ring/integracoes/mentoria-leads/` (Apps Script `Code.gs` + README com passo a passo, ou webhook Make/n8n sem código)

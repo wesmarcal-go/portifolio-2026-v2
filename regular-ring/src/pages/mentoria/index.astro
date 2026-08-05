@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MentoriaContent from '../../components/MentoriaContent.astro';
+import { meta } from '../../i18n/mentoria';
+
+const endpoint = import.meta.env.PUBLIC_LEADS_ENDPOINT ?? '';
+---
+
+<Layout
+  title={meta.pageTitle}
+  description={meta.metaDescription}
+  locale="pt"
+  page="mentoria"
+  canonical="https://mentoria.wesmarcal.com/"
+  alternates={false}
+>
+  <MentoriaContent endpoint={endpoint} />
+</Layout>
