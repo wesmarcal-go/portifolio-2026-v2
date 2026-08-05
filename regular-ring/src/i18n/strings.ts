@@ -52,7 +52,7 @@ export const strings = {
     caseIfoodPageTitle: 'Wes Marçal — Case iFood',
     caseIfoodMetaDescription:
       'Diagnóstico e visão de design para parceiros via API no iFood: de operação reativa para proativa.',
-    caseIfoodHeadline: 'De reativa para proativa: a operação de parceiros via API no iFood',
+    caseIfoodHeadline: 'De reativa para proativa: a experiência dos parceiros via API no iFood',
     caseBackLabel: 'Voltar para cases',
     caseVideoBannerLabel: 'Vídeo do case',
     writingEyebrow: 'first layer club',
@@ -103,7 +103,7 @@ export const strings = {
     caseIfoodPageTitle: 'Wes Marçal — iFood Case',
     caseIfoodMetaDescription:
       "Diagnosis and design vision for iFood's API partners: from reactive to proactive operations.",
-    caseIfoodHeadline: "From reactive to proactive: iFood's API partner operations",
+    caseIfoodHeadline: "From reactive to proactive: the API partner experience at iFood",
     caseBackLabel: 'Back to cases',
     caseVideoBannerLabel: 'Case video',
     writingEyebrow: 'first layer club',
